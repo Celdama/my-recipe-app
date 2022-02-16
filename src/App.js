@@ -1,17 +1,27 @@
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getRecipes } from './store/actions/recipesAction';
 import Navbar from './Components/Navbar';
 import Header from './Components/Header';
 import Main from './Components/Main';
+import { RecipesStore } from './Components/Recipes';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRecipes());
+  }, [dispatch]);
+
   return (
     <div className='App'>
       <Navbar />
       <Header />
       <Main>
-        <h3>test</h3>
+        <RecipesStore />
       </Main>
     </div>
   );
-}
+};
 
 export default App;
