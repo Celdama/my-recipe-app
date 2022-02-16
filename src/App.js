@@ -4,7 +4,9 @@ import { getRecipes } from './store/actions/recipesAction';
 import Navbar from './Components/Navbar';
 import Header from './Components/Header';
 import Main from './Components/Main';
-import { RecipesStore } from './Components/Recipes';
+import { RecipesListStore } from './Components/RecipesList';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import RecipeDetail from './Components/RecipeDetail';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,9 +19,14 @@ const App = () => {
     <div className='App'>
       <Navbar />
       <Header />
-      <Main>
-        <RecipesStore />
-      </Main>
+      <BrowserRouter>
+        <Main>
+          <Routes>
+            <Route exact path='/' element={<RecipesListStore />} />
+            <Route path='/recipe/:id' element={<RecipeDetail />} />
+          </Routes>
+        </Main>
+      </BrowserRouter>
     </div>
   );
 };

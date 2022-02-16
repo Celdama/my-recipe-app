@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { recipesSelector } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
 
-export const Recipes = ({ recipes }) => {
+export const RecipesList = ({ recipes }) => {
   return (
     <div className='flex flex-wrap justify-center'>
       {recipes.map((recipe, index) => (
@@ -13,8 +13,8 @@ export const Recipes = ({ recipes }) => {
   );
 };
 
-export const RecipesStore = () => {
+export const RecipesListStore = () => {
   const recipes = useSelector(recipesSelector);
 
-  return <Recipes recipes={recipes} />;
+  return <RecipesList recipes={recipes} />;
 };

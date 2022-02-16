@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RecipeCard = ({ recipe }) => {
   return (
     <div className='m-4'>
-      <a
-        href='/'
+      <Link
+        to={`/recipe/${recipe.id}`}
         className='flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
       >
         <img
@@ -20,7 +21,7 @@ const RecipeCard = ({ recipe }) => {
             {recipe.desc}
           </p>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
