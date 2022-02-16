@@ -4,16 +4,13 @@ export const Wrapper = tw.div`
   m-4
 `;
 
-export const Content = tw.div`
-flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700
-`;
-
 export const RecipeImg = tw.img`
   object-cover
   bg-center
   w-full
   md:w-72
-  h-96
+  h-56
+  sm:h-96
   rounded-t-lg
   md:rounded-none
   md:rounded-l-lg
