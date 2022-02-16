@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const RecipeCard = ({ recipe, handleSetCurrentRecipe }) => {
+const RecipeCard = ({ recipe }) => {
   return (
     <div className='m-4'>
       <Link
-        onClick={() => handleSetCurrentRecipe(recipe)}
         to={`/recipe/${recipe.id}`}
         className='flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
       >

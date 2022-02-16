@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { recipesSelector } from '../../store/selectors/recipesSelector';
+import { currentRecipeSelector } from '../../store/selectors/currentRecipeSelector';
+import { useDispatch } from 'react-redux';
+import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
 
 export const RecipeDetail = ({ recipe }) => {
   return (
@@ -20,8 +22,17 @@ export const RecipeDetail = ({ recipe }) => {
 
 export const RecipeDetailStore = () => {
   const { id } = useParams();
-  const recipes = useSelector(recipesSelector);
-  const currentRecipe = recipes.find((recipe) => recipe.id === Number(id));
+  const dispatch = useDispatch();
+
+  const fetchCurrentRecipe = useCallback(() => {
+    dispatch(getCurrentRecipe(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    fetchCurrentRecipe();
+  }, [fetchCurrentRecipe]);
+
+  const currentRecipe = useSelector(currentRecipeSelector)[0];
 
   return <RecipeDetail recipe={currentRecipe} />;
 };

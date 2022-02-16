@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { recipesSelector } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
+import { useDispatch } from 'react-redux';
+import { resetCurrentRecipe } from '../../store/actions/currentRecipeAction';
 
 export const RecipesList = ({ recipes }) => {
   return (
@@ -14,7 +16,12 @@ export const RecipesList = ({ recipes }) => {
 };
 
 export const RecipesListStore = () => {
+  const dispatch = useDispatch();
   const recipes = useSelector(recipesSelector);
+
+  useEffect(() => {
+    dispatch(resetCurrentRecipe());
+  }, [dispatch]);
 
   return <RecipesList recipes={recipes} />;
 };
