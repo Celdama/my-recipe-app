@@ -40,3 +40,5 @@ I'll use tailwind and styled components for styling
 
 - tailwind-styled-components
 - tailwindcss
+- postcss
+- autoprefixer
