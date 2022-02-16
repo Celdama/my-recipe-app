@@ -12,6 +12,7 @@ import {
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import Avatar from '../../Images/celdama.png';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 const user = {
   name: 'Celdama Dev',
@@ -19,13 +20,13 @@ const user = {
 };
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Browse', href: '#', current: false },
-  { name: 'For You', href: '#', current: false },
+  { name: 'home', href: '#', current: true },
+  { name: 'discover', href: '#', current: false },
+  { name: 'for you', href: '#', current: false },
   // { name: 'Chefs', href: '#', current: false },
-  { name: 'Favourite', href: '#', current: false },
-  { name: 'My Recipe', href: '#', current: false },
-  { name: 'Add Recipe', href: '#', current: false },
+  { name: 'favourite', href: '#', current: false },
+  { name: 'my recipe', href: '#', current: false },
+  { name: 'add recipe', href: '#', current: false },
 ];
 
 const userNavigation = [
@@ -55,12 +56,12 @@ const Navbar = () => {
                       {navigation.map((item) => (
                         <a
                           key={item.name}
-                          href={item.href}
+                          href={item.name === 'home' ? '/' : `/${item.name}`}
                           className={classNames(
                             item.current
                               ? 'bg-gray-900 text-white'
                               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'px-3 py-2 rounded-md text-sm font-medium'
+                            'px-3 py-2 rounded-md text-sm font-medium capitalize'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
