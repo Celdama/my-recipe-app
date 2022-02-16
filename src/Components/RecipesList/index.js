@@ -4,14 +4,15 @@ import { recipesSelector } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
 import { useDispatch } from 'react-redux';
 import { resetCurrentRecipe } from '../../store/actions/currentRecipeAction';
+import { Wrapper } from './recipesList.tw';
 
 export const RecipesList = ({ recipes }) => {
   return (
-    <div className='flex flex-wrap justify-center'>
+    <Wrapper>
       {recipes.map((recipe, index) => (
         <RecipeCard recipe={recipe} key={index} />
       ))}
-    </div>
+    </Wrapper>
   );
 };
 
