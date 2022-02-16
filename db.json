@@ -19,7 +19,7 @@
     {
       "id": 2,
       "title": "Chicken and Pineapple",
-      "desc": "Baked chicken with pineapple and yellow rice.",
+      "desc": "Baked chicken with pineapple and yellow rice,Baked chicken with pineapple and yellow rice.,Baked chicken with pineapple and yellow rice.,Baked chicken with pineapple and yellow rice.",
       "author": "Celdama",
       "ingredients": [
         "6 skinless, boneless chicken breast halves",
@@ -34,6 +34,22 @@
     },
     {
       "id": 3,
+      "title": "Beef Ball",
+      "desc": "Break out the beef ball and get the party rolling! Dried chipped beef and cheese are rolled into a tantalizing treat that's great with buttery, round crackers, vegetables and tortilla chips.",
+      "author": "John Doe",
+      "ingredients": [
+        "6 skinless, boneless chicken breast halves",
+        "2 cups yellow rice mix",
+        "1 teaspoon soy sauce"
+      ],
+      "prep": 15,
+      "cook": 5,
+      "total": 20,
+      "servings": 4,
+      "img": "https://images.unsplash.com/photo-1615937691194-97dbd3f3dc29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      "id": 4,
       "title": "Beef Ball",
       "desc": "Break out the beef ball and get the party rolling! Dried chipped beef and cheese are rolled into a tantalizing treat that's great with buttery, round crackers, vegetables and tortilla chips.",
       "author": "John Doe",
