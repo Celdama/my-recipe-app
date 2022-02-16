@@ -6,7 +6,7 @@ import Header from './Components/Header';
 import Main from './Components/Main';
 import { RecipesListStore } from './Components/RecipesList';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import RecipeDetail from './Components/RecipeDetail';
+import { RecipeDetailStore } from './Components/RecipeDetail';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const App = () => {
         <Main>
           <Routes>
             <Route exact path='/' element={<RecipesListStore />} />
-            <Route path='/recipe/:id' element={<RecipeDetail />} />
+            <Route path='/recipe/:id' element={<RecipeDetailStore />} />
           </Routes>
         </Main>
       </BrowserRouter>

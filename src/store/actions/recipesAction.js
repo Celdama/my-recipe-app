@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_RECIPES } from '../reducers/recipesReducer';
+import { GET_RECIPES, GET_RECIPE } from '../reducers/recipesReducer';
 
 export const getRecipes = () => {
   return async (dispatch) => {
