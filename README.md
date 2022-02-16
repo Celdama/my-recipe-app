@@ -42,3 +42,20 @@ I'll use tailwind and styled components for styling
 - tailwindcss
 - postcss
 - autoprefixer
+
+# Composant
+
+- Sidebar
+  --- Discover
+  --- Library
+
+- SearchBar
+- User
+
+- BestRecipe
+  --- RecipeCard
+
+- DailyRecipe
+  --- RecipeCard
+
+- AddRecipeForm
