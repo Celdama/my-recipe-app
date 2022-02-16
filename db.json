@@ -1,0 +1,52 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Cheesy and Creamy Chicken Tetrazzini",
+      "desc": "Delicious and creamy ! This recipe is my brother's favorite of everythin that I cook, and the first one I mastered.",
+      "author": "Celdama",
+      "ingredients": [
+        "cooking spray",
+        "1 tablespoon olive oil",
+        "2 cloves garlic, minced"
+      ],
+      "prep": 30,
+      "cook": 40,
+      "total": 70,
+      "servings": 6,
+      "img": "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Chicken and Pineapple",
+      "desc": "Baked chicken with pineapple and yellow rice.",
+      "author": "Celdama",
+      "ingredients": [
+        "6 skinless, boneless chicken breast halves",
+        "2 cups yellow rice mix",
+        "1 teaspoon soy sauce"
+      ],
+      "prep": 10,
+      "cook": 45,
+      "total": 55,
+      "servings": 6,
+      "img": "https://images.unsplash.com/photo-1606728035253-49e8a23146de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Beef Ball",
+      "desc": "Break out the beef ball and get the party rolling! Dried chipped beef and cheese are rolled into a tantalizing treat that's great with buttery, round crackers, vegetables and tortilla chips.",
+      "author": "John Doe",
+      "ingredients": [
+        "6 skinless, boneless chicken breast halves",
+        "2 cups yellow rice mix",
+        "1 teaspoon soy sauce"
+      ],
+      "prep": 15,
+      "cook": 5,
+      "total": 20,
+      "servings": 4,
+      "img": "https://images.unsplash.com/photo-1615937691194-97dbd3f3dc29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+    }
+  ]
+}
