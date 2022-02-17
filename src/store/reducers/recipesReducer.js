@@ -15,7 +15,8 @@ export const recipesReducer = (state = initialState, action) => {
         data: [...action.payload],
       };
     case ADD_RECIPE:
-      return [action.payload, ...state];
+      console.log();
+      return [action.payload, ...state.data];
     case TOGGLE_LOADER:
       return {
         ...state,

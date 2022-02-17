@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form } from './addRecipeForm.tw';
 import { Transition } from '@headlessui/react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
+import { recipesSelector } from '../../store/selectors/recipesSelector';
 
 const AddRecipeForm = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +18,28 @@ const AddRecipeForm = () => {
     ingredients: [],
     steps: [],
   });
+
+  const dispatch = useDispatch();
+
+  const handleAddRecipe = async (e) => {
+    e.preventDefault();
+
+    await dispatch(addRecipe(formData));
+
+    dispatch(getRecipes());
+    setFormData({
+      title: '',
+      desc: '',
+      author: '',
+      prep: 0,
+      cooking: 0,
+      total: 0,
+      serving: 0,
+      imgUrl: '',
+      ingredients: [],
+      steps: [],
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,12 +95,6 @@ const AddRecipeForm = () => {
     });
   };
 
-  const handleAddRecipe = (e) => {
-    e.preventDefault();
-
-    console.log(formData);
-  };
-
   return (
     <>
       <Transition
@@ -88,7 +107,7 @@ const AddRecipeForm = () => {
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <Form onSubmit={(e) => handleAddRecipe(e)}>
+        <Form>
           <div className='relative z-0 mb-6 w-full group'>
             <input
               type='text'
