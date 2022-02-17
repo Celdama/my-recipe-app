@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Discover = () => {
-  return <div>index</div>;
+  return <div>discover page</div>;
 };
 
 export default Discover;

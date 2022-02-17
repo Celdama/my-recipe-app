@@ -20,13 +20,13 @@ const user = {
 };
 
 const navigation = [
-  { name: 'home', href: '#', current: true },
-  { name: 'discover', href: '#', current: false },
-  { name: 'for you', href: '#', current: false },
+  { name: 'Home', href: 'home', current: true },
+  { name: 'Discover', href: 'discover', current: false },
+  { name: 'For you', href: 'for-you', current: false },
   // { name: 'Chefs', href: '#', current: false },
-  { name: 'favourite', href: '#', current: false },
-  { name: 'my recipe', href: '#', current: false },
-  { name: 'add recipe', href: '#', current: false },
+  { name: 'Favourite', href: 'favourite', current: false },
+  { name: 'My recipes', href: 'my-recipes', current: false },
+  { name: 'Add recipe', href: 'add-recipe', current: false },
 ];
 
 const userNavigation = [
@@ -34,10 +34,6 @@ const userNavigation = [
   // { name: 'Settings', href: '#' },
   // { name: 'Sign out', href: '#' },
 ];
-
-const classNames = (...classes) => {
-  return classes.filter(Boolean).join(' ');
-};
 
 const Navbar = () => {
   return (
@@ -57,9 +53,9 @@ const Navbar = () => {
                         <NavLink
                           activeclassname='selected'
                           key={item.name}
-                          to={item.name}
+                          to={item.name === 'Home' ? '/' : item.href}
                           className='text-gray-300 hover:bg-gray-700 hover:text-white
-                            px-3 py-2 rounded-md text-sm font-medium capitalize'
+                            px-3 py-2 rounded-md text-sm font-medium'
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
@@ -133,8 +129,8 @@ const Navbar = () => {
                     activeclassname='selected'
                     key={item.name}
                     as={NavLink}
-                    to={item.name}
-                    className='block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium capitalize'
+                    to={item.name === 'Home' ? '/' : item.href}
+                    className='block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
                     aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}

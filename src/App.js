@@ -5,9 +5,13 @@ import Navbar from './Components/Navbar';
 import Header from './Components/Header';
 import Main from './Components/Main';
 import { RecipesListStore } from './Components/RecipesList';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecipeDetailStore } from './Components/RecipeDetail';
 import Discover from './Components/Discover';
+import ForYou from './Components/ForYou';
+import Favourite from './Components/Favourite';
+import MyRecipes from './Components/MyRecipes';
+import AddRecipeForm from './Components/AddRecipeForm';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +29,10 @@ const App = () => {
           <Routes>
             <Route exact path='/' element={<RecipesListStore />} />
             <Route path='/discover' element={<Discover />} />
+            <Route path='/for-you' element={<ForYou />} />
+            <Route path='/favourite' element={<Favourite />} />
+            <Route path='/my-recipes' element={<MyRecipes />} />
+            <Route path='/add-recipe' element={<AddRecipeForm />} />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
           </Routes>
         </Main>
