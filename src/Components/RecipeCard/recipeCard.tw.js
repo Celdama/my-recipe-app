@@ -2,6 +2,8 @@ import tw from 'tailwind-styled-components';
 
 export const Wrapper = tw.div`
   m-4
+  max-w-xl
+  w-full
 `;
 
 export const RecipeImg = tw.img`
@@ -19,7 +21,9 @@ export const RecipeImg = tw.img`
 export const RecipeContent = tw.div`
   flex 
   flex-col 
-  justify-between 
+  w-full
+  min-w-36
+  justify-between
   p-4 
   leading-normal
 `;
@@ -38,4 +42,10 @@ export const RecipeDesc = tw.p`
   font-normal 
   text-gray-700 
   dark:text-gray-400
+`;
+
+export const RecipeInfo = tw.div`
+  flex 
+  text-gray-400  
+  justify-between
 `;
