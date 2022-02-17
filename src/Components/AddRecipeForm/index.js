@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Form } from './addRecipeForm.tw';
 import { Transition } from '@headlessui/react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
-import { recipesSelector } from '../../store/selectors/recipesSelector';
 
 const AddRecipeForm = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +16,7 @@ const AddRecipeForm = () => {
     imgUrl: '',
     ingredients: [],
     steps: [],
+    favorite: false,
   });
 
   const dispatch = useDispatch();
@@ -38,6 +38,7 @@ const AddRecipeForm = () => {
       imgUrl: '',
       ingredients: [],
       steps: [],
+      favorite: false,
     });
   };
 
