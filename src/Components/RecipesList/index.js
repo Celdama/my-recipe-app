@@ -11,8 +11,8 @@ import { Wrapper } from './recipesList.tw';
 import Spinner from '../Spinner';
 
 export const RecipesList = ({ recipes, isLoading }) => {
-  const recipesContent = recipes.map((recipe, index) => (
-    <RecipeCard recipe={recipe} key={index} />
+  const recipesContent = recipes.map((recipe) => (
+    <RecipeCard key={recipe.id} recipe={recipe} />
   ));
 
   return <Wrapper>{isLoading ? <Spinner /> : recipesContent}</Wrapper>;
@@ -21,7 +21,7 @@ export const RecipesList = ({ recipes, isLoading }) => {
 export const RecipesListStore = () => {
   const dispatch = useDispatch();
   const recipes = useSelector(recipesSelector);
-  let isLoading = useSelector(loaderSelector);
+  const isLoading = useSelector(loaderSelector);
 
   useEffect(() => {
     dispatch(resetCurrentRecipe());
