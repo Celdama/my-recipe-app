@@ -16,7 +16,16 @@ const AddRecipeForm = () => {
     steps: [],
   });
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
 
   const handleIngredient = (e, i) => {
     const ingredientsClone = [...formData.ingredients];
@@ -61,6 +70,12 @@ const AddRecipeForm = () => {
     });
   };
 
+  const handleAddRecipe = (e) => {
+    e.preventDefault();
+
+    console.log(formData);
+  };
+
   return (
     <>
       <Transition
@@ -73,14 +88,14 @@ const AddRecipeForm = () => {
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <Form>
+        <Form onSubmit={(e) => handleAddRecipe(e)}>
           <div className='relative z-0 mb-6 w-full group'>
             <input
               type='text'
               name='title'
               id='title'
               value={formData.title}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
               placeholder=' '
               required
@@ -97,7 +112,7 @@ const AddRecipeForm = () => {
               id='desc'
               name='desc'
               value={formData.desc}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
               placeholder=' '
               required
@@ -116,7 +131,7 @@ const AddRecipeForm = () => {
               name='author'
               id='author'
               value={formData.author}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
               placeholder=' '
               required
@@ -131,16 +146,16 @@ const AddRecipeForm = () => {
           <div className='relative z-0 mb-6 w-full group'>
             <input
               type='text'
-              name='img'
-              id='img'
+              name='imgUrl'
+              id='imgUrl'
               value={formData.imgUrl}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
               className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
               placeholder=' '
               required
             />
             <label
-              htmlFor='img'
+              htmlFor='imgUrl'
               className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
             >
               Recipe Image URL
@@ -153,7 +168,7 @@ const AddRecipeForm = () => {
                 name='prep'
                 id='prep'
                 value={formData.prep}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required
@@ -171,7 +186,7 @@ const AddRecipeForm = () => {
                 name='cooking'
                 id='cooking'
                 value={formData.cooking}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required
@@ -191,7 +206,7 @@ const AddRecipeForm = () => {
                 name='total'
                 id='total'
                 value={formData.total}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required
@@ -206,16 +221,16 @@ const AddRecipeForm = () => {
             <div className='relative z-0 mb-6 w-full group'>
               <input
                 type='number'
-                name='servings'
-                id='servings'
+                name='serving'
+                id='serving'
                 value={formData.serving}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required
               />
               <label
-                htmlFor='servings'
+                htmlFor='serving'
                 className='absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
               >
                 Servings
@@ -275,9 +290,10 @@ const AddRecipeForm = () => {
           </div>
           <button
             type='submit'
+            onClick={(e) => handleAddRecipe(e)}
             className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
           >
-            Submit
+            Add Recipe
           </button>
         </Form>
       </Transition>

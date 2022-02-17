@@ -1,4 +1,5 @@
 export const GET_RECIPES = 'GET_RECIPES';
+export const ADD_RECIPE = 'ADD_RECIPE';
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 
 const initialState = {
@@ -13,6 +14,8 @@ export const recipesReducer = (state = initialState, action) => {
         ...state,
         data: [...action.payload],
       };
+    case ADD_RECIPE:
+      return [action.payload, ...state];
     case TOGGLE_LOADER:
       return {
         ...state,
