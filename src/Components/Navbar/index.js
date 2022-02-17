@@ -12,7 +12,7 @@ import {
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import Avatar from '../../Images/celdama.png';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const user = {
   name: 'Celdama Dev',
@@ -30,7 +30,7 @@ const navigation = [
 ];
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
+  { name: 'Your Profile', href: 'profile' },
   // { name: 'Settings', href: '#' },
   // { name: 'Sign out', href: '#' },
 ];
@@ -45,20 +45,22 @@ const Navbar = () => {
               <NavContainer>
                 <NavItems>
                   <NavLogoContainer>
-                    <ClipboardListIcon className='h-8 w-8 text-indigo-500' />
+                    <NavLink to='/'>
+                      <ClipboardListIcon className='h-8 w-8 text-indigo-500' />
+                    </NavLink>
                   </NavLogoContainer>
                   <NavItemsContainer>
                     <div className='ml-10 flex items-baseline space-x-4'>
-                      {navigation.map((item) => (
+                      {navigation.map(({ name, href, current }) => (
                         <NavLink
                           activeclassname='selected'
-                          key={item.name}
-                          to={item.name === 'Home' ? '/' : item.href}
+                          key={name}
+                          to={name === 'Home' ? '/' : href}
                           className='text-gray-300 hover:bg-gray-700 hover:text-white
                             px-3 py-2 rounded-md text-sm font-medium'
-                          aria-current={item.current ? 'page' : undefined}
+                          aria-current={current ? 'page' : undefined}
                         >
-                          {item.name}
+                          {name}
                         </NavLink>
                       ))}
                     </div>
@@ -87,19 +89,17 @@ const Navbar = () => {
                         leaveTo='transform opacity-0 scale-95'
                       >
                         <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                          {userNavigation.map((item) => (
-                            <Menu.Item key={item.name}>
+                          {userNavigation.map(({ name, href, current }) => (
+                            <Menu.Item key={name}>
                               {({ active }) => (
                                 <NavLink
                                   activeclassname='active-user-item'
-                                  key={item.name}
-                                  to={item.name}
+                                  key={name}
+                                  to={href}
                                   className='block px-4 py-2 text-sm text-gray-700'
-                                  aria-current={
-                                    item.current ? 'page' : undefined
-                                  }
+                                  aria-current={current ? 'page' : undefined}
                                 >
-                                  {item.name}
+                                  {name}
                                 </NavLink>
                               )}
                             </Menu.Item>
@@ -124,27 +124,33 @@ const Navbar = () => {
 
             <Disclosure.Panel className='md:hidden'>
               <NavItemsMobileContainer>
-                {navigation.map((item) => (
+                {navigation.map(({ name, href, current }) => (
                   <Disclosure.Button
                     activeclassname='selected'
-                    key={item.name}
+                    key={name}
                     as={NavLink}
-                    to={item.name === 'Home' ? '/' : item.href}
+                    to={name === 'Home' ? '/' : href}
                     className='block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={current ? 'page' : undefined}
                   >
-                    {item.name}
+                    {name}
                   </Disclosure.Button>
                 ))}
               </NavItemsMobileContainer>
               <NavUserMobileContainer>
                 <div className='flex items-center px-5'>
                   <div className='flex-shrink-0'>
-                    <img
-                      className='h-10 w-10 rounded-full'
-                      src={Avatar}
-                      alt=''
-                    />
+                    <Disclosure.Button
+                      key={user.name}
+                      as={NavLink}
+                      to={userNavigation[0].href}
+                    >
+                      <img
+                        className='h-10 w-10 rounded-full'
+                        src={Avatar}
+                        alt='avatar'
+                      />
+                    </Disclosure.Button>
                   </div>
                   <div className='ml-3'>
                     <div className='text-base font-medium leading-none text-white'>

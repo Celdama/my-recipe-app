@@ -12,6 +12,8 @@ import ForYou from './Components/ForYou';
 import Favourite from './Components/Favourite';
 import MyRecipes from './Components/MyRecipes';
 import AddRecipeForm from './Components/AddRecipeForm';
+import NoMatch from './Components/404';
+import YourProfile from './Components/YourProfile';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,6 +36,8 @@ const App = () => {
             <Route path='/my-recipes' element={<MyRecipes />} />
             <Route path='/add-recipe' element={<AddRecipeForm />} />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
+            <Route path='/profile' element={<YourProfile />} />
+            <Route path='*' element={<NoMatch />} />
           </Routes>
         </Main>
       </BrowserRouter>
