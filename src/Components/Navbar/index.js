@@ -12,7 +12,7 @@ import {
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import Avatar from '../../Images/celdama.png';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const user = {
   name: 'Celdama Dev',
@@ -54,19 +54,16 @@ const Navbar = () => {
                   <NavItemsContainer>
                     <div className='ml-10 flex items-baseline space-x-4'>
                       {navigation.map((item) => (
-                        <a
+                        <NavLink
+                          activeclassname='selected'
                           key={item.name}
-                          href={item.name === 'home' ? '/' : `/${item.name}`}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'px-3 py-2 rounded-md text-sm font-medium capitalize'
-                          )}
+                          to={item.name}
+                          className='text-gray-300 hover:bg-gray-700 hover:text-white
+                            px-3 py-2 rounded-md text-sm font-medium capitalize'
                           aria-current={item.current ? 'page' : undefined}
                         >
                           {item.name}
-                        </a>
+                        </NavLink>
                       ))}
                     </div>
                   </NavItemsContainer>
@@ -97,15 +94,17 @@ const Navbar = () => {
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    active ? 'bg-gray-100' : '',
-                                    'block px-4 py-2 text-sm text-gray-700'
-                                  )}
+                                <NavLink
+                                  activeclassname='active-user-item'
+                                  key={item.name}
+                                  to={item.name}
+                                  className='block px-4 py-2 text-sm text-gray-700'
+                                  aria-current={
+                                    item.current ? 'page' : undefined
+                                  }
                                 >
                                   {item.name}
-                                </a>
+                                </NavLink>
                               )}
                             </Menu.Item>
                           ))}
@@ -131,15 +130,11 @@ const Navbar = () => {
               <NavItemsMobileContainer>
                 {navigation.map((item) => (
                   <Disclosure.Button
+                    activeclassname='selected'
                     key={item.name}
-                    as='a'
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'block px-3 py-2 rounded-md text-base font-medium'
-                    )}
+                    as={NavLink}
+                    to={item.name}
+                    className='block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium capitalize'
                     aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}
@@ -164,18 +159,6 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-                {/* <div className='mt-3 px-2 space-y-1'>
-                  {userNavigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as='a'
-                      href={item.href}
-                      className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
-                </div> */}
               </NavUserMobileContainer>
             </Disclosure.Panel>
           </>

@@ -18,9 +18,9 @@ const App = () => {
 
   return (
     <div className='App'>
-      <Navbar />
-      <Header />
       <BrowserRouter>
+        <Navbar />
+        <Header />
         <Main>
           <Routes>
             <Route exact path='/' element={<RecipesListStore />} />

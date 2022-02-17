@@ -37,6 +37,7 @@ export const NavItemsMobileContainer = tw.div`
   pb-3 
   space-y-1 
   sm:px-3
+  
 `;
 
 export const NavUserMobileContainer = tw.div`
