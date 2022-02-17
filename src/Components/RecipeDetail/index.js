@@ -11,9 +11,9 @@ import Spinner from '../Spinner';
 import { Wrapper } from './recipeDetail.tw';
 
 export const RecipeDetail = ({ recipe, isLoading }) => {
-  const { title, author, img, desc } = recipe;
   let recipeContent;
   if (recipe) {
+    const { title, author, img, desc } = recipe;
     recipeContent = (
       <div>
         <h1>{title}</h1>
