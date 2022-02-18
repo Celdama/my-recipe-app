@@ -4,6 +4,7 @@ import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 const AddRecipeForm = () => {
   const [redirect, setRedirect] = useState(false);
@@ -34,7 +35,7 @@ const AddRecipeForm = () => {
   const handleAddRecipe = async (e) => {
     e.preventDefault();
 
-    await dispatch(addRecipe(formData));
+    await dispatch(addRecipe({ ...formData, customId: nanoid() }));
 
     dispatch(getRecipes());
     setFormData({
