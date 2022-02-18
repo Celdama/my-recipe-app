@@ -9,7 +9,7 @@ export const recipesReducer = (state = initialState, action) => {
     case GET_RECIPES:
       return [...action.payload];
     case ADD_RECIPE:
-      return [action.payload, ...state];
+      return [...state, action.payload];
     case EDIT_RECIPE:
       return state.map((recipe) => {
         return recipe.id === action.payload.id
