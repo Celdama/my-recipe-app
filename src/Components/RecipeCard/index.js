@@ -10,12 +10,12 @@ import {
 } from './recipeCard.tw';
 
 const RecipeCard = ({ recipe }) => {
-  const { id, imgUrl, title, desc, prep, cooking } = recipe;
+  const { customId, imgUrl, title, desc, prep, cooking } = recipe;
   return (
     <Wrapper>
       <Link
         className=' flex flex-col justify-between bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'
-        to={`/recipe/${id}`}
+        to={`/recipe/${customId}`}
       >
         <RecipeImg src={imgUrl} alt='recipe' />
         <RecipeContent>

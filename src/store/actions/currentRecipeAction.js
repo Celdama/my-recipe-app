@@ -10,7 +10,9 @@ export const getCurrentRecipe = (id) => {
   return async (dispatch) => {
     try {
       dispatch(toggleLoader());
-      const res = await axios.get(`http://localhost:3004/recipes?id=${id}`);
+      const res = await axios.get(
+        `http://localhost:3004/recipes?customId=${id}`
+      );
       dispatch({
         type: GET_CURRENT_RECIPE,
         payload: res.data,
