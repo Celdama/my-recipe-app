@@ -1,12 +1,7 @@
 export const GET_RECIPES = 'GET_RECIPES';
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const EDIT_RECIPE = 'EDIT_RECIPE';
-// export const TOGGLE_LOADER = 'TOGGLE_LOADER';
 
-// const initialState = {
-//   data: [],
-//   loading: false,
-// };
 const initialState = [];
 
 export const recipesReducer = (state = initialState, action) => {
@@ -21,11 +16,6 @@ export const recipesReducer = (state = initialState, action) => {
           ? { ...recipe, ...action.payload }
           : recipe;
       });
-    // case TOGGLE_LOADER:
-    //   return {
-    //     ...state,
-    //     loading: !state.loading,
-    //   };
     default:
       return state;
   }

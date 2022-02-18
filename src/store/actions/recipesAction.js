@@ -4,13 +4,11 @@ import {
   GET_RECIPES,
   ADD_RECIPE,
   EDIT_RECIPE,
-  // TOGGLE_LOADER,
 } from '../reducers/recipesReducer';
 
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
-      // dispatch(toggleLoader());
       const res = await axios.get(
         'http://localhost:3004/recipes?_sort=id&_order=desc'
       );
@@ -18,7 +16,6 @@ export const getRecipes = () => {
         type: GET_RECIPES,
         payload: res.data,
       });
-      // dispatch(toggleLoader());
     } catch (err) {
       return console.log(err);
     }
@@ -54,7 +51,3 @@ export const editRecipe = (data) => {
     }
   };
 };
-
-// export const toggleLoader = () => ({
-//   type: TOGGLE_LOADER,
-// });
