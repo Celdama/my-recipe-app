@@ -19,7 +19,7 @@
         "last step"
       ],
       "id": 1,
-      "favorite": false 
+      "favorite": false
     },
     {
       "title": "Chicken and Pineapple",
@@ -40,8 +40,7 @@
         "last step"
       ],
       "id": 2,
-      "favorite": false 
-
+      "favorite": false
     },
     {
       "title": "Beef Ball",
@@ -62,7 +61,7 @@
         "last step"
       ],
       "id": 3,
-      "favorite": false 
+      "favorite": false
     },
     {
       "title": "Beef Ball",
@@ -83,8 +82,7 @@
         "last step"
       ],
       "id": 4,
-      "favorite": false 
-
+      "favorite": false
     },
     {
       "title": "Eggs Bacon",
@@ -104,7 +102,7 @@
         "dez"
       ],
       "id": 5,
-      "favorite": false 
+      "favorite": false
     },
     {
       "title": "Another Recipe",
@@ -124,7 +122,7 @@
         "fsd"
       ],
       "id": 6,
-      "favorite": false 
+      "favorite": false
     }
   ]
 }

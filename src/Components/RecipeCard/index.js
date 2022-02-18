@@ -10,7 +10,6 @@ import {
 } from './recipeCard.tw';
 
 const RecipeCard = ({ recipe }) => {
-  console.log(recipe);
   const { id, imgUrl, title, desc, prep, cooking } = recipe;
   return (
     <Wrapper>

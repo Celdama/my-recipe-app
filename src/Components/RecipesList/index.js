@@ -11,9 +11,9 @@ import { Wrapper } from './recipesList.tw';
 import Spinner from '../Spinner';
 
 export const RecipesList = ({ recipes, isLoading }) => {
-  const recipesContent = recipes.map((recipe) => (
-    <RecipeCard key={recipe.id} recipe={recipe} />
-  ));
+  const recipesContent =
+    recipes &&
+    recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
 
   return <Wrapper>{isLoading ? <Spinner /> : recipesContent}</Wrapper>;
 };

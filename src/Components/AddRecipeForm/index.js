@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from './addRecipeForm.tw';
 import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
+import { useNavigate } from 'react-router-dom';
 
 const AddRecipeForm = () => {
+  const [redirect, setRedirect] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     desc: '',
@@ -18,6 +20,14 @@ const AddRecipeForm = () => {
     steps: [],
     favorite: false,
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (redirect) {
+      return navigate('/');
+    }
+  }, [redirect, navigate]);
 
   const dispatch = useDispatch();
 
@@ -40,6 +50,8 @@ const AddRecipeForm = () => {
       steps: [],
       favorite: false,
     });
+
+    setRedirect((prevState) => !prevState);
   };
 
   const handleChange = (e) => {

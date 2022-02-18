@@ -10,7 +10,9 @@ export const getRecipes = () => {
   return async (dispatch) => {
     try {
       dispatch(toggleLoader());
-      const res = await axios.get('http://localhost:3004/recipes');
+      const res = await axios.get(
+        'http://localhost:3004/recipes?_sort=id&_order=desc'
+      );
       dispatch({
         type: GET_RECIPES,
         payload: res.data,
