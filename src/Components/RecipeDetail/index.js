@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 import { Wrapper } from './recipeDetail.tw';
 import { editRecipe } from '../../store/actions/recipesAction';
 
-export const RecipeDetail = ({ recipe, isLoading }) => {
+export const RecipeDetail = ({ recipe }) => {
   const [editToggle, setEditToggle] = useState(false);
   const [editRecipeData, setEditRecipeData] = useState({ ...recipe });
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export const RecipeDetail = ({ recipe, isLoading }) => {
   }
   return (
     <Wrapper>
-      {isLoading ? (
+      {!recipe ? (
         <Spinner />
       ) : (
         <div className='flex flex-col'>
@@ -96,7 +96,7 @@ export const RecipeDetailStore = () => {
     fetchCurrentRecipe();
   }, [fetchCurrentRecipe]);
 
-  const currentRecipe = useSelector(currentRecipeSelector)[0];
+  const currentRecipe = useSelector(currentRecipeSelector);
 
-  return <RecipeDetail recipe={currentRecipe} />;
+  return <RecipeDetail recipe={currentRecipe[0]} />;
 };
