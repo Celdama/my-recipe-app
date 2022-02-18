@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   recipesSelector,
-  loaderSelector,
+  // loaderSelector,
 } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import { Wrapper } from './recipesList.tw';
 import Spinner from '../Spinner';
 
 export const RecipesList = ({ recipes, isLoading }) => {
+  console.log(recipes);
   const recipesContent =
     recipes &&
     recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
@@ -21,11 +22,11 @@ export const RecipesList = ({ recipes, isLoading }) => {
 export const RecipesListStore = () => {
   const dispatch = useDispatch();
   const recipes = useSelector(recipesSelector);
-  const isLoading = useSelector(loaderSelector);
+  // const isLoading = useSelector(loaderSelector);
 
   useEffect(() => {
     dispatch(resetCurrentRecipe());
   }, [dispatch]);
 
-  return <RecipesList recipes={recipes} isLoading={isLoading} />;
+  return <RecipesList recipes={recipes} />;
 };

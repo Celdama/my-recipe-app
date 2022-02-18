@@ -1,3 +1,3 @@
-export const recipesSelector = ({ recipes }) => recipes.data;
+export const recipesSelector = ({ recipes }) => recipes;
 
-export const loaderSelector = ({ recipes }) => recipes.loading;
+// export const loaderSelector = ({ recipes }) => recipes.loading;
