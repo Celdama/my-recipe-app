@@ -18,7 +18,7 @@ const NoMatch = () => {
     {
       title: 'favourite',
       href: 'favourite',
-      desc: 'Find your favorite recipes',
+      desc: 'Find your favorite recipe',
     },
     {
       title: 'add recipe',
@@ -43,8 +43,8 @@ const NoMatch = () => {
         to={page.href}
         className={
           page.title === 'discover'
-            ? ' flex items-center justify-between py-4 hover:cursor-pointer   border-t'
-            : 'flex items-center justify-between py-4 hover:cursor-pointer'
+            ? 'flex items-center justify-between py-4 hover:cursor-pointer hover:bg-gray-100 border-t'
+            : 'flex items-center justify-between py-4 hover:cursor-pointer hover:bg-gray-100'
         }
       >
         <div className='flex gap-3'>
@@ -62,7 +62,7 @@ const NoMatch = () => {
   });
 
   return (
-    <div className='mx-auto mt-16 max-w-screen-sm font-sans'>
+    <div className='mx-auto mt-2 max-w-screen-sm font-sans'>
       <div className='flex flex-col justify-center items-center'>
         <span className='text-center block font-bold text-indigo-500'>
           404 ERROR
