@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Form } from './addRecipeForm.tw';
+import {
+  Form,
+  InputWrapper,
+  InputWrapperGrid,
+  Label,
+  Input,
+  Textarea,
+  FormBtn,
+  AddRecipeBtn,
+  DeleteText,
+} from './addRecipeForm.tw';
 import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
@@ -7,6 +17,8 @@ import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
 const AddRecipeForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -22,15 +34,11 @@ const AddRecipeForm = () => {
     favorite: false,
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (redirect) {
       return navigate('/');
     }
   }, [redirect, navigate]);
-
-  const dispatch = useDispatch();
 
   const handleAddRecipe = async (e) => {
     e.preventDefault();
@@ -104,12 +112,32 @@ const AddRecipeForm = () => {
     });
   };
 
-  const handleDeleteStep = (step, i) => {
+  const handleDeleteStep = (i) => {
     setFormData({
       ...formData,
       steps: formData.steps.filter((item, index) => index !== i),
     });
   };
+
+  const handleDeleteIngredient = (i) => {
+    setFormData({
+      ...formData,
+      ingredients: formData.ingredients.filter((item, index) => index !== i),
+    });
+  };
+
+  const {
+    title,
+    desc,
+    author,
+    imgUrl,
+    prep,
+    cooking,
+    total,
+    serving,
+    ingredients,
+    steps,
+  } = formData;
 
   return (
     <>
@@ -123,208 +151,138 @@ const AddRecipeForm = () => {
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <form className='p-4' action=''>
-          <div className='mb-6'>
-            <label
-              htmlFor='title'
-              className='block mb-2 text-sm font-medium text-gray-900'
-            >
-              Recipe Title
-            </label>
-            <input
+        <Form>
+          <InputWrapper>
+            <Label htmlFor='title'>Recipe Title</Label>
+            <Input
               type='text'
               id='title'
               name='title'
-              value={formData.title}
+              value={title}
               onChange={(e) => handleChange(e)}
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-              required
             />
-          </div>
-          <div className='mb-6'>
-            <label
-              htmlFor='message'
-              className='block mb-2 text-sm font-medium text-gray-900 '
-            >
-              Recipe Description
-            </label>
-            <textarea
+          </InputWrapper>
+          <InputWrapper>
+            <Label htmlFor='message'>Recipe Description</Label>
+            <Textarea
               id='desc'
               name='desc'
-              value={formData.desc}
+              value={desc}
               onChange={(e) => handleChange(e)}
               rows='4'
-              className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 '
-              required
-            ></textarea>
-          </div>
-          <div className='mb-6'>
-            <label
-              htmlFor='title'
-              className='block mb-2 text-sm font-medium text-gray-900'
-            >
-              Recipe Author
-            </label>
-            <input
+            ></Textarea>
+          </InputWrapper>
+          <InputWrapper>
+            <Label htmlFor='title'>Recipe Author</Label>
+            <Input
               type='text'
               id='author'
               name='author'
-              value={formData.author}
+              value={author}
               onChange={(e) => handleChange(e)}
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-              required
             />
-          </div>
-          <div className='mb-6'>
-            <label
-              htmlFor='imgUrl'
-              className='block mb-2 text-sm font-medium text-gray-900'
-            >
-              Recipe Image URL
-            </label>
-            <input
+          </InputWrapper>
+          <InputWrapper>
+            <Label htmlFor='imgUrl'>Recipe Image URL</Label>
+            <Input
               type='text'
               name='imgUrl'
               id='imgUrl'
-              value={formData.imgUrl}
+              value={imgUrl}
               onChange={(e) => handleChange(e)}
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-              required
             />
-          </div>
-          <div className='grid xl:grid-cols-2 xl:gap-6'>
-            <div className='mb-6'>
-              <label
-                htmlFor='prep'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Preparation mins
-              </label>
-              <input
+          </InputWrapper>
+          <InputWrapperGrid>
+            <InputWrapper>
+              <Label htmlFor='prep'>Preparation mins</Label>
+              <Input
                 type='number'
                 name='prep'
                 id='prep'
-                value={formData.prep}
+                value={prep}
                 min={0}
                 onChange={(e) => handleChange(e)}
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-                required
               />
-            </div>
-            <div className='mb-6'>
-              <label
-                htmlFor='cooking'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Cooking mins
-              </label>
-              <input
+            </InputWrapper>
+            <InputWrapper>
+              <Label htmlFor='cooking'>Cooking mins</Label>
+              <Input
                 type='number'
                 name='cooking'
                 id='cooking'
                 min={0}
-                value={formData.cooking}
+                value={cooking}
                 onChange={(e) => handleChange(e)}
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-                required
               />
-            </div>
-          </div>
-          <div className='grid xl:grid-cols-2 xl:gap-6'>
-            <div className='mb-6'>
-              <label
-                htmlFor='total'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Total mins
-              </label>
-              <input
+            </InputWrapper>
+          </InputWrapperGrid>
+          <InputWrapperGrid>
+            <InputWrapper>
+              <Label htmlFor='total'>Total mins</Label>
+              <Input
                 type='number'
                 name='total'
                 id='total'
                 min={0}
-                value={formData.total}
+                value={total}
                 onChange={(e) => handleChange(e)}
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-                required
               />
-            </div>
-
-            <div className='mb-6'>
-              <label
-                htmlFor='serving'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Servings
-              </label>
-              <input
+            </InputWrapper>
+            <InputWrapper>
+              <Label htmlFor='serving'>Servings</Label>
+              <Input
                 type='number'
                 name='serving'
                 id='serving'
                 min={0}
-                value={formData.serving}
+                value={serving}
                 onChange={(e) => handleChange(e)}
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
-                required
               />
-            </div>
-            <div className='relative z-0 mb-6 w-full group'>
-              {formData.ingredients.map((ingredient, i) => (
-                <input
-                  type='text'
-                  key={i}
-                  name='ingredient'
-                  value={ingredient}
-                  onChange={(e) => handleIngredient(e, i)}
-                  className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2'
-                  placeholder='Quantity and Ingredient'
-                  required
-                />
-              ))}
-              <button
-                type='button'
-                className='w-full text-gray-900 mt-3 hover:text-indigo-500 border border-gray-200 hover:bg-gray-100 font-medium bg-gray-200 rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
-                onClick={handleAddIngredient}
-              >
-                Add New Ingredient
-              </button>
-            </div>
-            <div className='relative z-0 mb-6 w-full group'>
-              {formData.steps.map((step, i) => (
+            </InputWrapper>
+            <InputWrapper>
+              {ingredients.map((ingredient, i) => (
                 <div className='mb-4' key={i}>
-                  <textarea
+                  <Input
+                    type='text'
+                    key={i}
+                    name='ingredient'
+                    value={ingredient}
+                    onChange={(e) => handleIngredient(e, i)}
+                    placeholder='Quantity and Ingredient'
+                  />
+                  <DeleteText onClick={() => handleDeleteIngredient(i)}>
+                    Delete this ingredient
+                  </DeleteText>
+                </div>
+              ))}
+              <FormBtn type='button' onClick={handleAddIngredient}>
+                Add New Ingredient
+              </FormBtn>
+            </InputWrapper>
+            <InputWrapper>
+              {steps.map((step, i) => (
+                <div className='mb-4' key={i}>
+                  <Textarea
                     type='text'
                     name='step'
                     value={step}
                     onChange={(e) => handleStep(e, i)}
-                    className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
                   />
-                  <p
-                    className='inline text-xs font-mono italic hover:cursor-pointer font-semibold leading-3 underline text-red-700 hover:text-red-500'
-                    onClick={() => handleDeleteStep(step, i)}
-                  >
+                  <DeleteText onClick={() => handleDeleteStep(i)}>
                     Delete this step
-                  </p>
+                  </DeleteText>
                 </div>
               ))}
 
-              <button
-                type='button'
-                className='w-full text-gray-900 mt-3 hover:text-indigo-500 border border-gray-200 hover:bg-gray-100 font-medium bg-gray-200 rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
-                onClick={handleAddStep}
-              >
+              <FormBtn type='button' onClick={handleAddStep}>
                 Add New Step
-              </button>
-            </div>
-          </div>
-          <button
-            type='submit'
-            onClick={(e) => handleAddRecipe(e)}
-            className='text-white bg-indigo-500 hover:bg-indigo-700  font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center'
-          >
+              </FormBtn>
+            </InputWrapper>
+          </InputWrapperGrid>
+          <AddRecipeBtn type='submit' onClick={(e) => handleAddRecipe(e)}>
             Add Recipe
-          </button>
-        </form>
+          </AddRecipeBtn>
+        </Form>
       </Transition>
     </>
   );
