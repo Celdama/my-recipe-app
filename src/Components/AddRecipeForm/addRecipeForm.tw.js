@@ -47,36 +47,28 @@ bg-gray-50
   p-2.5
 `;
 
-export const FormBtn = tw.button`
-  w-full 
-  text-gray-900 
-  mt-3 
-  hover:text-indigo-500 
-  border 
-  border-gray-200 
-  hover:bg-gray-100 
-  font-medium 
-  bg-gray-200 
-  rounded-lg 
-  text-sm 
-  px-5 
-  py-2.5 
-  text-center 
-  mr-2 
-  mb-2
+export const DefaultBtn = tw.button`
+  w-full
+  font-medium
+  border
+  rounded-lg
+  text-sm
+  px-5
+  py-2.5
 `;
 
-export const AddRecipeBtn = tw.button`
+export const FormBtn = tw(DefaultBtn)`
+  text-gray-900 
+  hover:text-indigo-500 
+  border-gray-200 
+  hover:bg-gray-100 
+  bg-gray-200 
+`;
+
+export const AddRecipeBtn = tw(DefaultBtn)`
   text-white 
   bg-indigo-500 
   hover:bg-indigo-700  
-  font-medium 
-  rounded-lg 
-  text-sm 
-  w-full 
-  px-5 
-  py-2.5 
-  text-center
 `;
 
 export const DeleteText = tw.p`
