@@ -7,6 +7,7 @@ export const Form = tw.form`
 
 export const InputWrapper = tw.div`
   mb-6
+  text-sm
 `;
 
 export const InputWrapperGrid = tw.div`
@@ -18,7 +19,6 @@ export const InputWrapperGrid = tw.div`
 export const Label = tw.label`
   block
   mb-2
-  text-sm
   font-medium
   text-gray-900
 `;
@@ -28,7 +28,6 @@ export const Input = tw.input`
   border
   border-gray-300
   text-gray-900
-  text-sm
   rounded-lg
   block
   w-full

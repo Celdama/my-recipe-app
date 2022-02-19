@@ -11,6 +11,7 @@ export const Wrapper = tw.div`
 export const Content = tw.div`
   px-4 
   py-6 
+bg-white
   sm:px-0
 `;
 

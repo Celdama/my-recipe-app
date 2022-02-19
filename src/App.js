@@ -23,7 +23,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className='App'>
+    <div className='App bg-white'>
       <BrowserRouter>
         <Navbar />
         <Header />

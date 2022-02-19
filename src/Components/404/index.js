@@ -27,7 +27,7 @@ const NoMatch = () => {
     },
   ];
 
-  const popularContent = popularPages.map((page) => {
+  const popularContent = popularPages.map((page, i) => {
     let icon;
 
     if (page.title === 'discover') {
@@ -41,6 +41,7 @@ const NoMatch = () => {
     return (
       <Link
         to={page.href}
+        key={i}
         className={
           page.title === 'discover'
             ? 'flex items-center justify-between py-4 hover:cursor-pointer hover:bg-gray-100 border-t'
