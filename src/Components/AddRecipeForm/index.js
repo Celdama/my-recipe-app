@@ -163,7 +163,7 @@ const AddRecipeForm = () => {
             />
           </InputWrapper>
           <InputWrapper>
-            <Label htmlFor='message'>Recipe Description</Label>
+            <Label htmlFor='desc'>Recipe Description</Label>
             <Textarea
               id='desc'
               name='desc'

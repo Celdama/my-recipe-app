@@ -112,24 +112,28 @@
     },
     {
       "title": "Fish & Chips bogoss ",
-      "desc": "fdsfsdfsdf \nfsdq fsq\nfsdq f\nfdsfsfsqdfdsq",
+      "desc": "ma description de la recette",
       "author": "Celdama",
-      "prep": "32",
+      "prep": "3",
       "cooking": "4",
       "total": "34",
       "serving": "6",
       "imgUrl": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       "ingredients": [
-        "fds",
-        "fsd"
+        "bar",
+        "foo",
+        "baz",
+        "fooo"
       ],
       "steps": [
-        "fsd",
-        "fsd"
+        "1ere étapedddddd",
+        "2eme étape"
       ],
       "id": 6,
       "favorite": false,
-      "customId": "Vdvfd3434"
+      "customId": "Vdvfd3434",
+      "fds": "1ere in",
+      "undefined": "fdsdddddd"
     }
   ]
 }

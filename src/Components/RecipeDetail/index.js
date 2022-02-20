@@ -22,13 +22,14 @@ export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
   const [editToggle, setEditToggle] = useState(false);
-  const [editRecipeData, setEditRecipeData] = useState({ ...recipe });
+  const [editRecipeData, setEditRecipeData] = useState();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (recipe) {
-      setEditRecipeData(recipe);
-    }
+    // if (recipe) {
+    setEditRecipeData({ ...recipe });
+    // }
   }, [recipe]);
 
   const handleEditRecipe = (e) => {
@@ -39,6 +40,53 @@ export const RecipeDetail = ({ recipe }) => {
         ...prevState,
         [name]: value,
       };
+    });
+  };
+
+  const handleEditIngredient = (e, i) => {
+    const { value } = e.target;
+
+    let ingredients = [...editRecipeData.ingredients];
+    let item = ingredients[i];
+    item = value;
+    ingredients[i] = item;
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        ingredients,
+      };
+    });
+  };
+
+  const handleDeleteIngredient = (i) => {
+    setEditRecipeData({
+      ...editRecipeData,
+      ingredients: editRecipeData.ingredients.filter(
+        (item, index) => index !== i
+      ),
+    });
+  };
+
+  const handleEditStep = (e, i) => {
+    const { value } = e.target;
+
+    let steps = [...editRecipeData.steps];
+    let item = steps[i];
+    item = value;
+    steps[i] = item;
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        steps,
+      };
+    });
+  };
+
+  const handleAddIngredient = (e) => {
+    e.preventDefault();
+    setEditRecipeData({
+      ...editRecipeData,
+      ingredients: [...editRecipeData.ingredients, ''],
     });
   };
 
@@ -185,6 +233,174 @@ export const RecipeDetail = ({ recipe }) => {
                                   onChange={(e) => handleEditRecipe(e)}
                                   defaultValue={recipe.title}
                                 />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='desc'
+                                >
+                                  Recipe Description
+                                </label>
+                                <textarea
+                                  type='text'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='desc'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.desc}
+                                ></textarea>
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='author'
+                                >
+                                  Recipe Author
+                                </label>
+                                <input
+                                  type='text'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='author'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.author}
+                                />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='imgUrl'
+                                >
+                                  Recipe Image URL
+                                </label>
+                                <input
+                                  type='text'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='imgUrl'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.imgUrl}
+                                />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='prep'
+                                >
+                                  Preparation mins
+                                </label>
+                                <input
+                                  type='number'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='prep'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.prep}
+                                />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='cooking'
+                                >
+                                  Cooking mins
+                                </label>
+                                <input
+                                  type='number'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='cooking'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.cooking}
+                                />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='total'
+                                >
+                                  Total mins
+                                </label>
+                                <input
+                                  type='number'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='total'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.total}
+                                />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  className='block mb-2 font-medium text-gray-900'
+                                  htmlFor='serving'
+                                >
+                                  Servings
+                                </label>
+                                <input
+                                  type='number'
+                                  className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                  name='serving'
+                                  onChange={(e) => handleEditRecipe(e)}
+                                  defaultValue={recipe.serving}
+                                />
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  htmlFor='ingredient'
+                                  className='block mb-2 font-medium text-gray-900'
+                                >
+                                  Ingredients
+                                </label>
+                                {open &&
+                                  editRecipeData.ingredients.map(
+                                    (ingredient, i) => (
+                                      <div className='mb-4' key={i}>
+                                        <input
+                                          className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                          type='text'
+                                          key={i}
+                                          name='ingredient'
+                                          defaultValue={ingredient}
+                                          onChange={(e) =>
+                                            handleEditIngredient(e, i)
+                                          }
+                                        />
+                                        <p
+                                          onClick={() =>
+                                            handleDeleteIngredient(i)
+                                          }
+                                        >
+                                          Delete this ingredient
+                                        </p>
+                                      </div>
+                                    )
+                                  )}
+                                <button
+                                  type='button'
+                                  onClick={(e) => handleAddIngredient(e)}
+                                >
+                                  add new ingre
+                                </button>
+                              </div>
+                              <div className='mb-6 text-sm'>
+                                <label
+                                  htmlFor='step'
+                                  className='block mb-2 font-medium text-gray-900'
+                                >
+                                  Steps
+                                </label>
+                                {recipe.steps.map((step, i) => (
+                                  <div className='mb-4' key={i}>
+                                    <input
+                                      className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                      type='text'
+                                      key={i}
+                                      name='step'
+                                      defaultValue={step}
+                                      onChange={(e) => handleEditStep(e, i)}
+                                    />
+                                    {/* <DeleteText
+                                      onClick={() => handleDeleteIngredient(i)}
+                                    >
+                                      Delete this ingredient
+                                    </DeleteText> */}
+                                  </div>
+                                ))}
                               </div>
                             </form>
                           </div>
