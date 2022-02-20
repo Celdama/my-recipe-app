@@ -15,6 +15,7 @@ import { editRecipe } from '../../store/actions/recipesAction';
 import Avatar from '../../Images/celdama.png';
 import { Dialog, Transition } from '@headlessui/react';
 import RecipeResume from '../RecipeResume';
+import RecipeIngredients from '../RecipeIngredients';
 
 export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
@@ -50,8 +51,17 @@ export const RecipeDetail = ({ recipe }) => {
 
   let recipeContent;
   if (recipe) {
-    const { title, author, imgUrl, desc, prep, cooking, total, serving } =
-      recipe;
+    const {
+      title,
+      author,
+      imgUrl,
+      desc,
+      prep,
+      cooking,
+      total,
+      serving,
+      ingredients,
+    } = recipe;
     recipeContent = (
       <>
         <div>
@@ -98,6 +108,7 @@ export const RecipeDetail = ({ recipe }) => {
             total={total}
             serving={serving}
           />
+          <RecipeIngredients ingredients={ingredients} />
         </div>
       </>
     );
