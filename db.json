@@ -111,7 +111,7 @@
       "customId": "122dSQdfds"
     },
     {
-      "title": "Fish & Chips bogoss ",
+      "title": "Fish & Chips",
       "desc": "ma description de la recette",
       "author": "Celdama",
       "prep": "3",
@@ -121,7 +121,6 @@
       "imgUrl": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       "ingredients": [
         "bar",
-        "foo",
         "baz",
         "fooo"
       ],
@@ -134,6 +133,25 @@
       "customId": "Vdvfd3434",
       "fds": "1ere in",
       "undefined": "fdsdddddd"
+    },
+    {
+      "title": "Ma recette ",
+      "desc": "kdlskjdlsfvpovdsf",
+      "author": "fdjvfdmkvfmdld",
+      "prep": "3",
+      "cooking": "3",
+      "total": "2",
+      "serving": "2",
+      "imgUrl": "https://images.unsplash.com/photo-1508313880080-c4bef0730395?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG90YXRvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+      "ingredients": [
+        "foo"
+      ],
+      "steps": [
+        "SD"
+      ],
+      "favorite": false,
+      "customId": "RV1b4OnAlNZphGYDrverA",
+      "id": 7
     }
   ]
 }

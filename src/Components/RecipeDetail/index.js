@@ -27,9 +27,9 @@ export const RecipeDetail = ({ recipe }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (recipe) {
-    setEditRecipeData({ ...recipe });
-    // }
+    if (recipe) {
+      setEditRecipeData({ ...recipe });
+    }
   }, [recipe]);
 
   const handleEditRecipe = (e) => {
@@ -45,7 +45,6 @@ export const RecipeDetail = ({ recipe }) => {
 
   const handleEditIngredient = (e, i) => {
     const { value } = e.target;
-
     let ingredients = [...editRecipeData.ingredients];
     let item = ingredients[i];
     item = value;
@@ -67,6 +66,13 @@ export const RecipeDetail = ({ recipe }) => {
     });
   };
 
+  const handleDeleteStep = (i) => {
+    setEditRecipeData({
+      ...editRecipeData,
+      steps: editRecipeData.steps.filter((item, index) => index !== i),
+    });
+  };
+
   const handleEditStep = (e, i) => {
     const { value } = e.target;
 
@@ -82,11 +88,19 @@ export const RecipeDetail = ({ recipe }) => {
     });
   };
 
-  const handleAddIngredient = (e) => {
-    e.preventDefault();
+  const handleAddIngredient = () => {
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        ingredients: [...prevState.ingredients, ''],
+      };
+    });
+  };
+
+  const handleAddStep = () => {
     setEditRecipeData({
       ...editRecipeData,
-      ingredients: [...editRecipeData.ingredients, ''],
+      steps: [...editRecipeData.steps, ''],
     });
   };
 
@@ -372,9 +386,9 @@ export const RecipeDetail = ({ recipe }) => {
                                   )}
                                 <button
                                   type='button'
-                                  onClick={(e) => handleAddIngredient(e)}
+                                  onClick={handleAddIngredient}
                                 >
-                                  add new ingre
+                                  add new ingredient
                                 </button>
                               </div>
                               <div className='mb-6 text-sm'>
@@ -384,23 +398,25 @@ export const RecipeDetail = ({ recipe }) => {
                                 >
                                   Steps
                                 </label>
-                                {recipe.steps.map((step, i) => (
-                                  <div className='mb-4' key={i}>
-                                    <input
-                                      className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
-                                      type='text'
-                                      key={i}
-                                      name='step'
-                                      defaultValue={step}
-                                      onChange={(e) => handleEditStep(e, i)}
-                                    />
-                                    {/* <DeleteText
-                                      onClick={() => handleDeleteIngredient(i)}
-                                    >
-                                      Delete this ingredient
-                                    </DeleteText> */}
-                                  </div>
-                                ))}
+                                {open &&
+                                  editRecipeData.steps.map((step, i) => (
+                                    <div className='mb-4' key={i}>
+                                      <input
+                                        className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5'
+                                        type='text'
+                                        key={i}
+                                        name='step'
+                                        defaultValue={step}
+                                        onChange={(e) => handleEditStep(e, i)}
+                                      />
+                                      <p onClick={() => handleDeleteStep(i)}>
+                                        Delete this step
+                                      </p>
+                                    </div>
+                                  ))}
+                                <button type='button' onClick={handleAddStep}>
+                                  add new step
+                                </button>
                               </div>
                             </form>
                           </div>
