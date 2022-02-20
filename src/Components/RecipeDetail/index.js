@@ -14,7 +14,7 @@ import { Wrapper } from './recipeDetail.tw';
 import { editRecipe } from '../../store/actions/recipesAction';
 import Avatar from '../../Images/celdama.png';
 import { Dialog, Transition } from '@headlessui/react';
-import { ExclamationIcon } from '@heroicons/react/outline';
+import RecipeResume from '../RecipeResume';
 
 export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
@@ -68,7 +68,10 @@ export const RecipeDetail = ({ recipe }) => {
                   src={Avatar}
                   alt=''
                 />
-                <h6 className='text-gray-900'>{author}</h6>
+                <h6 className='text-gray-900'>
+                  <span className='text-gray-500'>by</span>{' '}
+                  <span className='underline'>{author}</span>
+                </h6>
               </div>
               <div className='flex gap-2'>
                 <button
@@ -87,6 +90,7 @@ export const RecipeDetail = ({ recipe }) => {
           <div className='shadow-2xl'>
             <img className='rounded-lg' src={imgUrl} alt='recipe' />
           </div>
+          <RecipeResume />
         </div>
       </>
     );
