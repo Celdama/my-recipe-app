@@ -16,6 +16,7 @@ import Avatar from '../../Images/celdama.png';
 import { Dialog, Transition } from '@headlessui/react';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
+import RecipeStepsTimeline from '../RecipeStepsTimeline';
 
 export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
@@ -61,6 +62,7 @@ export const RecipeDetail = ({ recipe }) => {
       total,
       serving,
       ingredients,
+      steps,
     } = recipe;
     recipeContent = (
       <>
@@ -109,6 +111,7 @@ export const RecipeDetail = ({ recipe }) => {
             serving={serving}
           />
           <RecipeIngredients ingredients={ingredients} />
+          <RecipeStepsTimeline steps={steps} />
         </div>
       </>
     );
