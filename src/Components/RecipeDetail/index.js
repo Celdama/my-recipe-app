@@ -50,7 +50,8 @@ export const RecipeDetail = ({ recipe }) => {
 
   let recipeContent;
   if (recipe) {
-    const { title, author, imgUrl, desc } = recipe;
+    const { title, author, imgUrl, desc, prep, cooking, total, serving } =
+      recipe;
     recipeContent = (
       <>
         <div>
@@ -90,7 +91,13 @@ export const RecipeDetail = ({ recipe }) => {
           <div className='shadow-2xl'>
             <img className='rounded-lg' src={imgUrl} alt='recipe' />
           </div>
-          <RecipeResume />
+          <RecipeResume
+            title={title}
+            prep={prep}
+            cooking={cooking}
+            total={total}
+            serving={serving}
+          />
         </div>
       </>
     );
