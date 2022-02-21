@@ -21,6 +21,8 @@ import {
   RecipeDesc,
   EditBtn,
   DeleteBtn,
+  RoundedAvatar,
+  Author,
 } from './recipeDetail.tw';
 
 export const RecipeDetail = ({ recipe }) => {
@@ -58,15 +60,11 @@ export const RecipeDetail = ({ recipe }) => {
           </RecipeHeaderTop>
           <RecipeHeaderBottom>
             <RecipeHeaderBottomLeft>
-              <img
-                className='h-8 w-8 rounded-full mr-3'
-                src={Avatar}
-                alt='avatar'
-              />
-              <h6 className='text-gray-900'>
-                <span className='text-gray-500'>by</span>{' '}
+              <RoundedAvatar src={Avatar} alt='avatar' />
+              <Author>
+                <span className='text-gray-500 mr-2'>by</span>
                 <span className='underline'>{author}</span>
-              </h6>
+              </Author>
             </RecipeHeaderBottomLeft>
             <RecipeHeaderBottomRight>
               <EditBtn

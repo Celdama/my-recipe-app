@@ -70,3 +70,14 @@ export const DeleteBtn = tw(DefaultBtn)`
   bg-[#1da1f2]
   hover:bg-[#1da1f2]/90
 `;
+
+export const RoundedAvatar = tw.img`
+  h-8
+  w-8
+  rounded-full
+  mr-3
+`;
+
+export const Author = tw.h6`
+  text-gray-900
+`;
