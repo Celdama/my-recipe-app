@@ -1,15 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Form,
-  InputWrapper,
-  InputWrapperGrid,
-  Label,
-  Input,
-  Textarea,
-  FormBtn,
-  AddRecipeBtn,
-  DeleteText,
-} from './addRecipeForm.tw';
 import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
@@ -151,7 +140,7 @@ const AddRecipeForm = () => {
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <Form>
+        <form className='form-default'>
           <div className='input-wrapper'>
             <label className='label-form' htmlFor='title'>
               Recipe Title
@@ -169,13 +158,14 @@ const AddRecipeForm = () => {
             <label className='label-form' htmlFor='desc'>
               Recipe Description
             </label>
-            <Textarea
+            <textarea
+              className='input-form text-area-form'
               id='desc'
               name='desc'
               value={desc}
               onChange={(e) => handleChange(e)}
               rows='4'
-            ></Textarea>
+            ></textarea>
           </div>
           <div className='input-wrapper'>
             <label className='label-form' htmlFor='title'>
@@ -274,9 +264,12 @@ const AddRecipeForm = () => {
                     onChange={(e) => handleIngredient(e, i)}
                     placeholder='Quantity and Ingredient'
                   />
-                  <DeleteText onClick={() => handleDeleteIngredient(i)}>
+                  <p
+                    className='delete-text-para'
+                    onClick={() => handleDeleteIngredient(i)}
+                  >
                     Delete this ingredient
-                  </DeleteText>
+                  </p>
                 </div>
               ))}
               <button
@@ -290,15 +283,19 @@ const AddRecipeForm = () => {
             <div className='input-wrapper'>
               {steps.map((step, i) => (
                 <div className='mb-4' key={i}>
-                  <Textarea
+                  <textarea
+                    className='input-form text-area-form'
                     type='text'
                     name='step'
                     value={step}
                     onChange={(e) => handleStep(e, i)}
                   />
-                  <DeleteText onClick={() => handleDeleteStep(i)}>
+                  <p
+                    className='delete-text-para'
+                    onClick={() => handleDeleteStep(i)}
+                  >
                     Delete this step
-                  </DeleteText>
+                  </p>
                 </div>
               ))}
 
@@ -318,7 +315,7 @@ const AddRecipeForm = () => {
           >
             Add Recipe
           </button>
-        </Form>
+        </form>
       </Transition>
     </>
   );
