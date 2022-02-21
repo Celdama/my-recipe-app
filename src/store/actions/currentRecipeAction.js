@@ -9,7 +9,7 @@ export const getCurrentRecipe = (id) => {
   return async (dispatch) => {
     try {
       const res = await axios.get(
-        `http://localhost:3004/recipes?customId=${id}`
+        `https://fake-serv-for-recipe-app.herokuapp.com/recipes?customId=${id}`
       );
       dispatch({
         type: GET_CURRENT_RECIPE,
