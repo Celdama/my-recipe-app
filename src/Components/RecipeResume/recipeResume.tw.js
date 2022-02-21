@@ -50,3 +50,17 @@ export const TableWrapperGray = tw(TableWrapper)`
 export const TableWrapperWhite = tw(TableWrapper)`
   bg-white 
 `;
+
+export const Dt = tw.dt`
+  text-sm 
+  font-medium 
+  text-gray-500
+`;
+
+export const Dd = tw.dd`
+  mt-1 
+  text-sm 
+  text-gray-900 
+  sm:mt-0 
+  sm:col-span-2
+`;
