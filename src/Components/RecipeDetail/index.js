@@ -9,6 +9,7 @@ import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import EditRecipeForm from '../EditRecipeForm';
+import DeleteRecipeModal from '../DeleteRecipeModal';
 import {
   Wrapper,
   Content,
@@ -27,6 +28,7 @@ import {
 
 export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
 
   const toggleOpen = () => {
@@ -35,6 +37,10 @@ export const RecipeDetail = ({ recipe }) => {
 
   const toggleEdit = () => {
     setEditToggle(!editToggle);
+  };
+
+  const toggleOpenDeleteModal = () => {
+    setOpenDeleteModal(!openDeleteModal);
   };
 
   let recipeContent;
@@ -73,7 +79,9 @@ export const RecipeDetail = ({ recipe }) => {
               >
                 Edit
               </EditBtn>
-              <DeleteBtn>Delete</DeleteBtn>
+              <DeleteBtn onClick={() => setOpenDeleteModal(true)}>
+                Delete
+              </DeleteBtn>
             </RecipeHeaderBottomRight>
           </RecipeHeaderBottom>
         </RecipeHeader>
@@ -102,6 +110,11 @@ export const RecipeDetail = ({ recipe }) => {
             toggleOpen={toggleOpen}
             recipe={recipe}
             toggleEdit={toggleEdit}
+          />
+          <DeleteRecipeModal
+            recipe={recipe}
+            toggleOpenDeleteModal={toggleOpenDeleteModal}
+            openDeleteModal={openDeleteModal}
           />
         </>
       )}
