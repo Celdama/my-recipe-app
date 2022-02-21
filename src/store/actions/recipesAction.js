@@ -4,6 +4,7 @@ import {
   GET_RECIPES,
   ADD_RECIPE,
   EDIT_RECIPE,
+  DELETE_RECIPE,
 } from '../reducers/recipesReducer';
 
 export const getRecipes = () => {
@@ -45,6 +46,20 @@ export const editRecipe = (data) => {
       dispatch({
         type: EDIT_RECIPE,
         payload: { ...data },
+      });
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+};
+
+export const deleteRecipe = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`http://localhost:3004/recipes/${id}`);
+      dispatch({
+        type: DELETE_RECIPE,
+        payload: { id },
       });
     } catch (err) {
       return console.log(err);
