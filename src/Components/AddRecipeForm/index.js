@@ -156,7 +156,8 @@ const AddRecipeForm = () => {
             <label className='label-form' htmlFor='title'>
               Recipe Title
             </label>
-            <Input
+            <input
+              className='input-form'
               type='text'
               id='title'
               name='title'
@@ -180,7 +181,8 @@ const AddRecipeForm = () => {
             <label className='label-form' htmlFor='title'>
               Recipe Author
             </label>
-            <Input
+            <input
+              className='input-form'
               type='text'
               id='author'
               name='author'
@@ -192,7 +194,8 @@ const AddRecipeForm = () => {
             <label className='label-form' htmlFor='imgUrl'>
               Recipe Image URL
             </label>
-            <Input
+            <input
+              className='input-form'
               type='text'
               name='imgUrl'
               id='imgUrl'
@@ -205,7 +208,8 @@ const AddRecipeForm = () => {
               <label className='label-form' htmlFor='prep'>
                 Preparation mins
               </label>
-              <Input
+              <input
+                className='input-form'
                 type='number'
                 name='prep'
                 id='prep'
@@ -218,7 +222,8 @@ const AddRecipeForm = () => {
               <label className='label-form' htmlFor='cooking'>
                 Cooking mins
               </label>
-              <Input
+              <input
+                className='input-form'
                 type='number'
                 name='cooking'
                 id='cooking'
@@ -233,7 +238,8 @@ const AddRecipeForm = () => {
               <label className='label-form' htmlFor='total'>
                 Total mins
               </label>
-              <Input
+              <input
+                className='input-form'
                 type='number'
                 name='total'
                 id='total'
@@ -246,7 +252,8 @@ const AddRecipeForm = () => {
               <label className='label-form' htmlFor='serving'>
                 Servings
               </label>
-              <Input
+              <input
+                className='input-form'
                 type='number'
                 name='serving'
                 id='serving'
@@ -258,7 +265,8 @@ const AddRecipeForm = () => {
             <div className='input-wrapper'>
               {ingredients.map((ingredient, i) => (
                 <div className='mb-4' key={i}>
-                  <Input
+                  <input
+                    className='input-form'
                     type='text'
                     key={i}
                     name='ingredient'
