@@ -1,19 +1,11 @@
-import React, {
-  useCallback,
-  Fragment,
-  useRef,
-  useEffect,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { currentRecipeSelector } from '../../store/selectors/currentRecipeSelector';
 import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
 import Spinner from '../Spinner';
 import { Wrapper } from './recipeDetail.tw';
-import { editRecipe } from '../../store/actions/recipesAction';
 import Avatar from '../../Images/celdama.png';
-import { Dialog, Transition } from '@headlessui/react';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
@@ -21,99 +13,13 @@ import EditRecipeForm from '../EditRecipeForm';
 
 export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
-  const cancelButtonRef = useRef(null);
   const [editToggle, setEditToggle] = useState(false);
-  const [editRecipeData, setEditRecipeData] = useState();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (recipe) {
-      setEditRecipeData({ ...recipe });
-    }
-  }, [recipe]);
-
-  const handleEditRecipe = (e) => {
-    const { name, value } = e.target;
-
-    setEditRecipeData((prevState) => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleEditIngredient = (e, i) => {
-    const { value } = e.target;
-    let ingredients = [...editRecipeData.ingredients];
-    let item = ingredients[i];
-    item = value;
-    ingredients[i] = item;
-    setEditRecipeData((prevState) => {
-      return {
-        ...prevState,
-        ingredients,
-      };
-    });
-  };
-
-  const handleDeleteIngredient = (i) => {
-    setEditRecipeData({
-      ...editRecipeData,
-      ingredients: editRecipeData.ingredients.filter(
-        (item, index) => index !== i
-      ),
-    });
-  };
-
-  const handleDeleteStep = (i) => {
-    setEditRecipeData({
-      ...editRecipeData,
-      steps: editRecipeData.steps.filter((item, index) => index !== i),
-    });
-  };
-
-  const handleEditStep = (e, i) => {
-    const { value } = e.target;
-
-    let steps = [...editRecipeData.steps];
-    let item = steps[i];
-    item = value;
-    steps[i] = item;
-    setEditRecipeData((prevState) => {
-      return {
-        ...prevState,
-        steps,
-      };
-    });
-  };
-
-  const handleAddIngredient = () => {
-    setEditRecipeData((prevState) => {
-      return {
-        ...prevState,
-        ingredients: [...prevState.ingredients, ''],
-      };
-    });
-  };
-
-  const handleAddStep = () => {
-    setEditRecipeData({
-      ...editRecipeData,
-      steps: [...editRecipeData.steps, ''],
-    });
-  };
 
   const toggleOpen = () => {
     setOpen(!open);
   };
 
-  const handleSubmitEditRecipe = async (e) => {
-    e.preventDefault();
-    await dispatch(editRecipe(editRecipeData));
-    setOpen(false);
-    dispatch(getCurrentRecipe(editRecipeData.customId));
+  const toggleEdit = () => {
     setEditToggle(!editToggle);
   };
 
@@ -191,18 +97,10 @@ export const RecipeDetail = ({ recipe }) => {
         <>
           <div className='flex flex-col'>{recipeContent}</div>
           <EditRecipeForm
-            toggleOpen={toggleOpen}
             open={open}
+            toggleOpen={toggleOpen}
             recipe={recipe}
-            handleEditRecipe={handleEditRecipe}
-            editRecipeData={editRecipeData}
-            handleEditIngredient={handleEditIngredient}
-            handleDeleteIngredient={handleDeleteIngredient}
-            handleEditStep={handleEditStep}
-            handleDeleteStep={handleDeleteStep}
-            handleAddIngredient={handleAddIngredient}
-            handleAddStep={handleAddStep}
-            handleSubmitEditRecipe={handleSubmitEditRecipe}
+            toggleEdit={toggleEdit}
           />
         </>
       )}

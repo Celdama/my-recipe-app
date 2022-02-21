@@ -1,21 +1,99 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { useDispatch } from 'react-redux';
+import { editRecipe } from '../../store/actions/recipesAction';
+import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
 
-const EditRecipeForm = ({
-  open,
-  recipe,
-  handleEditRecipe,
-  editRecipeData,
-  handleEditIngredient,
-  handleDeleteIngredient,
-  handleEditStep,
-  handleDeleteStep,
-  handleAddIngredient,
-  handleAddStep,
-  handleSubmitEditRecipe,
-  toggleOpen,
-}) => {
+const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
   const cancelButtonRef = useRef(null);
+  const [editRecipeData, setEditRecipeData] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (recipe) {
+      setEditRecipeData({ ...recipe });
+    }
+  }, [recipe]);
+
+  const handleEditRecipe = (e) => {
+    const { name, value } = e.target;
+
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleEditIngredient = (e, i) => {
+    const { value } = e.target;
+    let ingredients = [...editRecipeData.ingredients];
+    let item = ingredients[i];
+    item = value;
+    ingredients[i] = item;
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        ingredients,
+      };
+    });
+  };
+
+  const handleEditStep = (e, i) => {
+    const { value } = e.target;
+
+    let steps = [...editRecipeData.steps];
+    let item = steps[i];
+    item = value;
+    steps[i] = item;
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        steps,
+      };
+    });
+  };
+
+  const handleAddIngredient = () => {
+    setEditRecipeData((prevState) => {
+      return {
+        ...prevState,
+        ingredients: [...prevState.ingredients, ''],
+      };
+    });
+  };
+
+  const handleAddStep = () => {
+    setEditRecipeData({
+      ...editRecipeData,
+      steps: [...editRecipeData.steps, ''],
+    });
+  };
+
+  const handleDeleteIngredient = (i) => {
+    setEditRecipeData({
+      ...editRecipeData,
+      ingredients: editRecipeData.ingredients.filter(
+        (item, index) => index !== i
+      ),
+    });
+  };
+
+  const handleDeleteStep = (i) => {
+    setEditRecipeData({
+      ...editRecipeData,
+      steps: editRecipeData.steps.filter((item, index) => index !== i),
+    });
+  };
+
+  const handleSubmitEditRecipe = async (e) => {
+    e.preventDefault();
+    await dispatch(editRecipe(editRecipeData));
+    toggleOpen();
+    dispatch(getCurrentRecipe(editRecipeData.customId));
+    toggleEdit();
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>

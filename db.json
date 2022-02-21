@@ -135,19 +135,19 @@
       "undefined": "fdsdddddd"
     },
     {
-      "title": "Ma recette eee",
-      "desc": "lorem ipsum",
-      "author": "Celdama",
+      "title": "Ma recette ",
+      "desc": "lorem ipsumffssf",
+      "author": "Celdamasds",
       "prep": "5",
       "cooking": "5",
       "total": "5",
       "serving": "5",
       "imgUrl": "https://images.unsplash.com/photo-1508313880080-c4bef0730395?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG90YXRvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
       "ingredients": [
-        "fooddssd"
+        "bar"
       ],
       "steps": [
-        "SDdsds"
+        "foo"
       ],
       "favorite": false,
       "customId": "RV1b4OnAlNZphGYDrverA",
