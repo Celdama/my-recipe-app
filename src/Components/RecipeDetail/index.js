@@ -4,12 +4,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { currentRecipeSelector } from '../../store/selectors/currentRecipeSelector';
 import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
 import Spinner from '../Spinner';
-import { Wrapper } from './recipeDetail.tw';
 import Avatar from '../../Images/celdama.png';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import EditRecipeForm from '../EditRecipeForm';
+import {
+  Wrapper,
+  Content,
+  RecipeHeader,
+  RecipeHeaderTop,
+  RecipeHeaderBottom,
+  RecipeHeaderBottomLeft,
+  RecipeHeaderBottomRight,
+  RecipeTitle,
+  RecipeDesc,
+  EditBtn,
+  DeleteBtn,
+} from './recipeDetail.tw';
 
 export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
@@ -39,53 +51,44 @@ export const RecipeDetail = ({ recipe }) => {
     } = recipe;
     recipeContent = (
       <>
-        <div>
-          <div className='pb-14'>
-            <div className='md:w-2/3 mx-auto'>
-              <h1 className='text-3xl font-extrabold tracking-tight text-gray-900 sm:text-5xl'>
-                {title}
-              </h1>
-              <p className='my-4 text-gray-500'>{desc}</p>
-            </div>
-            <div className='md:w-2/3 mx-auto flex items-center justify-between'>
-              <div className='flex items-center'>
-                <img
-                  className='h-8 w-8 rounded-full mr-3'
-                  src={Avatar}
-                  alt=''
-                />
-                <h6 className='text-gray-900'>
-                  <span className='text-gray-500'>by</span>{' '}
-                  <span className='underline'>{author}</span>
-                </h6>
-              </div>
-              <div className='flex gap-2'>
-                <button
-                  onClick={() => setOpen(true)}
-                  className='py-2 px-3 text-xs font-medium bg-indigo-500 hover:bg-indigo-400 text-white text-center rounded-lg'
-                  data-modal-toggle='authentication-modal'
-                >
-                  Edit
-                </button>
-                <button className='py-2 px-3 text-xs font-medium bg-[#1da1f2] text-white text-center hover:bg-[#1da1f2]/90 rounded-lg'>
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className='shadow-2xl'>
-            <img className='rounded-lg' src={imgUrl} alt='recipe' />
-          </div>
-          <RecipeResume
-            title={title}
-            prep={prep}
-            cooking={cooking}
-            total={total}
-            serving={serving}
-          />
-          <RecipeIngredients ingredients={ingredients} />
-          <RecipeStepsTimeline steps={steps} />
-        </div>
+        <RecipeHeader>
+          <RecipeHeaderTop>
+            <RecipeTitle>{title}</RecipeTitle>
+            <RecipeDesc>{desc}</RecipeDesc>
+          </RecipeHeaderTop>
+          <RecipeHeaderBottom>
+            <RecipeHeaderBottomLeft>
+              <img
+                className='h-8 w-8 rounded-full mr-3'
+                src={Avatar}
+                alt='avatar'
+              />
+              <h6 className='text-gray-900'>
+                <span className='text-gray-500'>by</span>{' '}
+                <span className='underline'>{author}</span>
+              </h6>
+            </RecipeHeaderBottomLeft>
+            <RecipeHeaderBottomRight>
+              <EditBtn
+                onClick={() => setOpen(true)}
+                data-modal-toggle='authentication-modal'
+              >
+                Edit
+              </EditBtn>
+              <DeleteBtn>Delete</DeleteBtn>
+            </RecipeHeaderBottomRight>
+          </RecipeHeaderBottom>
+        </RecipeHeader>
+        <img className='rounded-lg' src={imgUrl} alt='recipe' />
+        <RecipeResume
+          title={title}
+          prep={prep}
+          cooking={cooking}
+          total={total}
+          serving={serving}
+        />
+        <RecipeIngredients ingredients={ingredients} />
+        <RecipeStepsTimeline steps={steps} />
       </>
     );
   }
@@ -95,7 +98,7 @@ export const RecipeDetail = ({ recipe }) => {
         <Spinner />
       ) : (
         <>
-          <div className='flex flex-col'>{recipeContent}</div>
+          <Content>{recipeContent}</Content>
           <EditRecipeForm
             open={open}
             toggleOpen={toggleOpen}
