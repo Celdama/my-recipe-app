@@ -103,6 +103,8 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
     toggleEdit();
   };
 
+  const { title, desc, author, imgUrl, prep, cooking, total, serving } = recipe;
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -151,7 +153,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                         className='input-form'
                         name='title'
                         onChange={(e) => handleEditRecipe(e)}
-                        defaultValue={recipe.title}
+                        defaultValue={title}
                       />
                     </div>
                     <div className='input-wrapper'>
@@ -163,7 +165,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                         className='input-form text-area-form'
                         name='desc'
                         onChange={(e) => handleEditRecipe(e)}
-                        defaultValue={recipe.desc}
+                        defaultValue={desc}
                       ></textarea>
                     </div>
                     <div className='input-wrapper'>
@@ -175,7 +177,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                         className='input-form'
                         name='author'
                         onChange={(e) => handleEditRecipe(e)}
-                        defaultValue={recipe.author}
+                        defaultValue={author}
                       />
                     </div>
                     <div className='input-wrapper'>
@@ -187,7 +189,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                         className='input-form'
                         name='imgUrl'
                         onChange={(e) => handleEditRecipe(e)}
-                        defaultValue={recipe.imgUrl}
+                        defaultValue={imgUrl}
                       />
                     </div>
                     <div className='input-wrapper-grid'>
@@ -200,7 +202,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                           className='input-form'
                           name='prep'
                           onChange={(e) => handleEditRecipe(e)}
-                          defaultValue={recipe.prep}
+                          defaultValue={prep}
                         />
                       </div>
                       <div className='input-wrapper'>
@@ -212,7 +214,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                           className='input-form'
                           name='cooking'
                           onChange={(e) => handleEditRecipe(e)}
-                          defaultValue={recipe.cooking}
+                          defaultValue={cooking}
                         />
                       </div>
                     </div>
@@ -226,7 +228,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                           className='input-form'
                           name='total'
                           onChange={(e) => handleEditRecipe(e)}
-                          defaultValue={recipe.total}
+                          defaultValue={total}
                         />
                       </div>
                       <div className='input-wrapper'>
@@ -238,7 +240,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
                           className='input-form'
                           name='serving'
                           onChange={(e) => handleEditRecipe(e)}
-                          defaultValue={recipe.serving}
+                          defaultValue={serving}
                         />
                       </div>
                     </div>
