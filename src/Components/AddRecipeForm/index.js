@@ -152,8 +152,10 @@ const AddRecipeForm = () => {
         leaveTo='opacity-0'
       >
         <Form>
-          <InputWrapper>
-            <Label htmlFor='title'>Recipe Title</Label>
+          <div className='input-wrapper'>
+            <label className='label-form' htmlFor='title'>
+              Recipe Title
+            </label>
             <Input
               type='text'
               id='title'
@@ -161,9 +163,11 @@ const AddRecipeForm = () => {
               value={title}
               onChange={(e) => handleChange(e)}
             />
-          </InputWrapper>
-          <InputWrapper>
-            <Label htmlFor='desc'>Recipe Description</Label>
+          </div>
+          <div className='input-wrapper'>
+            <label className='label-form' htmlFor='desc'>
+              Recipe Description
+            </label>
             <Textarea
               id='desc'
               name='desc'
@@ -171,9 +175,11 @@ const AddRecipeForm = () => {
               onChange={(e) => handleChange(e)}
               rows='4'
             ></Textarea>
-          </InputWrapper>
-          <InputWrapper>
-            <Label htmlFor='title'>Recipe Author</Label>
+          </div>
+          <div className='input-wrapper'>
+            <label className='label-form' htmlFor='title'>
+              Recipe Author
+            </label>
             <Input
               type='text'
               id='author'
@@ -181,9 +187,11 @@ const AddRecipeForm = () => {
               value={author}
               onChange={(e) => handleChange(e)}
             />
-          </InputWrapper>
-          <InputWrapper>
-            <Label htmlFor='imgUrl'>Recipe Image URL</Label>
+          </div>
+          <div className='input-wrapper'>
+            <label className='label-form' htmlFor='imgUrl'>
+              Recipe Image URL
+            </label>
             <Input
               type='text'
               name='imgUrl'
@@ -191,10 +199,12 @@ const AddRecipeForm = () => {
               value={imgUrl}
               onChange={(e) => handleChange(e)}
             />
-          </InputWrapper>
+          </div>
           <InputWrapperGrid>
-            <InputWrapper>
-              <Label htmlFor='prep'>Preparation mins</Label>
+            <div className='input-wrapper'>
+              <label className='label-form' htmlFor='prep'>
+                Preparation mins
+              </label>
               <Input
                 type='number'
                 name='prep'
@@ -203,9 +213,11 @@ const AddRecipeForm = () => {
                 min={0}
                 onChange={(e) => handleChange(e)}
               />
-            </InputWrapper>
-            <InputWrapper>
-              <Label htmlFor='cooking'>Cooking mins</Label>
+            </div>
+            <div className='input-wrapper'>
+              <label className='label-form' htmlFor='cooking'>
+                Cooking mins
+              </label>
               <Input
                 type='number'
                 name='cooking'
@@ -214,11 +226,13 @@ const AddRecipeForm = () => {
                 value={cooking}
                 onChange={(e) => handleChange(e)}
               />
-            </InputWrapper>
+            </div>
           </InputWrapperGrid>
           <InputWrapperGrid>
-            <InputWrapper>
-              <Label htmlFor='total'>Total mins</Label>
+            <div className='input-wrapper'>
+              <label className='label-form' htmlFor='total'>
+                Total mins
+              </label>
               <Input
                 type='number'
                 name='total'
@@ -227,9 +241,11 @@ const AddRecipeForm = () => {
                 value={total}
                 onChange={(e) => handleChange(e)}
               />
-            </InputWrapper>
-            <InputWrapper>
-              <Label htmlFor='serving'>Servings</Label>
+            </div>
+            <div className='input-wrapper'>
+              <label className='label-form' htmlFor='serving'>
+                Servings
+              </label>
               <Input
                 type='number'
                 name='serving'
@@ -238,8 +254,8 @@ const AddRecipeForm = () => {
                 value={serving}
                 onChange={(e) => handleChange(e)}
               />
-            </InputWrapper>
-            <InputWrapper>
+            </div>
+            <div className='input-wrapper'>
               {ingredients.map((ingredient, i) => (
                 <div className='mb-4' key={i}>
                   <Input
@@ -258,8 +274,8 @@ const AddRecipeForm = () => {
               <FormBtn type='button' onClick={handleAddIngredient}>
                 Add New Ingredient
               </FormBtn>
-            </InputWrapper>
-            <InputWrapper>
+            </div>
+            <div className='input-wrapper'>
               {steps.map((step, i) => (
                 <div className='mb-4' key={i}>
                   <Textarea
@@ -277,7 +293,7 @@ const AddRecipeForm = () => {
               <FormBtn type='button' onClick={handleAddStep}>
                 Add New Step
               </FormBtn>
-            </InputWrapper>
+            </div>
           </InputWrapperGrid>
           <AddRecipeBtn type='submit' onClick={(e) => handleAddRecipe(e)}>
             Add Recipe

@@ -12,3 +12,17 @@
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
+
+@layer components {
+  .input-wrapper {
+    @apply mb-6 
+      text-sm;
+  }
+
+  .label-form {
+    @apply block 
+      mb-2 
+      font-medium 
+      text-gray-900;
+  }
+}
