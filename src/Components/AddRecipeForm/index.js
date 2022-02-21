@@ -203,7 +203,7 @@ const AddRecipeForm = () => {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <InputWrapperGrid>
+          <div className='input-wrapper-grid'>
             <div className='input-wrapper'>
               <label className='label-form' htmlFor='prep'>
                 Preparation mins
@@ -232,8 +232,8 @@ const AddRecipeForm = () => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-          </InputWrapperGrid>
-          <InputWrapperGrid>
+          </div>
+          <div className='input-wrapper-grid'>
             <div className='input-wrapper'>
               <label className='label-form' htmlFor='total'>
                 Total mins
@@ -279,9 +279,13 @@ const AddRecipeForm = () => {
                   </DeleteText>
                 </div>
               ))}
-              <FormBtn type='button' onClick={handleAddIngredient}>
+              <button
+                className='default-btn form-btn'
+                type='button'
+                onClick={handleAddIngredient}
+              >
                 Add New Ingredient
-              </FormBtn>
+              </button>
             </div>
             <div className='input-wrapper'>
               {steps.map((step, i) => (
@@ -298,14 +302,22 @@ const AddRecipeForm = () => {
                 </div>
               ))}
 
-              <FormBtn type='button' onClick={handleAddStep}>
+              <button
+                className='default-btn form-btn'
+                type='button'
+                onClick={handleAddStep}
+              >
                 Add New Step
-              </FormBtn>
+              </button>
             </div>
-          </InputWrapperGrid>
-          <AddRecipeBtn type='submit' onClick={(e) => handleAddRecipe(e)}>
+          </div>
+          <button
+            className='default-btn add-recipe-btn'
+            type='submit'
+            onClick={(e) => handleAddRecipe(e)}
+          >
             Add Recipe
-          </AddRecipeBtn>
+          </button>
         </Form>
       </Transition>
     </>
