@@ -31,6 +31,7 @@ const AddRecipeForm = () => {
 
   const handleAddRecipe = async (e) => {
     e.preventDefault();
+    console.log('here');
 
     if (formData.title && formData.imgUrl) {
       await dispatch(addRecipe({ ...formData, customId: nanoid() }));

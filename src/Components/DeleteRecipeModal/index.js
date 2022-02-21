@@ -1,13 +1,34 @@
 import React from 'react';
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationIcon } from '@heroicons/react/outline';
+import { useDispatch } from 'react-redux';
+import { deleteRecipe } from '../../store/actions/recipesAction';
+import { useNavigate } from 'react-router-dom';
 
-const DeleteRecipeModal = ({ openDeleteModal, toggleOpenDeleteModal }) => {
+const DeleteRecipeModal = ({
+  recipe,
+  openDeleteModal,
+  toggleOpenDeleteModal,
+}) => {
   const cancelButtonRef = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (redirect) {
+      return navigate('/');
+    }
+  }, [redirect, navigate]);
+
+  const handleDeleteRecipe = async (id) => {
+    toggleOpenDeleteModal();
+    await dispatch(deleteRecipe(id));
+    setRedirect(true);
+  };
   return (
     <div>
-      const cancelButtonRef = useRef(null) return (
       <Transition.Root show={openDeleteModal} as={Fragment}>
         <Dialog
           as='div'
@@ -74,7 +95,7 @@ const DeleteRecipeModal = ({ openDeleteModal, toggleOpenDeleteModal }) => {
                   <button
                     type='button'
                     className='w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm'
-                    onClick={() => toggleOpenDeleteModal()}
+                    onClick={() => handleDeleteRecipe(recipe.id)}
                   >
                     Delete
                   </button>
