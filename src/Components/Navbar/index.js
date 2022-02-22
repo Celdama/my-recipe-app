@@ -11,7 +11,6 @@ import {
 } from './navbar.tw';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
-import Avatar from '../../Images/celdama.png';
 import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';

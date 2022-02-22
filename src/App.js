@@ -14,6 +14,8 @@ import MyRecipes from './Components/MyRecipes';
 import AddRecipeForm from './Components/AddRecipeForm';
 import NoMatch from './Components/404';
 import YourProfile from './Components/YourProfile';
+import SignIn from './Components/Auth/SignIn';
+import SignUp from './Components/Auth/SignUp';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ const App = () => {
             <Route path='/add-recipe' element={<AddRecipeForm />} />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
             <Route path='/profile' element={<YourProfile />} />
+            <Route path='/signin' element={<SignIn />} />
+            <Route path='signup' element={<SignUp />} />
             <Route path='*' element={<NoMatch />} />
           </Routes>
         </Main>
