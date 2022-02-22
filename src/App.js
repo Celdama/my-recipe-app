@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getRecipes, toggleLoader } from './store/actions/recipesAction';
+import { getRecipes } from './store/actions/recipesAction';
 import Navbar from './Components/Navbar';
 import Header from './Components/Header';
 import Main from './Components/Main';
@@ -16,8 +16,6 @@ import NoMatch from './Components/404';
 import YourProfile from './Components/YourProfile';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from './config/fbConfig';
 
 const App = () => {
   const dispatch = useDispatch();

@@ -3,7 +3,6 @@ import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
-import { nanoid } from 'nanoid';
 
 const AddRecipeForm = () => {
   const navigate = useNavigate();
