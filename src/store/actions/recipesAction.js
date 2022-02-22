@@ -68,9 +68,6 @@ export const deleteRecipe = (id) => {
     try {
       const recipeDoc = doc(db, 'recipes', id);
       await deleteDoc(recipeDoc);
-      // await axios.delete(
-      //   `https://fake-serv-for-recipe-app.herokuapp.com/recipes/${id}`
-      // );
       dispatch({
         type: DELETE_RECIPE,
         payload: { id },
