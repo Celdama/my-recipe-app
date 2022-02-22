@@ -93,8 +93,8 @@ export const RecipeDetail = ({ recipe }) => {
           total={total}
           serving={serving}
         />
-        <RecipeIngredients ingredients={ingredients} />
-        <RecipeStepsTimeline steps={steps} />
+        {ingredients && <RecipeIngredients ingredients={ingredients} />}
+        {steps && <RecipeStepsTimeline steps={steps} />}
       </>
     );
   }
@@ -136,5 +136,5 @@ export const RecipeDetailStore = () => {
 
   const currentRecipe = useSelector(currentRecipeSelector);
 
-  return <RecipeDetail recipe={currentRecipe[0]} />;
+  return <RecipeDetail recipe={currentRecipe} />;
 };

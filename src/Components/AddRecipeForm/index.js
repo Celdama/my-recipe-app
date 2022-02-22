@@ -34,7 +34,7 @@ const AddRecipeForm = () => {
     console.log('here');
 
     if (formData.title && formData.imgUrl) {
-      await dispatch(addRecipe({ ...formData, customId: nanoid() }));
+      await dispatch(addRecipe({ ...formData }));
 
       dispatch(getRecipes());
       setFormData({

@@ -16,6 +16,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
   const cancelButtonRef = useRef(null);
   const [editRecipeData, setEditRecipeData] = useState();
   const dispatch = useDispatch();
+  // console.log(recipe);
 
   useEffect(() => {
     if (recipe) {
@@ -99,7 +100,7 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
     e.preventDefault();
     await dispatch(editRecipe(editRecipeData));
     toggleOpen();
-    dispatch(getCurrentRecipe(editRecipeData.customId));
+    dispatch(getCurrentRecipe(editRecipeData.id));
     toggleEdit();
   };
 

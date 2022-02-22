@@ -1,19 +1,20 @@
-import axios from 'axios';
-
 import {
   GET_CURRENT_RECIPE,
   RESET_CURRENT_RECIPE,
 } from '../reducers/currentRecipeReducer';
 
+import { db } from '../../config/fbConfig';
+import { doc, getDoc } from 'firebase/firestore';
+
 export const getCurrentRecipe = (id) => {
   return async (dispatch) => {
+    const docRef = doc(db, 'recipes', id);
+    const docSnap = await getDoc(docRef);
+    const current = { ...docSnap.data(), id: id };
     try {
-      const res = await axios.get(
-        `https://fake-serv-for-recipe-app.herokuapp.com/recipes?customId=${id}`
-      );
       dispatch({
         type: GET_CURRENT_RECIPE,
-        payload: res.data,
+        payload: current,
       });
     } catch (err) {
       return console.log(err);

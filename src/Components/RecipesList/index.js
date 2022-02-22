@@ -9,11 +9,10 @@ import { Wrapper } from './recipesList.tw';
 import Spinner from '../Spinner';
 
 export const RecipesList = ({ recipes }) => {
+  console.log(recipes);
   const recipesContent =
     recipes &&
-    recipes.map((recipe) => (
-      <RecipeCard key={recipe.customId} recipe={recipe} />
-    ));
+    recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
 
   return <Wrapper>{!recipes.length ? <Spinner /> : recipesContent}</Wrapper>;
 };

@@ -1,4 +1,13 @@
 import axios from 'axios';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from 'firebase/firestore';
+import { db } from '../../config/fbConfig';
 
 import {
   GET_RECIPES,
@@ -7,15 +16,16 @@ import {
   DELETE_RECIPE,
 } from '../reducers/recipesReducer';
 
+const recipesCollectionRef = collection(db, 'recipes');
+
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(
-        'https://fake-serv-for-recipe-app.herokuapp.com/recipes'
-      );
+      const data = await getDocs(recipesCollectionRef);
+      const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       dispatch({
         type: GET_RECIPES,
-        payload: res.data,
+        payload: res,
       });
     } catch (err) {
       return console.log(err);
@@ -26,10 +36,7 @@ export const getRecipes = () => {
 export const addRecipe = (data) => {
   return async (dispatch) => {
     try {
-      await axios.post(
-        'https://fake-serv-for-recipe-app.herokuapp.com/recipes',
-        data
-      );
+      await addDoc(recipesCollectionRef, data);
       dispatch({
         type: ADD_RECIPE,
         payload: data,
@@ -42,13 +49,10 @@ export const addRecipe = (data) => {
 
 export const editRecipe = (data) => {
   return async (dispatch) => {
+    const recipeDoc = doc(db, 'recipes', data.id);
+
     try {
-      await axios.put(
-        `https://fake-serv-for-recipe-app.herokuapp.com/recipes/${data.id}`,
-        {
-          ...data,
-        }
-      );
+      await updateDoc(recipeDoc, { ...data });
       dispatch({
         type: EDIT_RECIPE,
         payload: { ...data },
@@ -62,9 +66,11 @@ export const editRecipe = (data) => {
 export const deleteRecipe = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(
-        `https://fake-serv-for-recipe-app.herokuapp.com/recipes/${id}`
-      );
+      const recipeDoc = doc(db, 'recipes', id);
+      await deleteDoc(recipeDoc);
+      // await axios.delete(
+      //   `https://fake-serv-for-recipe-app.herokuapp.com/recipes/${id}`
+      // );
       dispatch({
         type: DELETE_RECIPE,
         payload: { id },

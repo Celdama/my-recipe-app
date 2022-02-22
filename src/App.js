@@ -16,6 +16,8 @@ import NoMatch from './Components/404';
 import YourProfile from './Components/YourProfile';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './config/fbConfig';
 
 const App = () => {
   const dispatch = useDispatch();
