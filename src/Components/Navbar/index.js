@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import {
   Wrapper,
   NavContainer,
@@ -13,6 +13,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import Avatar from '../../Images/celdama.png';
 import { NavLink } from 'react-router-dom';
+import SignedInLinks from '../SignedInLinks';
+import SignedOutLinks from '../SignedOutLinks';
 
 const user = {
   name: 'Celdama Dev',
@@ -36,6 +38,7 @@ const userNavigation = [
 ];
 
 const Navbar = () => {
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <Wrapper>
       <Disclosure as='nav' className='bg-gray-800'>
@@ -70,14 +73,11 @@ const Navbar = () => {
                   <div className='ml-4 flex items-center md:ml-6'>
                     <Menu as='div' className='ml-3 relative'>
                       <div>
-                        <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
-                          <span className='sr-only'>Open user menu</span>
-                          <img
-                            className='h-8 w-8 rounded-full'
-                            src={Avatar}
-                            alt=''
-                          />
-                        </Menu.Button>
+                        {isLogin ? (
+                          <SignedInLinks mobile={false} />
+                        ) : (
+                          <SignedOutLinks mobile={false} />
+                        )}
                       </div>
                       <Transition
                         as={Fragment}
@@ -140,17 +140,11 @@ const Navbar = () => {
               <NavUserMobileContainer>
                 <div className='flex items-center px-5'>
                   <div className='flex-shrink-0'>
-                    <Disclosure.Button
-                      key={user.name}
-                      as={NavLink}
-                      to={userNavigation[0].href}
-                    >
-                      <img
-                        className='h-10 w-10 rounded-full'
-                        src={Avatar}
-                        alt='avatar'
-                      />
-                    </Disclosure.Button>
+                    {isLogin ? (
+                      <SignedInLinks mobile={true} />
+                    ) : (
+                      <SignedOutLinks mobile={true} />
+                    )}
                   </div>
                   <div className='ml-3'>
                     <div className='text-base font-medium leading-none text-white'>
