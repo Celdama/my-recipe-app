@@ -3,15 +3,18 @@ import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { authSelector } from '../../store/selectors/authSelector';
 
 const AddRecipeForm = () => {
+  const currentUser = useSelector(authSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     desc: '',
-    author: '',
+    author: currentUser.email,
     prep: 0,
     cooking: 0,
     total: 0,
@@ -118,7 +121,6 @@ const AddRecipeForm = () => {
   const {
     title,
     desc,
-    author,
     imgUrl,
     prep,
     cooking,
@@ -166,19 +168,6 @@ const AddRecipeForm = () => {
               onChange={(e) => handleChange(e)}
               rows='4'
             ></textarea>
-          </div>
-          <div className='input-wrapper'>
-            <label className='label-form' htmlFor='title'>
-              Recipe Author
-            </label>
-            <input
-              className='input-form'
-              type='text'
-              id='author'
-              name='author'
-              value={author}
-              onChange={(e) => handleChange(e)}
-            />
           </div>
           <div className='input-wrapper'>
             <label className='label-form' htmlFor='imgUrl'>

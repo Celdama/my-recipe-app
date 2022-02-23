@@ -1,3 +1,3 @@
 export const isAuthSelector = ({ auth }) => !!auth.email;
 
-export const authSelector = ({ auth }) => auth.user;
+export const authSelector = ({ auth }) => auth.providerData[0];

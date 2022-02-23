@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import {
   Wrapper,
   NavContainer,
@@ -15,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { isAuthSelector } from '../../store/selectors/authSelector';
 
 const user = {
