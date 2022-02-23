@@ -68,7 +68,7 @@ export const RecipeDetail = ({ recipe }) => {
           </RecipeHeaderTop>
           <RecipeHeaderBottom>
             <RecipeHeaderBottomLeft>
-              <RoundedAvatar src={Avatar} alt='avatar' />
+              <RoundedAvatar src={recipe.authorPhotoURL} alt='avatar' />
               <Author>
                 <span className='text-gray-500 mr-2'>by</span>
                 <span className='underline'>{author}</span>

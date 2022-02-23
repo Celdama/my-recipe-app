@@ -14,6 +14,7 @@ const AddRecipeForm = () => {
   const [formData, setFormData] = useState({
     title: '',
     desc: '',
+    authorPhotoURL: currentUser.photoURL,
     author: currentUser.displayName,
     authorEmail: currentUser.email,
     prep: 0,
