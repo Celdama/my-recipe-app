@@ -14,12 +14,14 @@ import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
+import { signOutUser } from '../../store/actions/authAction';
 
 import { useSelector } from 'react-redux';
 import {
   isAuthSelector,
   authSelector,
 } from '../../store/selectors/authSelector';
+import { useDispatch } from 'react-redux';
 
 const user = {
   name: 'Celdama Dev',
@@ -27,7 +29,7 @@ const user = {
 };
 
 const navigation = [
-  { name: 'Home', href: 'home', current: true },
+  { name: 'Home', href: 'home', current: false },
   { name: 'Discover', href: 'discover', current: false },
   { name: 'For You', href: 'for-you', current: false },
   // { name: 'Chefs', href: '#', current: false },
@@ -38,13 +40,25 @@ const navigation = [
 
 const userNavigation = [
   { name: 'Your Profile', href: 'profile' },
-  // { name: 'Settings', href: '#' },
+  { name: 'Settings', href: 'settings' },
   // { name: 'Sign out', href: '#' },
 ];
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const isLogin = useSelector(isAuthSelector);
   const authUser = useSelector(authSelector);
+
+  const handleSignOut = () => {
+    dispatch(signOutUser());
+  };
+
+  // A METTRE DANS HELPERS CETTE FONCTION
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+  }
+
+  console.log(authUser);
 
   return (
     <Wrapper>
@@ -63,11 +77,14 @@ const Navbar = () => {
                     <div className='ml-10 flex items-baseline space-x-4'>
                       {navigation.map(({ name, href, current }) => (
                         <NavLink
-                          activeclassname='selected'
                           key={name}
                           to={name === 'Home' ? '/' : href}
-                          className='text-gray-300 hover:bg-gray-700 hover:text-white
-                            px-3 py-2 rounded-md text-sm font-medium'
+                          className={classNames(
+                            current
+                              ? 'bg-gray-900 text-white'
+                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                            'px-3 py-2 rounded-md text-sm font-medium'
+                          )}
                           aria-current={current ? 'page' : undefined}
                         >
                           {name}
@@ -106,21 +123,33 @@ const Navbar = () => {
                         leaveTo='transform opacity-0 scale-95'
                       >
                         <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                          {userNavigation.map(({ name, href, current }) => (
-                            <Menu.Item key={name}>
-                              {({ active }) => (
-                                <NavLink
-                                  activeclassname='active-user-item'
-                                  key={name}
-                                  to={href}
-                                  className='block px-4 py-2 text-sm text-gray-700'
-                                  aria-current={current ? 'page' : undefined}
-                                >
-                                  {name}
-                                </NavLink>
-                              )}
+                          <>
+                            {userNavigation.map(({ name, href, current }) => (
+                              <Menu.Item key={name}>
+                                {({ active }) => (
+                                  <NavLink
+                                    key={name}
+                                    to={href}
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700'
+                                    )}
+                                    aria-current={current ? 'page' : undefined}
+                                  >
+                                    {name}
+                                  </NavLink>
+                                )}
+                              </Menu.Item>
+                            ))}
+                            <Menu.Item>
+                              <li
+                                onClick={handleSignOut}
+                                className='block px-4 py-2 hover:bg-gray-100 hover:cursor-pointer text-sm text-gray-700 list-none'
+                              >
+                                Sign Out
+                              </li>
                             </Menu.Item>
-                          ))}
+                          </>
                         </Menu.Items>
                       </Transition>
                     </Menu>
@@ -139,7 +168,7 @@ const Navbar = () => {
               </NavContainer>
             </div>
 
-            <Disclosure.Panel className='md:hidden'>
+            <Disclosure.Panel className='md:hidden '>
               <NavItemsMobileContainer>
                 {navigation.map(({ name, href, current }) => (
                   <Disclosure.Button
@@ -154,8 +183,9 @@ const Navbar = () => {
                   </Disclosure.Button>
                 ))}
               </NavItemsMobileContainer>
+
               <NavUserMobileContainer>
-                <div className='flex items-center px-5'>
+                <div className='flex items-center px-2 py-2'>
                   <div className='flex-shrink-0'>
                     {isLogin ? (
                       <SignedInLinks mobile={true} />
@@ -163,15 +193,37 @@ const Navbar = () => {
                       <SignedOutLinks mobile={true} />
                     )}
                   </div>
-                  <div className='ml-3'>
-                    <div className='text-base font-medium leading-none text-white'>
-                      {user.name}
+                  {authUser.email && (
+                    <div className='ml-3'>
+                      <div className='text-base font-medium leading-none text-white'>
+                        {authUser.userName}
+                      </div>
+                      <div className='text-sm font-medium leading-none text-gray-400'>
+                        {authUser.email}
+                      </div>
                     </div>
-                    <div className='text-sm font-medium leading-none text-gray-400'>
-                      {user.email}
-                    </div>
-                  </div>
+                  )}
                 </div>
+                {authUser.email && (
+                  <div className='mt-3 px-2 space-y-1'>
+                    {userNavigation.map((item) => (
+                      <Disclosure.Button
+                        key={item.name}
+                        as='a'
+                        href={item.href}
+                        className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                      >
+                        {item.name}
+                      </Disclosure.Button>
+                    ))}
+                    <li
+                      onClick={handleSignOut}
+                      className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:cursor-pointer hover:text-white hover:bg-gray-700'
+                    >
+                      Sign Out
+                    </li>
+                  </div>
+                )}
               </NavUserMobileContainer>
             </Disclosure.Panel>
           </>
