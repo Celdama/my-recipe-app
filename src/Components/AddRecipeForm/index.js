@@ -6,11 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 
-export const AddRecipeForm = ({
-  currentUser,
-  addRecipeToFirebase,
-  // getRecipesFromFirebase,
-}) => {
+export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   const navigate = useNavigate();
   const [redirect, setRedirect] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,8 +24,6 @@ export const AddRecipeForm = ({
     steps: [],
     favorite: false,
   });
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (redirect) {
