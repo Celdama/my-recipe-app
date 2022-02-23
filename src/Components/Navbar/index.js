@@ -16,7 +16,10 @@ import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
 
 import { useSelector } from 'react-redux';
-import { isAuthSelector } from '../../store/selectors/authSelector';
+import {
+  isAuthSelector,
+  authSelector,
+} from '../../store/selectors/authSelector';
 
 const user = {
   name: 'Celdama Dev',
@@ -41,6 +44,7 @@ const userNavigation = [
 
 const Navbar = () => {
   const isLogin = useSelector(isAuthSelector);
+  const authUser = useSelector(authSelector);
 
   return (
     <Wrapper>
@@ -83,7 +87,7 @@ const Navbar = () => {
                   </NavItemsContainer>
                 </NavItems>
                 <NavItemsContainer>
-                  <div className='ml-4 flex items-center md:ml-6'>
+                  <div className='ml-4 flex items-center md:ml-6 '>
                     <Menu as='div' className='ml-3 relative'>
                       <div>
                         {isLogin ? (
