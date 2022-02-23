@@ -5,6 +5,7 @@ import {
   MONITOR_AUTH_STATE,
 } from '../reducers/authReducer';
 import {
+  getAuth,
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
@@ -63,12 +64,19 @@ export const signOutUser = () => {
 };
 
 export const monitorAuthState = () => {
+  const auth = getAuth();
   return async (dispatch) => {
     try {
       onAuthStateChanged(auth, (user) => {
+        const { email, uid, displayName } = user.auth.currentUser;
+        const currentUser = {
+          email,
+          uid,
+          displayName,
+        };
         dispatch({
           type: MONITOR_AUTH_STATE,
-          payload: user,
+          payload: currentUser,
         });
       });
     } catch (err) {
