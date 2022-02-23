@@ -14,7 +14,6 @@ export const authReducer = (state = initialState, action) => {
     case LOGOUT_USER:
       return {};
     case MONITOR_AUTH_STATE:
-      console.log(action.payload);
       return { ...state, ...action.payload };
     default:
       return state;

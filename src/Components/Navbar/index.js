@@ -41,8 +41,6 @@ const userNavigation = [
 
 const Navbar = () => {
   const isLogin = useSelector(isAuthSelector);
-  console.log('t');
-  console.log(isLogin);
 
   return (
     <Wrapper>

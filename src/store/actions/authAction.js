@@ -65,7 +65,7 @@ export const signOutUser = () => {
 export const monitorAuthState = () => {
   return async (dispatch) => {
     try {
-      await onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, (user) => {
         dispatch({
           type: MONITOR_AUTH_STATE,
           payload: user,
