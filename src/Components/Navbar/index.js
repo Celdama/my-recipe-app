@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   Wrapper,
   NavContainer,
@@ -14,6 +14,12 @@ import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
+import {
+  currentUserSelector,
+  isThereCurrentUserSelector,
+} from '../../store/selectors/currentUserSelector';
+import { getCurrentUser } from '../../store/actions/currentUserAction';
+import { useSelector, useDispatch } from 'react-redux';
 
 const user = {
   name: 'Celdama Dev',
@@ -37,7 +43,15 @@ const userNavigation = [
 ];
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, [dispatch]);
+
+  const isLogin = useSelector(isThereCurrentUserSelector);
+
+  console.log(isLogin);
+
   return (
     <Wrapper>
       <Disclosure as='nav' className='bg-gray-800'>
