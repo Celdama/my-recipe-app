@@ -17,6 +17,7 @@ import YourProfile from './Components/YourProfile';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
+import { RequireAuth } from './Helpers/requireAuth';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,14 @@ const App = () => {
             <Route path='/for-you' element={<ForYou />} />
             <Route path='/favourite' element={<Favourite />} />
             <Route path='/my-recipes' element={<MyRecipes />} />
-            <Route path='/add-recipe' element={<AddRecipeForm />} />
+            <Route
+              path='/add-recipe'
+              element={
+                <RequireAuth redirectTo={'/signin'}>
+                  <AddRecipeForm />
+                </RequireAuth>
+              }
+            />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
             <Route path='/profile' element={<YourProfile />} />
             <Route path='/signin' element={<SignIn />} />
