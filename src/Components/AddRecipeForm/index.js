@@ -43,7 +43,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
     steps,
   } = formData;
 
-  const handleAddRecipe = async (e) => {
+  const handleAddRecipe = (e) => {
     e.preventDefault();
 
     addRecipeToFirebase(formData);

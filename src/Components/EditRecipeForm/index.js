@@ -12,11 +12,15 @@ import {
   CancelBtn,
 } from './editRecipeForm.tw';
 
-const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
+export const EditRecipeForm = ({
+  open,
+  recipe,
+  toggleEdit,
+  toggleOpen,
+  editRecipeInFirebase,
+}) => {
   const cancelButtonRef = useRef(null);
   const [editRecipeData, setEditRecipeData] = useState();
-  const dispatch = useDispatch();
-  // console.log(recipe);
 
   useEffect(() => {
     if (recipe) {
@@ -96,11 +100,10 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
     });
   };
 
-  const handleSubmitEditRecipe = async (e) => {
+  const handleSubmitEditRecipe = (e) => {
     e.preventDefault();
-    await dispatch(editRecipe(editRecipeData));
+    editRecipeInFirebase(editRecipeData);
     toggleOpen();
-    dispatch(getCurrentRecipe(editRecipeData.id));
     toggleEdit();
   };
 
@@ -333,4 +336,26 @@ const EditRecipeForm = ({ open, recipe, toggleEdit, toggleOpen }) => {
   );
 };
 
-export default EditRecipeForm;
+export const EditRecipeFormStore = ({
+  open,
+  toggleOpen,
+  recipe,
+  toggleEdit,
+}) => {
+  const dispatch = useDispatch();
+
+  const editRecipeInFirebase = async (data) => {
+    await dispatch(editRecipe(data));
+    dispatch(getCurrentRecipe(data.id));
+  };
+
+  return (
+    <EditRecipeForm
+      open={open}
+      toggleOpen={toggleOpen}
+      recipe={recipe}
+      toggleEdit={toggleEdit}
+      editRecipeInFirebase={editRecipeInFirebase}
+    />
+  );
+};

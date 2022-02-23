@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
-import EditRecipeForm from '../EditRecipeForm';
+import { EditRecipeFormStore } from '../EditRecipeForm';
 import { authSelector } from '../../store/selectors/authSelector';
 import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
 import {
@@ -108,7 +108,7 @@ export const RecipeDetail = ({ recipe }) => {
       ) : (
         <>
           <Content>{recipeContent}</Content>
-          <EditRecipeForm
+          <EditRecipeFormStore
             open={open}
             toggleOpen={toggleOpen}
             recipe={recipe}
