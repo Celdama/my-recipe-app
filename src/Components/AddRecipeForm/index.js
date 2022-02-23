@@ -14,7 +14,8 @@ const AddRecipeForm = () => {
   const [formData, setFormData] = useState({
     title: '',
     desc: '',
-    author: currentUser.email,
+    author: currentUser.displayName,
+    authorEmail: currentUser.email,
     prep: 0,
     cooking: 0,
     total: 0,
@@ -33,7 +34,6 @@ const AddRecipeForm = () => {
 
   const handleAddRecipe = async (e) => {
     e.preventDefault();
-    console.log('here');
 
     if (formData.title && formData.imgUrl) {
       await dispatch(addRecipe({ ...formData }));

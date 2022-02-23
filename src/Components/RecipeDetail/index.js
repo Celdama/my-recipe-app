@@ -9,6 +9,7 @@ import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import EditRecipeForm from '../EditRecipeForm';
+import { authSelector } from '../../store/selectors/authSelector';
 import DeleteRecipeModal from '../DeleteRecipeModal';
 import {
   Wrapper,
@@ -30,6 +31,7 @@ export const RecipeDetail = ({ recipe }) => {
   const [open, setOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
+  const authUser = useSelector(authSelector);
 
   const toggleOpen = () => {
     setOpen(!open);
@@ -72,17 +74,19 @@ export const RecipeDetail = ({ recipe }) => {
                 <span className='underline'>{author}</span>
               </Author>
             </RecipeHeaderBottomLeft>
-            <RecipeHeaderBottomRight>
-              <EditBtn
-                onClick={() => setOpen(true)}
-                data-modal-toggle='authentication-modal'
-              >
-                Edit
-              </EditBtn>
-              <DeleteBtn onClick={() => setOpenDeleteModal(true)}>
-                Delete
-              </DeleteBtn>
-            </RecipeHeaderBottomRight>
+            {authUser.email === recipe.authorEmail ? (
+              <RecipeHeaderBottomRight>
+                <EditBtn
+                  onClick={() => setOpen(true)}
+                  data-modal-toggle='authentication-modal'
+                >
+                  Edit
+                </EditBtn>
+                <DeleteBtn onClick={() => setOpenDeleteModal(true)}>
+                  Delete
+                </DeleteBtn>
+              </RecipeHeaderBottomRight>
+            ) : null}
           </RecipeHeaderBottom>
         </RecipeHeader>
         <img className='rounded-lg' src={imgUrl} alt='recipe' />
