@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getCurrentUser,
-  resetCurrentUser,
-} from '../../../store/actions/currentUserAction';
-import { registerUser, signOutUser } from '../../../store/actions/authAction';
-import { currentUserSelector } from '../../../store/selectors/currentUserSelector';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../store/actions/authAction';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -15,8 +10,6 @@ const SignUp = () => {
     lastName: '',
   });
   const dispatch = useDispatch();
-
-  const current = useSelector(currentUserSelector);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,15 +22,9 @@ const SignUp = () => {
     });
   };
 
-  const handleLogout = () => {
-    dispatch(signOutUser());
-    dispatch(resetCurrentUser());
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(registerUser(formData.email, formData.password));
-    dispatch(getCurrentUser());
   };
   return (
     <div>
@@ -87,12 +74,6 @@ const SignUp = () => {
           <button className='default-btn form-btn'>Sign Up</button>
         </div>
       </form>
-
-      <h1>User logged in</h1>
-      <p>{current?.email}</p>
-      <button onClick={handleLogout} className='default-btn form-btn'>
-        logoout
-      </button>
     </div>
   );
 };

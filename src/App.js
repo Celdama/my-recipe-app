@@ -16,11 +16,13 @@ import NoMatch from './Components/404';
 import YourProfile from './Components/YourProfile';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
+import { monitorAuthState } from './store/actions/authAction';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(monitorAuthState());
     dispatch(getRecipes());
   }, [dispatch]);
 

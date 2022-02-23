@@ -14,12 +14,9 @@ import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
-import {
-  currentUserSelector,
-  isThereCurrentUserSelector,
-} from '../../store/selectors/currentUserSelector';
-import { getCurrentUser } from '../../store/actions/currentUserAction';
+
 import { useSelector, useDispatch } from 'react-redux';
+import { isAuthSelector } from '../../store/selectors/authSelector';
 
 const user = {
   name: 'Celdama Dev',
@@ -43,13 +40,8 @@ const userNavigation = [
 ];
 
 const Navbar = () => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getCurrentUser());
-  // }, [dispatch]);
-
-  const isLogin = useSelector(isThereCurrentUserSelector);
-
+  const isLogin = useSelector(isAuthSelector);
+  console.log('t');
   console.log(isLogin);
 
   return (

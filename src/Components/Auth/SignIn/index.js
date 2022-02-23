@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../../store/actions/authAction';
-import { getCurrentUser } from '../../../store/actions/currentUserAction';
+// import { getCurrentUser } from '../../../store/actions/currentUserAction';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(logInUser(formData.email, formData.password));
-    dispatch(getCurrentUser());
+    // dispatch(getCurrentUser());
   };
   return (
     <div>

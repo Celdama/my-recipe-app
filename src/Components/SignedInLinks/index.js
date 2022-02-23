@@ -4,14 +4,12 @@ import { Menu, Disclosure } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import Avatar from '../../Images/celdama.png';
 import { signOutUser } from '../../store/actions/authAction';
-import { resetCurrentUser } from '../../store/actions/currentUserAction';
 
 const SignedInLinks = ({ mobile }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(signOutUser());
-    dispatch(resetCurrentUser());
   };
 
   return (
