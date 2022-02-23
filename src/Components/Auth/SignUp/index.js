@@ -30,26 +30,6 @@ const SignUp = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <h5>Sign Up</h5>
-        {/* <div>
-          <label htmlFor='firstName'>First Name</label>
-          <input
-            className='input-form'
-            type='text'
-            name='firstName'
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor='lastName'>Last Name</label>
-          <input
-            className='input-form'
-            type='text'
-            name='lastName'
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-        </div> */}
         <div>
           <label htmlFor='email'>Email</label>
           <input

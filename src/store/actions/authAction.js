@@ -3,12 +3,14 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   MONITOR_AUTH_STATE,
+  UPDATE_USER,
 } from '../reducers/authReducer';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
+  updateProfile,
   onAuthStateChanged,
 } from 'firebase/auth';
 import { auth } from '../../config/fbConfig';
@@ -64,20 +66,42 @@ export const signOutUser = () => {
 };
 
 export const monitorAuthState = () => {
-  const auth = getAuth();
+  // const auth = getAuth();
   return async (dispatch) => {
     try {
       onAuthStateChanged(auth, (user) => {
-        const { email, uid, displayName } = user.auth.currentUser;
-        const currentUser = {
-          email,
-          uid,
-          displayName,
-        };
+        let currentUser;
+        if (user) {
+          const { email, uid, displayName, photoURL } = user.auth.currentUser;
+          currentUser = {
+            email,
+            uid,
+            displayName,
+            photoURL,
+          };
+        }
         dispatch({
           type: MONITOR_AUTH_STATE,
           payload: currentUser,
         });
+      });
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+};
+
+export const updateUser = (userName, avatar) => {
+  const auth = getAuth();
+  return async (dispatch) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: userName,
+        photoURL: avatar,
+      });
+      dispatch({
+        type: UPDATE_USER,
+        payload: {},
       });
     } catch (err) {
       return console.log(err);
