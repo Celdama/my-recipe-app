@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { currentRecipeSelector } from '../../store/selectors/currentRecipeSelector';
 import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
 import Spinner from '../Spinner';
-import Avatar from '../../Images/celdama.png';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import EditRecipeForm from '../EditRecipeForm';
 import { authSelector } from '../../store/selectors/authSelector';
-import DeleteRecipeModal from '../DeleteRecipeModal';
+import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
 import {
   Wrapper,
   Content,
@@ -115,7 +114,7 @@ export const RecipeDetail = ({ recipe }) => {
             recipe={recipe}
             toggleEdit={toggleEdit}
           />
-          <DeleteRecipeModal
+          <DeleteRecipeModalStore
             recipe={recipe}
             toggleOpenDeleteModal={toggleOpenDeleteModal}
             openDeleteModal={openDeleteModal}

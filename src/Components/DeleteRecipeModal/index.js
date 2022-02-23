@@ -6,14 +6,14 @@ import { useDispatch } from 'react-redux';
 import { deleteRecipe } from '../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
 
-const DeleteRecipeModal = ({
+export const DeleteRecipeModal = ({
   recipe,
   openDeleteModal,
   toggleOpenDeleteModal,
+  deleteRecipeInFirebase,
 }) => {
   const cancelButtonRef = useRef(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const DeleteRecipeModal = ({
 
   const handleDeleteRecipe = async (id) => {
     toggleOpenDeleteModal();
-    await dispatch(deleteRecipe(id));
+    await deleteRecipeInFirebase(id);
     setRedirect(true);
   };
   return (
@@ -116,4 +116,23 @@ const DeleteRecipeModal = ({
   );
 };
 
-export default DeleteRecipeModal;
+export const DeleteRecipeModalStore = ({
+  recipe,
+  toggleOpenDeleteModal,
+  openDeleteModal,
+}) => {
+  const dispatch = useDispatch();
+
+  const deleteRecipeInFirebase = (id) => {
+    dispatch(deleteRecipe(id));
+  };
+
+  return (
+    <DeleteRecipeModal
+      recipe={recipe}
+      toggleOpenDeleteModal={toggleOpenDeleteModal}
+      openDeleteModal={openDeleteModal}
+      deleteRecipeInFirebase={deleteRecipeInFirebase}
+    />
+  );
+};

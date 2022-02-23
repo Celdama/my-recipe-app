@@ -9,7 +9,7 @@ import { authSelector } from '../../store/selectors/authSelector';
 export const AddRecipeForm = ({
   currentUser,
   addRecipeToFirebase,
-  getRecipesFromFirebase,
+  // getRecipesFromFirebase,
 }) => {
   const navigate = useNavigate();
   const [redirect, setRedirect] = useState(false);
@@ -28,6 +28,8 @@ export const AddRecipeForm = ({
     steps: [],
     favorite: false,
   });
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (redirect) {
@@ -50,9 +52,8 @@ export const AddRecipeForm = ({
   const handleAddRecipe = async (e) => {
     e.preventDefault();
 
-    await addRecipeToFirebase(formData);
+    addRecipeToFirebase(formData);
 
-    getRecipesFromFirebase();
     setFormData({
       title: '',
       desc: '',
@@ -317,11 +318,8 @@ export const AddRecipeFormStore = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(authSelector);
 
-  const addRecipeToFirebase = (data) => {
-    dispatch(addRecipe({ ...data }));
-  };
-
-  const getRecipesFromFirebase = () => {
+  const addRecipeToFirebase = async (data) => {
+    await dispatch(addRecipe({ ...data }));
     dispatch(getRecipes());
   };
 
@@ -329,7 +327,6 @@ export const AddRecipeFormStore = () => {
     <AddRecipeForm
       currentUser={currentUser}
       addRecipeToFirebase={addRecipeToFirebase}
-      getRecipesFromFirebase={getRecipesFromFirebase}
     />
   );
 };
