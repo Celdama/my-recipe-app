@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Wrapper>
       <Content>
-        <TitleApp>MyRecipeApp</TitleApp>
+        <TitleApp>MyRecipeAppp</TitleApp>
       </Content>
     </Wrapper>
   );
