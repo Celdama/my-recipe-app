@@ -26,11 +26,11 @@ const user = {
 const navigation = [
   { name: 'Home', href: 'home', current: true },
   { name: 'Discover', href: 'discover', current: false },
-  { name: 'For you', href: 'for-you', current: false },
+  { name: 'For You', href: 'for-you', current: false },
   // { name: 'Chefs', href: '#', current: false },
   { name: 'Favourite', href: 'favourite', current: false },
-  { name: 'My recipes', href: 'my-recipes', current: false },
-  { name: 'Add recipe', href: 'add-recipe', current: false },
+  { name: 'My Recipes', href: 'my-recipes', current: false },
+  // { name: 'Add recipe', href: 'add-recipe', current: false },
 ];
 
 const userNavigation = [
@@ -69,6 +69,16 @@ const Navbar = () => {
                           {name}
                         </NavLink>
                       ))}
+                      {isLogin && (
+                        <NavLink
+                          key={'Add Recipe'}
+                          className='text-gray-300 hover:bg-gray-700 hover:text-white
+                            px-3 py-2 rounded-md text-sm font-medium'
+                          to={'add-recipe'}
+                        >
+                          Add Recipe
+                        </NavLink>
+                      )}
                     </div>
                   </NavItemsContainer>
                 </NavItems>
