@@ -11,7 +11,7 @@ const SignedOutLinks = ({ mobile }) => {
           className='text-gray-300 hover:bg-gray-700 hover:text-white  px-3 py-2 rounded-md text-sm font-medium'
           to={'/signup'}
         >
-          Signup
+          Sign Up
         </NavLink>
       </li>
       <li>
@@ -19,7 +19,7 @@ const SignedOutLinks = ({ mobile }) => {
           className='text-gray-300 hover:bg-gray-700 hover:text-white  px-3 py-2 rounded-md text-sm font-medium'
           to={'/signin'}
         >
-          Login
+          Log In
         </NavLink>
       </li>
       {mobile ? (

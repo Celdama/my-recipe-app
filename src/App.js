@@ -17,7 +17,7 @@ import YourProfile from './Components/YourProfile';
 import SignIn from './Components/Auth/SignIn';
 import SignUp from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
-import { RequireAuth } from './Helpers/requireAuth';
+import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,8 +49,22 @@ const App = () => {
             />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
             <Route path='/profile' element={<YourProfile />} />
-            <Route path='/signin' element={<SignIn />} />
-            <Route path='signup' element={<SignUp />} />
+            <Route
+              path='/signin'
+              element={
+                <RequireNotBeAuth redirectTo={'/'}>
+                  <SignIn />
+                </RequireNotBeAuth>
+              }
+            />
+            <Route
+              path='signup'
+              element={
+                <RequireNotBeAuth redirectTo={'/'}>
+                  <SignUp />
+                </RequireNotBeAuth>
+              }
+            />
             <Route path='*' element={<NoMatch />} />
           </Routes>
         </Main>

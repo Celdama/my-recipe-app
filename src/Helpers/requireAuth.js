@@ -7,3 +7,9 @@ export const RequireAuth = ({ children, redirectTo }) => {
 
   return isLogin ? children : <Navigate to={redirectTo} />;
 };
+
+export const RequireNotBeAuth = ({ children, redirectTo }) => {
+  const isLogin = useSelector(isAuthSelector);
+
+  return !isLogin ? children : <Navigate to={redirectTo} />;
+};
