@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { classNames } from '../../Helpers/joinClassNames';
 import {
   EyeIcon,
   HeartIcon,
@@ -7,6 +8,20 @@ import {
   ChevronRightIcon,
   ArrowRightIcon,
 } from '@heroicons/react/outline';
+import {
+  Wrapper,
+  Content,
+  Span,
+  Title,
+  Text,
+  ContainerLinks,
+  LinkTitle,
+  LinkContent,
+  WrapperLink,
+  LinkName,
+  LinkDesc,
+  WrapperLinkIcon,
+} from './404.tw';
 
 const NoMatch = () => {
   const popularPages = [
@@ -28,64 +43,54 @@ const NoMatch = () => {
   ];
 
   const popularContent = popularPages.map((page, i) => {
+    const { title, href, desc } = page;
     let icon;
 
-    if (page.title === 'discover') {
-      icon = <EyeIcon className='h-5 w-5 text-indigo-500' />;
-    } else if (page.title === 'favourite') {
-      icon = <HeartIcon className='h-5 w-5 text-indigo-500' />;
+    if (title === 'discover') {
+      icon = <EyeIcon className='icon-indigo' />;
+    } else if (title === 'favourite') {
+      icon = <HeartIcon className='icon-indigo' />;
     } else {
-      icon = <PlusIcon className='h-5 w-5 text-indigo-500' />;
+      icon = <PlusIcon className='icon-indigo' />;
     }
 
     return (
       <Link
-        to={page.href}
+        to={href}
         key={i}
-        className={
-          page.title === 'discover'
-            ? 'flex items-center justify-between py-4 hover:cursor-pointer hover:bg-gray-100 border-t'
-            : 'flex items-center justify-between py-4 hover:cursor-pointer hover:bg-gray-100'
-        }
+        className={classNames(
+          title === 'discover' ? 'border-t' : '',
+          'flex items-center justify-between py-4 hover:cursor-pointer hover:bg-gray-100'
+        )}
       >
-        <div className='flex gap-3'>
-          <div className='bg-gray-200 rounded-md p-3'>{icon}</div>
+        <WrapperLink>
+          <WrapperLinkIcon>{icon}</WrapperLinkIcon>
           <div>
-            <h5 className=' font-semibold capitalize leading-tight'>
-              {page.title}
-            </h5>
-            <p className='text-slate-500'>{page.desc}</p>
+            <LinkName>{title}</LinkName>
+            <LinkDesc>{desc}</LinkDesc>
           </div>
-        </div>
-        <ChevronRightIcon className='h-5 w-5 text-slate-600' />
+        </WrapperLink>
+        <ChevronRightIcon className='icon-indigo' />
       </Link>
     );
   });
 
   return (
-    <div className='mx-auto mt-2 max-w-screen-sm font-sans'>
-      <div className='flex flex-col justify-center items-center'>
-        <span className='text-center block font-bold text-indigo-500'>
-          404 ERROR
-        </span>
-        <h1 className='mb-4 text-5xl md:text-6xl font-bold text-center'>
-          This page does not exist.
-        </h1>
-        <p className='text-lg text-slate-600'>
-          The page you are looking for could not be found.
-        </p>
-      </div>
-      <div className='divide-y divide-y-reverse divide-slate-200 pb-9 mt-9'>
-        <h2 className='mb-3 uppercase font-semibold text-slate-600'>
-          Popular pages
-        </h2>
-        <div className='divide-y divide-slate-200'>{popularContent}</div>
-      </div>
-      <Link className='flex items-center gap-1 py-4 h-8' to='/'>
-        <span className='text-indigo-500 font-semibold'>Or go back home </span>
-        <ArrowRightIcon className='h-5 w-4 pt-1 text-indigo-500' />
-      </Link>
-    </div>
+    <Wrapper>
+      <Content>
+        <Span>404 ERROR</Span>
+        <Title>This page does not exist.</Title>
+        <Text>The page you are looking for could not be found.</Text>
+        <ContainerLinks>
+          <LinkTitle>Popular pages</LinkTitle>
+          <LinkContent>{popularContent}</LinkContent>
+        </ContainerLinks>
+        <Link className='flex items-center  self-start gap-1 py-4 h-8' to='/'>
+          <Span>Or go back home </Span>
+          <ArrowRightIcon className='icon-indigo w-4 pt-1' />
+        </Link>
+      </Content>
+    </Wrapper>
   );
 };
 

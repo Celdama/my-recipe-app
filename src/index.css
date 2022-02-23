@@ -93,4 +93,10 @@
       text-red-700
       hover:text-red-500;
   }
+
+  .icon-indigo {
+    @apply h-5
+    w-5
+    text-indigo-500;
+  }
 }

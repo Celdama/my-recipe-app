@@ -58,8 +58,6 @@ const Navbar = () => {
     return classes.filter(Boolean).join(' ');
   }
 
-  console.log(authUser);
-
   return (
     <Wrapper>
       <Disclosure as='nav' className='bg-gray-800'>
