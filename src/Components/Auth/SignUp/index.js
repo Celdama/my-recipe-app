@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../store/actions/authAction';
 
-const SignUp = () => {
+export const SignUp = ({ registerUserInFirebase }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
   });
-  const dispatch = useDispatch();
+
+  const { email, password } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,8 +23,9 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(registerUser(formData.email, formData.password));
+    await registerUserInFirebase(email, password);
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -36,7 +36,7 @@ const SignUp = () => {
             className='input-form'
             type='email'
             name='email'
-            value={formData.email}
+            value={email}
             onChange={handleChange}
           />
         </div>
@@ -46,7 +46,7 @@ const SignUp = () => {
             className='input-form'
             type='password'
             name='password'
-            value={formData.password}
+            value={password}
             onChange={handleChange}
           />
         </div>
@@ -58,4 +58,12 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export const SignUpStore = () => {
+  const dispatch = useDispatch();
+
+  const registerUserInFirebase = (emailRegister, passwordRegister) => {
+    dispatch(registerUser(emailRegister, passwordRegister));
+  };
+
+  return <SignUp registerUserInFirebase={registerUserInFirebase} />;
+};

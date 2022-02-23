@@ -15,7 +15,7 @@ import { AddRecipeFormStore } from './Components/AddRecipeForm';
 import NoMatch from './Components/404';
 import YourProfile from './Components/YourProfile';
 import { SignInStore } from './Components/Auth/SignIn';
-import SignUp from './Components/Auth/SignUp';
+import { SignUpStore } from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
 import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
 
@@ -61,7 +61,7 @@ const App = () => {
               path='signup'
               element={
                 <RequireNotBeAuth redirectTo={'/'}>
-                  <SignUp />
+                  <SignUpStore />
                 </RequireNotBeAuth>
               }
             />
