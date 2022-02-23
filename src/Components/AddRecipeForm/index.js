@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 
-const AddRecipeForm = () => {
-  const currentUser = useSelector(authSelector);
+export const AddRecipeForm = ({
+  currentUser,
+  addRecipeToFirebase,
+  getRecipesFromFirebase,
+}) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -48,9 +50,9 @@ const AddRecipeForm = () => {
   const handleAddRecipe = async (e) => {
     e.preventDefault();
 
-    await dispatch(addRecipe({ ...formData }));
+    await addRecipeToFirebase(formData);
 
-    dispatch(getRecipes());
+    getRecipesFromFirebase();
     setFormData({
       title: '',
       desc: '',
@@ -311,4 +313,23 @@ const AddRecipeForm = () => {
   );
 };
 
-export default AddRecipeForm;
+export const AddRecipeFormStore = () => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(authSelector);
+
+  const addRecipeToFirebase = (data) => {
+    dispatch(addRecipe({ ...data }));
+  };
+
+  const getRecipesFromFirebase = () => {
+    dispatch(getRecipes());
+  };
+
+  return (
+    <AddRecipeForm
+      currentUser={currentUser}
+      addRecipeToFirebase={addRecipeToFirebase}
+      getRecipesFromFirebase={getRecipesFromFirebase}
+    />
+  );
+};

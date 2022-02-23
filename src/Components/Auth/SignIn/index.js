@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../../store/actions/authAction';
-// import { getCurrentUser } from '../../../store/actions/currentUserAction';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({

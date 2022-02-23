@@ -11,7 +11,7 @@ import Discover from './Components/Discover';
 import ForYou from './Components/ForYou';
 import Favourite from './Components/Favourite';
 import MyRecipes from './Components/MyRecipes';
-import AddRecipeForm from './Components/AddRecipeForm';
+import { AddRecipeFormStore } from './Components/AddRecipeForm';
 import NoMatch from './Components/404';
 import YourProfile from './Components/YourProfile';
 import SignIn from './Components/Auth/SignIn';
@@ -43,7 +43,7 @@ const App = () => {
               path='/add-recipe'
               element={
                 <RequireAuth redirectTo={'/signin'}>
-                  <AddRecipeForm />
+                  <AddRecipeFormStore />
                 </RequireAuth>
               }
             />
