@@ -33,29 +33,41 @@ const AddRecipeForm = () => {
     }
   }, [redirect, navigate]);
 
+  const {
+    title,
+    desc,
+    imgUrl,
+    prep,
+    cooking,
+    total,
+    serving,
+    ingredients,
+    steps,
+  } = formData;
+
   const handleAddRecipe = async (e) => {
     e.preventDefault();
 
-    if (formData.title && formData.imgUrl) {
-      await dispatch(addRecipe({ ...formData }));
+    await dispatch(addRecipe({ ...formData }));
 
-      dispatch(getRecipes());
-      setFormData({
-        title: '',
-        desc: '',
-        author: '',
-        prep: 0,
-        cooking: 0,
-        total: 0,
-        serving: 0,
-        imgUrl: '',
-        ingredients: [],
-        steps: [],
-        favorite: false,
-      });
+    dispatch(getRecipes());
+    setFormData({
+      title: '',
+      desc: '',
+      authorPhotoURL: currentUser.photoURL,
+      author: currentUser.displayName,
+      authorEmail: currentUser.email,
+      prep: 0,
+      cooking: 0,
+      total: 0,
+      serving: 0,
+      imgUrl: '',
+      ingredients: [],
+      steps: [],
+      favorite: false,
+    });
 
-      setRedirect((prevState) => !prevState);
-    }
+    setRedirect((prevState) => !prevState);
   };
 
   const handleChange = (e) => {
@@ -70,7 +82,7 @@ const AddRecipeForm = () => {
   };
 
   const handleIngredient = (e, i) => {
-    const ingredientsClone = [...formData.ingredients];
+    const ingredientsClone = [...ingredients];
 
     ingredientsClone[i] = e.target.value;
 
@@ -80,8 +92,22 @@ const AddRecipeForm = () => {
     });
   };
 
+  const handleAddIngredient = () => {
+    setFormData({
+      ...formData,
+      ingredients: [...ingredients, ''],
+    });
+  };
+
+  const handleDeleteIngredient = (i) => {
+    setFormData({
+      ...formData,
+      ingredients: ingredients.filter((item, index) => index !== i),
+    });
+  };
+
   const handleStep = (e, i) => {
-    const stepsClone = [...formData.steps];
+    const stepsClone = [...steps];
 
     stepsClone[i] = e.target.value;
 
@@ -91,45 +117,19 @@ const AddRecipeForm = () => {
     });
   };
 
-  const handleAddIngredient = () => {
-    setFormData({
-      ...formData,
-      ingredients: [...formData.ingredients, ''],
-    });
-  };
-
   const handleAddStep = () => {
     setFormData({
       ...formData,
-      steps: [...formData.steps, ''],
+      steps: [...steps, ''],
     });
   };
 
   const handleDeleteStep = (i) => {
     setFormData({
       ...formData,
-      steps: formData.steps.filter((item, index) => index !== i),
+      steps: steps.filter((item, index) => index !== i),
     });
   };
-
-  const handleDeleteIngredient = (i) => {
-    setFormData({
-      ...formData,
-      ingredients: formData.ingredients.filter((item, index) => index !== i),
-    });
-  };
-
-  const {
-    title,
-    desc,
-    imgUrl,
-    prep,
-    cooking,
-    total,
-    serving,
-    ingredients,
-    steps,
-  } = formData;
 
   return (
     <>
