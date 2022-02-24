@@ -112,7 +112,7 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                                 onClick={handleSignOut}
                                 className='block px-4 py-2 hover:bg-gray-100 hover:cursor-pointer text-sm text-gray-700 list-none'
                               >
-                                Sign Out
+                                Sign out
                               </li>
                             </Menu.Item>
                           </>
@@ -192,7 +192,7 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                       onClick={handleSignOut}
                       className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:cursor-pointer hover:text-white hover:bg-gray-700'
                     >
-                      Sign Out
+                      Sign out
                     </li>
                   </div>
                 )}

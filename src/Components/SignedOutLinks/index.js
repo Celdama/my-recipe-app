@@ -11,12 +11,12 @@ const SignedOutLinks = () => {
           bg-indigo-700 hover:bg-indigo-800'
           to={'/signup'}
         >
-          Sign Up
+          Sign up
         </NavLink>
       </li>
       <li>
         <NavLink className='signed-out-links' to={'/signin'}>
-          Log In
+          Sign in
         </NavLink>
       </li>
     </WrapperLinks>
