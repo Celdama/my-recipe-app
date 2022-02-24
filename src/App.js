@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getRecipes } from './store/actions/recipesAction';
-import Navbar from './Components/Navbar';
+import { NavbarStore } from './Components/Navbar';
 import Header from './Components/Header';
 import Main from './Components/Main';
 import { RecipesListStore } from './Components/RecipesList';
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className='App bg-white'>
       <BrowserRouter>
-        <Navbar />
+        <NavbarStore />
         <Header />
         <Main>
           <Routes>
