@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ChefCard = ({ chef }) => {
   return (
-    <div className='w-64 rounded-lg border shadow-md mt-6 bg-white border-gray-200 pt-6'>
+    <div className='w-64 rounded-lg border shadow-md  bg-white border-gray-200 pt-6'>
       <div className='flex flex-col items-center pb-10'>
         <img
           className='mb-3 w-32 h-32 rounded-full shadow-lg'

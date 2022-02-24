@@ -17,7 +17,7 @@ export const ChefsList = ({ chefs }) => {
       ) : (
         <>
           <h1>find the list of users who share delicious recipes</h1>
-          <div className='flex justify-center md:justify-around flex-wrap'>
+          <div className='flex justify-center md:justify-around flex-wrap gap-10 pt-12'>
             {chefsContent}
           </div>
         </>
