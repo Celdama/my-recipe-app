@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 import { updateUser, monitorAuthState } from '../../store/actions/authAction';
+import { addUser } from '../../store/actions/usersAction';
 
-export const YourProfile = ({ authUser, updateUserInFirebase }) => {
+export const YourProfile = ({
+  authUser,
+  updateUserInFirebase,
+  addUserInFirestore,
+}) => {
   const [formData, setFormData] = useState({
     userName: '',
     avatar: '',
   });
+
+  console.log(authUser);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +30,11 @@ export const YourProfile = ({ authUser, updateUserInFirebase }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     updateUserInFirebase(formData.userName, formData.avatar);
+    addUserInFirestore({
+      ...formData,
+      email: authUser.email,
+      uid: authUser.uid,
+    });
   };
 
   return (
@@ -69,10 +81,15 @@ export const YourProfileStore = () => {
     dispatch(monitorAuthState());
   };
 
+  const addUserInFirestore = async (data) => {
+    await dispatch(addUser({ ...data }));
+  };
+
   return (
     <YourProfile
       authUser={authUser}
       updateUserInFirebase={updateUserInFirebase}
+      addUserInFirestore={addUserInFirestore}
     />
   );
 };

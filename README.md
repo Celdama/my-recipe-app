@@ -67,6 +67,5 @@ I'll use tailwind and styled components for styling
 
 user in firestore
 [] user id
-[] age
 [] email
 [] photo url
