@@ -26,11 +26,10 @@ import {
   Author,
 } from './recipeDetail.tw';
 
-export const RecipeDetail = ({ recipe }) => {
+export const RecipeDetail = ({ recipe, authUser }) => {
   const [open, setOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
-  const authUser = useSelector(authSelector);
 
   const toggleOpen = () => {
     setOpen(!open);
@@ -49,6 +48,8 @@ export const RecipeDetail = ({ recipe }) => {
     const {
       title,
       author,
+      authorPhotoURL,
+      authorEmail,
       imgUrl,
       desc,
       prep,
@@ -67,13 +68,13 @@ export const RecipeDetail = ({ recipe }) => {
           </RecipeHeaderTop>
           <RecipeHeaderBottom>
             <RecipeHeaderBottomLeft>
-              <RoundedAvatar src={recipe.authorPhotoURL} alt='avatar' />
+              <RoundedAvatar src={authorPhotoURL} alt='avatar' />
               <Author>
                 <span className='text-gray-500 mr-2'>by</span>
                 <span className='underline'>{author}</span>
               </Author>
             </RecipeHeaderBottomLeft>
-            {authUser.email === recipe.authorEmail ? (
+            {authUser.email === authorEmail ? (
               <RecipeHeaderBottomRight>
                 <EditBtn
                   onClick={() => setOpen(true)}
@@ -128,6 +129,7 @@ export const RecipeDetail = ({ recipe }) => {
 export const RecipeDetailStore = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const authUser = useSelector(authSelector);
 
   const fetchCurrentRecipe = useCallback(() => {
     dispatch(getCurrentRecipe(id));
@@ -139,5 +141,5 @@ export const RecipeDetailStore = () => {
 
   const currentRecipe = useSelector(currentRecipeSelector);
 
-  return <RecipeDetail recipe={currentRecipe} />;
+  return <RecipeDetail recipe={currentRecipe} authUser={authUser} />;
 };
