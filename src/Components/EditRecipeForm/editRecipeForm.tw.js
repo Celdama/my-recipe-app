@@ -42,15 +42,6 @@ export const FormContainer = tw.div`
   sm:text-left
 `;
 
-export const FormFooter = tw.div`
-  bg-white
-  px-4
-  py-3
-  sm:px-6
-  sm:flex
-  sm:flex-row-reverse
-`;
-
 export const DefaultBtn = tw.button`
   w-full
   inline-flex
@@ -68,16 +59,11 @@ export const DefaultBtn = tw.button`
   sm:mt-0
 `;
 
-export const EditBtn = tw(DefaultBtn)`
-  border-transparent
-  bg-indigo-500
-  text-white
-  hover:bg-indigo-700
-`;
-
-export const CancelBtn = tw(DefaultBtn)`
-  border-gray-300
-  bg-white
-  text-gray-700
-  hover:bg-gray-50
+export const ContentBtns = tw.div`
+  bg-gray-50
+  px-4
+  py-3
+  sm:px-6
+  sm:flex
+  sm:flex-row-reverse
 `;

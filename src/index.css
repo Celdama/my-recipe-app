@@ -19,6 +19,50 @@
 }
 
 @layer components {
+  .default-modal-btns {
+    @apply w-full
+    justify-center
+    rounded-md
+    border
+    shadow-sm
+    px-4
+    py-2
+    focus:outline-none
+    focus:ring-offset-2
+    focus:ring-2
+    sm:ml-3
+    sm:w-auto
+    sm:text-sm
+    inline-flex;
+  }
+
+  .delete-modal-btn {
+    @apply bg-red-600
+    hover:bg-red-700
+    focus:ring-red-500
+    text-white
+    font-medium
+    border-transparent;
+  }
+
+  .cancel-modal-btn {
+    @apply mt-3
+    border-gray-300
+    bg-white
+    text-base
+    text-gray-700
+    hover:bg-gray-50
+    focus:ring-indigo-500
+    sm:mt-0;
+  }
+
+  .edit-modal-btn {
+    @apply border-transparent
+  bg-indigo-500
+  text-white
+  hover:bg-indigo-700;
+  }
+
   .form-default {
     @apply rounded-lg
     p-4;

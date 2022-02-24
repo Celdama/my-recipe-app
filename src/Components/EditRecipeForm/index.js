@@ -7,9 +7,7 @@ import {
   Wrapper,
   Content,
   FormContainer,
-  FormFooter,
-  EditBtn,
-  CancelBtn,
+  ContentBtns,
 } from './editRecipeForm.tw';
 
 export const EditRecipeForm = ({
@@ -313,21 +311,23 @@ export const EditRecipeForm = ({
                   </form>
                 </div>
               </FormContainer>
-              <FormFooter>
-                <EditBtn
+              <ContentBtns>
+                <button
+                  className='default-modal-btns edit-modal-btn'
                   type='button'
                   onClick={(e) => handleSubmitEditRecipe(e)}
                 >
                   Edit
-                </EditBtn>
-                <CancelBtn
+                </button>
+                <button
                   type='button'
                   onClick={() => toggleOpen()}
                   ref={cancelButtonRef}
+                  className='default-modal-btns cancel-modal-btn'
                 >
                   Cancel
-                </CancelBtn>
-              </FormFooter>
+                </button>
+              </ContentBtns>
             </Content>
           </Transition.Child>
         </Wrapper>
