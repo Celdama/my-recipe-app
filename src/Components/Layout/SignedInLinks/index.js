@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, Disclosure } from '@headlessui/react';
-import Avatar from '../../Images/avatar.png';
+import Avatar from '../../../Images/avatar.png';
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../store/selectors/authSelector';
+import { authSelector } from '../../../store/selectors/authSelector';
 
 const SignedInLinks = ({ mobile }) => {
   const authUser = useSelector(authSelector);

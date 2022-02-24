@@ -15,16 +15,16 @@ import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
 import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
-import { signOutUser } from '../../store/actions/authAction';
+import { signOutUser } from '../../../store/actions/authAction';
 import { useSelector } from 'react-redux';
 import {
   isAuthSelector,
   authSelector,
-} from '../../store/selectors/authSelector';
+} from '../../../store/selectors/authSelector';
 import { useDispatch } from 'react-redux';
-import { classNames } from '../../Helpers/joinClassNames';
-import { navigation } from '../../Helpers/navigation';
-import { userNavigation } from '../../Helpers/userNavigation';
+import { classNames } from '../../../Helpers/joinClassNames';
+import { navigation } from '../../../Helpers/navigation';
+import { userNavigation } from '../../../Helpers/userNavigation';
 
 export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
   const { displayName, email } = authUser;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { classNames } from '../../Helpers/joinClassNames';
+import { classNames } from '../../../Helpers/joinClassNames';
 import {
   EyeIcon,
   HeartIcon,
