@@ -19,6 +19,7 @@ import { SignUpStore } from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
 import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
 import { ChefsListStore } from './Components/ChefsList';
+import { ChefDetails } from './Components/ChefDetails';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const App = () => {
             <Route path='/favourite' element={<Favourite />} />
             <Route path='/my-recipes' element={<MyRecipes />} />
             <Route path='/chefs' element={<ChefsListStore />} />
+            <Route path={'/chef/:id'} element={<ChefDetails />} />
             <Route
               path='/add-recipe'
               element={

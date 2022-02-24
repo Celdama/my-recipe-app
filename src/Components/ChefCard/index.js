@@ -16,7 +16,7 @@ const ChefCard = ({ chef }) => {
         <span className='text-sm text-gray-500'>{chef.email}</span>
         <div className='flex mt-4 space-x-3 lg:mt-6'>
           <Link
-            to='/'
+            to={`/chef/${chef.uid}`}
             className='inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:ring-4 focus:ring-blue-300'
           >
             See Recipes
