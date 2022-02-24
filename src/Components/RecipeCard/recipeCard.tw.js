@@ -33,19 +33,19 @@ export const RecipeTitle = tw.h5`
   text-2xl 
   font-bold 
   tracking-tight 
-  text-gray-900 
-  dark:text-white
+  text-gray-900
 `;
 
 export const RecipeDesc = tw.p`
-  mb-3 
-  font-normal 
+  my-5 
+  font-normal
+  text-sm 
   text-gray-700 
-  dark:text-gray-400
+  dark:text-gray-500
 `;
 
 export const RecipeInfo = tw.div`
   flex 
-  text-gray-400  
+  text-indigo-600  
   justify-between
 `;
