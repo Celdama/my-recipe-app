@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../store/actions/authAction';
 
@@ -7,6 +8,8 @@ export const SignUp = ({ registerUserInFirebase }) => {
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const { email, password } = formData;
 
@@ -24,6 +27,7 @@ export const SignUp = ({ registerUserInFirebase }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await registerUserInFirebase(email, password);
+    navigate('/profile');
   };
 
   return (
@@ -61,8 +65,8 @@ export const SignUp = ({ registerUserInFirebase }) => {
 export const SignUpStore = () => {
   const dispatch = useDispatch();
 
-  const registerUserInFirebase = (emailRegister, passwordRegister) => {
-    dispatch(registerUser(emailRegister, passwordRegister));
+  const registerUserInFirebase = async (emailRegister, passwordRegister) => {
+    await dispatch(registerUser(emailRegister, passwordRegister));
   };
 
   return <SignUp registerUserInFirebase={registerUserInFirebase} />;
