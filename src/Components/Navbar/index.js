@@ -27,6 +27,7 @@ import { navigation } from '../../Helpers/navigation';
 import { userNavigation } from '../../Helpers/userNavigation';
 
 export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
+  const { displayName, email } = authUser;
   return (
     <Wrapper>
       <Disclosure as='nav' className='bg-gray-800'>
@@ -164,11 +165,11 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                   </div>
                   {authUser.email && (
                     <div className='ml-3'>
-                      <div className='text-base font-medium leading-none text-white'>
-                        {authUser.userName}
+                      <div className='text-base mb-1 capitalize font-medium leading-none text-white'>
+                        {displayName}
                       </div>
                       <div className='text-sm font-medium leading-none text-gray-400'>
-                        {authUser.email}
+                        {email}
                       </div>
                     </div>
                   )}
