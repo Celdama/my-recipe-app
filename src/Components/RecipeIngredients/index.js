@@ -1,21 +1,21 @@
 import React from 'react';
+import {
+  Wrapper,
+  Title,
+  IngredientsList,
+  IngredientItem,
+} from './recipeIngredients.tw';
 
 const RecipeIngredients = ({ ingredients }) => {
   return (
-    <div className='mt-10 px-4 py-5 sm:px-6'>
-      <h3 className='text-lg leading-6 font-medium text-gray-900'>
-        Ingredients
-      </h3>
-      <ul className='list-disc mt-4 list-inside text-gray-500 font-medium'>
+    <Wrapper>
+      <Title>Ingredients</Title>
+      <IngredientsList>
         {ingredients.map((ingredient, i) => {
-          return (
-            <li className='py-3' key={i}>
-              {ingredient}
-            </li>
-          );
+          return <IngredientItem key={i}>{ingredient}</IngredientItem>;
         })}
-      </ul>
-    </div>
+      </IngredientsList>
+    </Wrapper>
   );
 };
 
