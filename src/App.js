@@ -13,7 +13,7 @@ import Favourite from './Components/Favourite';
 import MyRecipes from './Components/MyRecipes';
 import { AddRecipeFormStore } from './Components/AddRecipeForm';
 import NoMatch from './Components/404';
-import YourProfile from './Components/YourProfile';
+import { YourProfileStore } from './Components/YourProfile';
 import { SignInStore } from './Components/Auth/SignIn';
 import { SignUpStore } from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
@@ -48,7 +48,14 @@ const App = () => {
               }
             />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
-            <Route path='/profile' element={<YourProfile />} />
+            <Route
+              path='/profile'
+              element={
+                <RequireAuth redirectTo={'/signup'}>
+                  <YourProfileStore />
+                </RequireAuth>
+              }
+            />
             <Route
               path='/signin'
               element={

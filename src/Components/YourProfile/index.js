@@ -3,13 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 import { updateUser, monitorAuthState } from '../../store/actions/authAction';
 
-const YourProfile = () => {
+export const YourProfile = ({ authUser, updateUserInFirebase }) => {
   const [formData, setFormData] = useState({
     userName: '',
     avatar: '',
   });
-  const currentUser = useSelector(authSelector);
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,14 +22,13 @@ const YourProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(updateUser(formData.userName, formData.avatar));
-    dispatch(monitorAuthState());
+    updateUserInFirebase(formData.userName, formData.avatar);
   };
 
   return (
     <div>
       <h4>Your Profile</h4>
-      {!currentUser.displayName && (
+      {!authUser.displayName && (
         <>
           <p>Add an username and an image at your profile !</p>
           <form onSubmit={handleSubmit}>
@@ -63,4 +60,19 @@ const YourProfile = () => {
   );
 };
 
-export default YourProfile;
+export const YourProfileStore = () => {
+  const authUser = useSelector(authSelector);
+  const dispatch = useDispatch();
+
+  const updateUserInFirebase = async (userName, avatar) => {
+    await dispatch(updateUser(userName, avatar));
+    dispatch(monitorAuthState());
+  };
+
+  return (
+    <YourProfile
+      authUser={authUser}
+      updateUserInFirebase={updateUserInFirebase}
+    />
+  );
+};
