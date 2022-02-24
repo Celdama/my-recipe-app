@@ -59,3 +59,14 @@ I'll use tailwind and styled components for styling
   --- RecipeCard
 
 - AddRecipeForm
+
+## Add user in firestore
+
+- register user
+- add user in users db firestore
+
+user in firestore
+[] user id
+[] age
+[] email
+[] photo url
