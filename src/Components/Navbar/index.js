@@ -22,21 +22,8 @@ import {
 } from '../../store/selectors/authSelector';
 import { useDispatch } from 'react-redux';
 import { classNames } from '../../Helpers/joinClassNames';
-
-const navigation = [
-  { name: 'Home', href: 'home', current: false },
-  { name: 'Discover', href: 'discover', current: false },
-  // { name: 'For You', href: 'for-you', current: false },
-  { name: 'Chefs', href: 'chefs', current: false },
-  { name: 'Favourite', href: 'favourite', current: false },
-  { name: 'My Recipes', href: 'my-recipes', current: false },
-  // { name: 'Add recipe', href: 'add-recipe', current: false },
-];
-
-const userNavigation = [
-  { name: 'Your Profile', href: 'profile' },
-  { name: 'Settings', href: 'settings' },
-];
+import { navigation } from '../../Helpers/navigation';
+import { userNavigation } from '../../Helpers/userNavigation';
 
 export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
   return (
