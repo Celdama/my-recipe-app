@@ -15,24 +15,19 @@ import { NavLink } from 'react-router-dom';
 import SignedInLinks from '../SignedInLinks';
 import SignedOutLinks from '../SignedOutLinks';
 import { signOutUser } from '../../store/actions/authAction';
-
 import { useSelector } from 'react-redux';
 import {
   isAuthSelector,
   authSelector,
 } from '../../store/selectors/authSelector';
 import { useDispatch } from 'react-redux';
-
-const user = {
-  name: 'Celdama Dev',
-  email: 'celdamadev@gmail.com',
-};
+import { classNames } from '../../Helpers/joinClassNames';
 
 const navigation = [
   { name: 'Home', href: 'home', current: false },
   { name: 'Discover', href: 'discover', current: false },
-  { name: 'For You', href: 'for-you', current: false },
-  // { name: 'Chefs', href: '#', current: false },
+  // { name: 'For You', href: 'for-you', current: false },
+  { name: 'Chefs', href: 'chefs', current: false },
   { name: 'Favourite', href: 'favourite', current: false },
   { name: 'My Recipes', href: 'my-recipes', current: false },
   // { name: 'Add recipe', href: 'add-recipe', current: false },
@@ -41,23 +36,9 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', href: 'profile' },
   { name: 'Settings', href: 'settings' },
-  // { name: 'Sign out', href: '#' },
 ];
 
-const Navbar = () => {
-  const dispatch = useDispatch();
-  const isLogin = useSelector(isAuthSelector);
-  const authUser = useSelector(authSelector);
-
-  const handleSignOut = () => {
-    dispatch(signOutUser());
-  };
-
-  // A METTRE DANS HELPERS CETTE FONCTION
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ');
-  }
-
+export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
   return (
     <Wrapper>
       <Disclosure as='nav' className='bg-gray-800'>
@@ -231,4 +212,19 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export const NavbarStore = () => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector(isAuthSelector);
+  const authUser = useSelector(authSelector);
+
+  const handleSignOut = () => {
+    dispatch(signOutUser());
+  };
+  return (
+    <Navbar
+      handleSignOut={handleSignOut}
+      isLogin={isLogin}
+      authUser={authUser}
+    />
+  );
+};
