@@ -11,7 +11,7 @@ const SignedInLinks = ({ mobile }) => {
   return (
     <ul className='flex items-center ml-4 space-x-4'>
       {mobile ? (
-        <Disclosure.Button as={NavLink} to={'profile'}>
+        <Disclosure.Button as={NavLink} to={'profile'} className='rounded-full'>
           <img
             className='h-10 w-10 rounded-full'
             src={authUser.photoURL ? authUser.photoURL : Avatar}

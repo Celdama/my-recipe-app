@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import {
   Wrapper,
+  ContentDesktop,
   NavContainer,
   NavItems,
   NavLogoContainer,
@@ -31,7 +32,7 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
       <Disclosure as='nav' className='bg-gray-800'>
         {({ open }) => (
           <>
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <ContentDesktop>
               <NavContainer>
                 <NavItems>
                   <NavLogoContainer>
@@ -47,7 +48,7 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                           to={name === 'Home' ? '/' : href}
                           className={classNames(
                             current
-                              ? 'bg-gray-900 text-white'
+                              ? 'bg-gray-800 text-white'
                               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                             'px-3 py-2 rounded-md text-sm font-medium'
                           )}
@@ -72,13 +73,11 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                 <NavItemsContainer>
                   <div className='ml-4 flex items-center md:ml-6 '>
                     <Menu as='div' className='ml-3 relative'>
-                      <div>
-                        {isLogin ? (
-                          <SignedInLinks mobile={false} />
-                        ) : (
-                          <SignedOutLinks mobile={false} />
-                        )}
-                      </div>
+                      {isLogin ? (
+                        <SignedInLinks mobile={false} />
+                      ) : (
+                        <SignedOutLinks mobile={false} />
+                      )}
                       <Transition
                         as={Fragment}
                         enter='transition ease-out duration-100'
@@ -132,17 +131,21 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                   </Disclosure.Button>
                 </NavMobileMenuBtnContainer>
               </NavContainer>
-            </div>
+            </ContentDesktop>
 
             <Disclosure.Panel className='md:hidden '>
               <NavItemsMobileContainer>
                 {navigation.map(({ name, href, current }) => (
                   <Disclosure.Button
-                    activeclassname='selected'
                     key={name}
                     as={NavLink}
                     to={name === 'Home' ? '/' : href}
-                    className='block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                    className={classNames(
+                      current
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      'block px-3 py-2 rounded-md text-base font-medium'
+                    )}
                     aria-current={current ? 'page' : undefined}
                   >
                     {name}
@@ -172,14 +175,16 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                 </div>
                 {authUser.email && (
                   <div className='mt-3 px-2 space-y-1'>
-                    {userNavigation.map((item) => (
+                    {userNavigation.map(({ name, href }) => (
                       <Disclosure.Button
-                        key={item.name}
+                        key={name}
                         as='a'
-                        href={item.href}
-                        className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                        href={href}
+                        className={
+                          'block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                        }
                       >
-                        {item.name}
+                        {name}
                       </Disclosure.Button>
                     ))}
                     <li

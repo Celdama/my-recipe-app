@@ -4,6 +4,14 @@ export const Wrapper = tw.div`
   min-h-full
 `;
 
+export const ContentDesktop = tw.div`
+  max-w-7xl 
+  mx-auto 
+  px-4 
+  sm:px-6 
+  lg:px-8
+`;
+
 export const NavContainer = tw.div`
   flex 
   items-center 
