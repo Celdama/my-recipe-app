@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const Chefs = () => {
+export const ChefsList = () => {
   return <div>chefs list</div>;
 };
