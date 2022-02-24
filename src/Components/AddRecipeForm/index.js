@@ -12,6 +12,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   const [formData, setFormData] = useState({
     title: '',
     desc: '',
+    authorId: currentUser.uid,
     authorPhotoURL: currentUser.photoURL,
     author: currentUser.displayName,
     authorEmail: currentUser.email,
@@ -51,6 +52,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
     setFormData({
       title: '',
       desc: '',
+      authorId: currentUser.uid,
       authorPhotoURL: currentUser.photoURL,
       author: currentUser.displayName,
       authorEmail: currentUser.email,

@@ -9,6 +9,7 @@ import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import { EditRecipeFormStore } from '../EditRecipeForm';
 import { authSelector } from '../../store/selectors/authSelector';
+import { Link } from 'react-router-dom';
 import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
 import {
   Wrapper,
@@ -71,7 +72,12 @@ export const RecipeDetail = ({ recipe, authUser }) => {
               <RoundedAvatar src={authorPhotoURL} alt='avatar' />
               <Author>
                 <span className='text-gray-500 mr-2'>by</span>
-                <span className='underline'>{author}</span>
+                <Link
+                  to={`/chef/${recipe.authorId}`}
+                  className='font-semibold underline capitalize'
+                >
+                  {author}
+                </Link>
               </Author>
             </RecipeHeaderBottomLeft>
             {authUser.email === authorEmail ? (
