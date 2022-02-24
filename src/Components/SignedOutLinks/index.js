@@ -1,26 +1,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { WrapperLinks } from './signedOutLinks.tw';
 
-const SignedOutLinks = ({ mobile }) => {
+const SignedOutLinks = () => {
   return (
-    <ul className='flex flex-col md:flex-row gap-6'>
+    <WrapperLinks>
       <li>
         <NavLink
-          className='text-gray-300 hover:bg-gray-700 hover:text-white  px-3 py-2 rounded-md text-sm font-medium'
+          className='signed-out-links 
+          bg-indigo-700 hover:bg-indigo-800'
           to={'/signup'}
         >
           Sign Up
         </NavLink>
       </li>
       <li>
-        <NavLink
-          className='text-gray-300 hover:bg-gray-700 hover:text-white  px-3 py-2 rounded-md text-sm font-medium'
-          to={'/signin'}
-        >
+        <NavLink className='signed-out-links' to={'/signin'}>
           Log In
         </NavLink>
       </li>
-    </ul>
+    </WrapperLinks>
   );
 };
 

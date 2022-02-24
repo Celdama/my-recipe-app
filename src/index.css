@@ -19,6 +19,17 @@
 }
 
 @layer components {
+  .signed-out-links {
+    @apply text-gray-300 
+    hover:bg-gray-700 
+    hover:text-white  
+    px-3 
+    py-2 
+    rounded-md 
+    text-sm 
+    font-medium;
+  }
+
   .title-section-recipe-detail {
     @apply text-lg 
     leading-6 
