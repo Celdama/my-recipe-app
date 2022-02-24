@@ -19,6 +19,13 @@
 }
 
 @layer components {
+  .title-section-recipe-detail {
+    @apply text-lg 
+    leading-6 
+    font-medium 
+  text-gray-900;
+  }
+
   .default-modal-btns {
     @apply w-full
     justify-center

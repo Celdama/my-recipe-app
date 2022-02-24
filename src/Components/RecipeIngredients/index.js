@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Wrapper,
-  Title,
   IngredientsList,
   IngredientItem,
 } from './recipeIngredients.tw';
@@ -9,7 +8,7 @@ import {
 const RecipeIngredients = ({ ingredients }) => {
   return (
     <Wrapper>
-      <Title>Ingredients</Title>
+      <h3 className='title-section-recipe-detail'>Ingredients</h3>
       <IngredientsList>
         {ingredients.map((ingredient, i) => {
           return <IngredientItem key={i}>{ingredient}</IngredientItem>;

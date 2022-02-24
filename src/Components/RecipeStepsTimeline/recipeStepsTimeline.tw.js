@@ -7,14 +7,7 @@ export const Wrapper = tw.div`
   sm:px-6
 `;
 
-export const Title = tw.h3`
-  text-lg 
-  eading-6 
-  font-medium 
-  text-gray-900
-`;
-
-export const OrderedList = tw.ol`
+export const StepsList = tw.ol`
   relative 
   mt-8 
   ml-6 

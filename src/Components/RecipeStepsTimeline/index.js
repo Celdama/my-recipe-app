@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   Wrapper,
-  Title,
-  OrderedList,
+  StepsList,
   ListItem,
   Span,
   Step,
@@ -11,8 +10,8 @@ import {
 const RecipeStepsTimeline = ({ steps }) => {
   return (
     <Wrapper>
-      <Title>Methods</Title>
-      <OrderedList>
+      <h3 className='title-section-recipe-detail'>Methods</h3>
+      <StepsList>
         {steps.map((step, i) => {
           return (
             <ListItem key={i}>
@@ -21,7 +20,7 @@ const RecipeStepsTimeline = ({ steps }) => {
             </ListItem>
           );
         })}
-      </OrderedList>
+      </StepsList>
     </Wrapper>
   );
 };

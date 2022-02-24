@@ -7,13 +7,6 @@ export const Wrapper = tw.div`
   sm:px-6
 `;
 
-export const Title = tw.h3`
-  text-lg 
-  leading-6 
-  font-medium 
-  text-gray-900
-`;
-
 export const IngredientsList = tw.ul`
   list-disc 
   mt-4 
@@ -24,4 +17,4 @@ export const IngredientsList = tw.ul`
 
 export const IngredientItem = tw.li`
   py-3
-`
+`;
