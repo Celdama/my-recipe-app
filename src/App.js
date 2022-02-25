@@ -7,7 +7,6 @@ import Main from './Components/Main';
 import { RecipesListStore } from './Components/RecipesList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecipeDetailStore } from './Components/RecipeDetail';
-import Discover from './Components/Discover';
 import ForYou from './Components/ForYou';
 import Favourite from './Components/Favourite';
 import MyRecipes from './Components/MyRecipes';
@@ -37,7 +36,6 @@ const App = () => {
         <Main>
           <Routes>
             <Route exact path='/' element={<RecipesListStore />} />
-            <Route path='/discover' element={<Discover />} />
             <Route path='/for-you' element={<ForYou />} />
             <Route path='/favourite' element={<Favourite />} />
             <Route path='/my-recipes' element={<MyRecipes />} />

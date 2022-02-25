@@ -26,9 +26,9 @@ import {
 const NoMatch = () => {
   const popularPages = [
     {
-      title: 'discover',
-      href: 'discover',
-      desc: 'Find every day 4 recipes drawn',
+      title: 'chefs',
+      href: 'chefs',
+      desc: 'Discover the list of chefs who add delicious recipes',
     },
     {
       title: 'favourite',
@@ -46,7 +46,7 @@ const NoMatch = () => {
     const { title, href, desc } = page;
     let icon;
 
-    if (title === 'discover') {
+    if (title === 'chefs') {
       icon = <EyeIcon className='icon-indigo' />;
     } else if (title === 'favourite') {
       icon = <HeartIcon className='icon-indigo' />;
