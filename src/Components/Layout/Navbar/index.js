@@ -38,7 +38,7 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                 <NavItems>
                   <NavLogoContainer>
                     <NavLink to='/'>
-                      <ClipboardListIcon className='h-8 w-8 text-indigo-500' />
+                      <ClipboardListIcon className='h-8 w-8 text-indigo-600' />
                     </NavLink>
                   </NavLogoContainer>
                   <NavItemsContainer>

@@ -8,7 +8,7 @@ const SignedOutLinks = () => {
       <li>
         <NavLink
           className='signed-out-links 
-          bg-indigo-700 hover:bg-indigo-800'
+          bg-indigo-600 hover:bg-indigo-700'
           to={'/signup'}
         >
           Sign up

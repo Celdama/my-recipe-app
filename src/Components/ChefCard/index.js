@@ -17,7 +17,7 @@ const ChefCard = ({ chef }) => {
           <Link
             to={`/chef/${chef.uid}`}
             className='inline-flex items-center text-sm font-semibold  text-center
-            text-indigo-500 hover:text-indigo-800'
+            text-indigo-600 hover:text-indigo-700'
           >
             See Recipes
           </Link>

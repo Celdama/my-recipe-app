@@ -70,13 +70,13 @@
     text-base
     text-gray-700
     hover:bg-gray-50
-    focus:ring-indigo-500
+    focus:ring-indigo-600
     sm:mt-0;
   }
 
   .edit-modal-btn {
     @apply border-transparent
-  bg-indigo-500
+  bg-indigo-600
   text-white
   hover:bg-indigo-700;
   }
@@ -139,7 +139,7 @@
 
   .add-recipe-btn {
     @apply text-white
-    bg-indigo-500
+    bg-indigo-600
     hover:bg-indigo-700;
   }
 
@@ -159,6 +159,6 @@
   .icon-indigo {
     @apply h-5
     w-5
-    text-indigo-500;
+    text-indigo-600;
   }
 }
