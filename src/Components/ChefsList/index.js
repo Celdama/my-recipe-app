@@ -16,8 +16,15 @@ export const ChefsList = ({ chefs }) => {
         <Spinner />
       ) : (
         <>
-          <h1>find the list of users who share delicious recipes</h1>
-          <div className='flex justify-center md:justify-around flex-wrap gap-10 pt-12'>
+          <div className='flex flex-col items-center'>
+            <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
+              From the kitchens
+            </h1>
+            <p className='tex-lg text-slate-600'>
+              Find the list of chefs who share delicious recipes.
+            </p>
+          </div>
+          <div className='flex justify-center md:justify-around flex-wrap gap-10 pt-20'>
             {chefsContent}
           </div>
         </>
