@@ -17,17 +17,24 @@ export const ChefDetails = ({ chefId, chefs, recipes }) => {
     <div>
       {!!chef ? (
         <>
-          <h1>{chef.userName}</h1>
-          <h4>{chef.email}</h4>
+          <div className='flex flex-col items-center pb-20'>
+            <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
+              {chef.userName}
+            </h1>
+            <h4 className='tex-lg text-slate-600'>{chef.email}</h4>
+            <p
+              className='inline-flex items-center text-sm font-semibold  text-center
+            text-indigo-600 hover:text-indigo-700'
+            >
+              {chefRecipe.length} recipe{chefRecipe.length > 1 ? 's' : ''}
+            </p>
+          </div>
           {
-            <>
-              <p>Number of recipes : {chefRecipe.length}</p>
-              <div className='flex flex-wrap justify-center'>
-                {chefRecipe.map((recipe) => (
-                  <RecipeCard key={recipe.id} recipe={recipe} />
-                ))}
-              </div>
-            </>
+            <div className='flex flex-wrap justify-center'>
+              {chefRecipe.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
+            </div>
           }
         </>
       ) : (
