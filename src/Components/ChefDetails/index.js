@@ -17,7 +17,7 @@ export const ChefDetails = ({ chefId, chefs, recipes }) => {
     <div>
       {!!chef ? (
         <>
-          <div className='flex flex-col items-center pb-20'>
+          <div className='flex flex-col items-center pt-12 pb-20'>
             <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
               {chef.userName}
             </h1>
