@@ -53,7 +53,6 @@ const App = () => {
                 </RequireAuth>
               }
             />
-
             <Route path='/chefs' element={<ChefsListStore />} />
             <Route path={'/chef/:id'} element={<ChefDetailsStore />} />
             <Route

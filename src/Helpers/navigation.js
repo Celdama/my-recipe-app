@@ -4,7 +4,7 @@ export const navigation = [
 ];
 
 export const loginNavigation = [
-  { name: 'Favourite', href: 'favourite', current: false },
+  // { name: 'Favourite', href: 'favourite', current: false },
   { name: 'My Recipes', href: 'my-recipes', current: false },
   { name: 'Add recipe', href: 'add-recipe', current: false },
 ];
