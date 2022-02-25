@@ -5,6 +5,7 @@ import { getUsers } from '../../store/actions/usersAction';
 import { usersSelector } from '../../store/selectors/usersSelector';
 import ChefCard from '../ChefCard';
 import Spinner from '../Spinner';
+import CallToAction from '../CallToAction';
 
 export const ChefsList = ({ chefs }) => {
   const chefsContent =
@@ -24,9 +25,10 @@ export const ChefsList = ({ chefs }) => {
               Find the list of chefs who share delicious recipes.
             </p>
           </div>
-          <div className='flex justify-center md:justify-around flex-wrap gap-10 pt-20'>
+          <div className='flex justify-center md:justify-around flex-wrap gap-10 py-28'>
             {chefsContent}
           </div>
+          <CallToAction />
         </>
       )}
     </div>
