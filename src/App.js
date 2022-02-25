@@ -45,9 +45,15 @@ const App = () => {
                 </RequireAuth>
               }
             />
+            <Route
+              path='/my-recipes'
+              element={
+                <RequireAuth redirectTo={'/signup'}>
+                  <MyRecipes />
+                </RequireAuth>
+              }
+            />
 
-            {/* <Route path='/favourite' element={<Favourite />} /> */}
-            <Route path='/my-recipes' element={<MyRecipes />} />
             <Route path='/chefs' element={<ChefsListStore />} />
             <Route path={'/chef/:id'} element={<ChefDetailsStore />} />
             <Route
