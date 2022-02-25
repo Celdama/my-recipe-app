@@ -33,7 +33,7 @@ export const RecipeTitle = tw.h5`
   text-2xl 
   font-bold 
   tracking-tight 
-  text-indigo-600
+  text-gray-900
 `;
 
 export const RecipeDesc = tw.p`

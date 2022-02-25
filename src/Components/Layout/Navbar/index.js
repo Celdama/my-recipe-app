@@ -23,7 +23,7 @@ import {
 } from '../../../store/selectors/authSelector';
 import { useDispatch } from 'react-redux';
 import { classNames } from '../../../Helpers/joinClassNames';
-import { navigation } from '../../../Helpers/navigation';
+import { navigation, loginNavigation } from '../../../Helpers/navigation';
 import { userNavigation } from '../../../Helpers/userNavigation';
 
 export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
@@ -58,16 +58,22 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
                           {name}
                         </NavLink>
                       ))}
-                      {isLogin && (
-                        <NavLink
-                          key={'Add Recipe'}
-                          className='text-gray-300 hover:bg-gray-700 hover:text-white
-                            px-3 py-2 rounded-md text-sm font-medium'
-                          to={'add-recipe'}
-                        >
-                          Add Recipe
-                        </NavLink>
-                      )}
+                      {isLogin &&
+                        loginNavigation.map(({ name, href, current }) => (
+                          <NavLink
+                            key={name}
+                            to={name === 'Home' ? '/' : href}
+                            className={classNames(
+                              current
+                                ? 'bg-gray-800 text-white'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                              'px-3 py-2 rounded-md text-sm font-medium'
+                            )}
+                            aria-current={current ? 'page' : undefined}
+                          >
+                            {name}
+                          </NavLink>
+                        ))}
                     </div>
                   </NavItemsContainer>
                 </NavItems>
