@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 import { recipesSelector } from '../../store/selectors/recipesSelector';
@@ -13,7 +12,7 @@ export const MyRecipes = ({ recipes, authUser }) => {
       return <p>you need to be connected to see your recipes list</p>;
     }
 
-    if (recipesList.length < 1) {
+    if (!recipesList.some((recipe) => recipe.authorId === userId)) {
       return <p>no recipes</p>;
     } else {
       return recipesList.map((recipe) =>
@@ -32,7 +31,9 @@ export const MyRecipes = ({ recipes, authUser }) => {
         <Spinner />
       ) : (
         <>
-          {!!authUser.uid && <h1>This is your delicious recipes list</h1>}
+          {!!authUser.uid && recipesContent.length && (
+            <h1>This is your delicious recipes list</h1>
+          )}
           {recipesContent}
         </>
       )}
