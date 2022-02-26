@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { recipesSelector } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
 import { useDispatch } from 'react-redux';
-import { getRecipes } from '../../store/actions/recipesAction';
 import { resetCurrentRecipe } from '../../store/actions/currentRecipeAction';
 import { Wrapper } from './recipesList.tw';
 import Spinner from '../Spinner';
@@ -21,7 +20,6 @@ export const RecipesListStore = () => {
   const recipes = useSelector(recipesSelector);
 
   useEffect(() => {
-    dispatch(getRecipes());
     dispatch(resetCurrentRecipe());
   }, [dispatch]);
 

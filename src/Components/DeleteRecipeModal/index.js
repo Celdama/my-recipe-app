@@ -29,7 +29,7 @@ export const DeleteRecipeModal = ({
     if (redirect) {
       return navigate('/');
     }
-  }, [redirect, navigate]);
+  }, [navigate, redirect]);
 
   const handleDeleteRecipe = async (id) => {
     toggleOpenDeleteModal();
