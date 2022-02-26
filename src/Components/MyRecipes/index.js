@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 import { recipesSelector } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
+import Spinner from '../Spinner';
 
 export const MyRecipes = ({ recipes, authUser }) => {
+  console.log(recipes);
   const myRecipesContent = (recipesList, userId) => {
     if (authUser.uid === undefined) {
       return <p>you need to be connected to see your recipes list</p>;
@@ -26,8 +28,14 @@ export const MyRecipes = ({ recipes, authUser }) => {
 
   return (
     <div>
-      {!!authUser.uid && <h1>This is your delicious recipes list</h1>}
-      {recipesContent}
+      {!recipes.length ? (
+        <Spinner />
+      ) : (
+        <>
+          {!!authUser.uid && <h1>This is your delicious recipes list</h1>}
+          {recipesContent}
+        </>
+      )}
     </div>
   );
 };
