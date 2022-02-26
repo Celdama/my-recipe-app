@@ -6,14 +6,13 @@ import RecipeCard from '../RecipeCard';
 import Spinner from '../Spinner';
 
 export const MyRecipes = ({ recipes, authUser }) => {
-  console.log(recipes);
   const myRecipesContent = (recipesList, userId) => {
     if (authUser.uid === undefined) {
       return <p>you need to be connected to see your recipes list</p>;
     }
 
     if (!recipesList.some((recipe) => recipe.authorId === userId)) {
-      return <p>no recipes</p>;
+      return <p>no recipes, you need to add at least one recipe</p>;
     } else {
       return recipesList.map((recipe) =>
         recipe.authorId === userId ? (
