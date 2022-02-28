@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../store/actions/authAction';
+import { ClipboardListIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 export const SignUp = ({ registerUserInFirebase }) => {
   const [formData, setFormData] = useState({
@@ -31,33 +33,57 @@ export const SignUp = ({ registerUserInFirebase }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h5>Sign Up</h5>
+    <div className='min-h-full  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
+      <div className='min-h-full md:w-2/3 flex flex-col justify-center px-4 sm:px-6 lg:px-8'>
         <div>
-          <label htmlFor='email'>Email</label>
-          <input
-            className='input-form'
-            type='email'
-            name='email'
-            value={email}
-            onChange={handleChange}
-          />
+          <ClipboardListIcon className='h-12 text-indigo-600 mx-auto' />
+          <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
+            Create an account and add your first recipe
+          </h2>
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <input
-            className='input-form'
-            type='password'
-            name='password'
-            value={password}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button className='default-btn form-btn'>Sign Up</button>
-        </div>
-      </form>
+
+        <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
+          <div>
+            <label className='label-form' htmlFor='email'>
+              Email
+            </label>
+            <input
+              className='input-form bg-white'
+              type='email'
+              name='email'
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className='label-form' htmlFor='password'>
+              Password
+            </label>
+            <input
+              className='input-form bg-white'
+              type='password'
+              name='password'
+              value={password}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <div className='text-sm'>
+              <Link
+                to={'/signin'}
+                className='font-medium text-indigo-600 hover:text-indigo-500'
+              >
+                Already have an account ?
+              </Link>
+            </div>
+          </div>
+          <div>
+            <button className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+              Sign up
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

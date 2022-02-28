@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../../store/actions/authAction';
 import { LockClosedIcon } from '@heroicons/react/solid';
-import { MenuIcon, XIcon, ClipboardListIcon } from '@heroicons/react/outline';
+import { ClipboardListIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 export const SignIn = ({ loginUserInFirebase }) => {
   const [formData, setFormData] = useState({
@@ -28,8 +29,8 @@ export const SignIn = ({ loginUserInFirebase }) => {
     await loginUserInFirebase(email, password);
   };
   return (
-    <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8é'>
-      <div className='min-h-full flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8'>
+    <div className='min-h-full  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
+      <div className='min-h-full flex  md:w-2/3 flex-col justify-center px-4 sm:px-6 lg:px-8'>
         <div>
           <ClipboardListIcon className='h-12 text-indigo-600 mx-auto' />
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
@@ -60,6 +61,16 @@ export const SignIn = ({ loginUserInFirebase }) => {
               value={password}
               onChange={handleChange}
             />
+          </div>
+          <div>
+            <div className='text-sm'>
+              <Link
+                to={'/signup'}
+                className='font-medium text-indigo-600 hover:text-indigo-500'
+              >
+                No account yet ?
+              </Link>
+            </div>
           </div>
           <div>
             <button className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
