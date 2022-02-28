@@ -67,14 +67,15 @@ const App = () => {
               }
             />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
-            <Route
+            {/* <Route
               path='/profile'
               element={
                 <RequireAuth redirectTo={'/signup'}>
                   <YourProfileStore />
                 </RequireAuth>
               }
-            />
+            /> */}
+            <Route path='/profile' element={<YourProfileStore />} />
             <Route
               path='/signin'
               element={
