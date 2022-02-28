@@ -26,37 +26,48 @@ export const SignIn = ({ loginUserInFirebase }) => {
     await loginUserInFirebase(email, password);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h5>Sign In</h5>
+    <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8é'>
+      <div className='min-h-full flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
         <div>
-          <label className='label-form' htmlFor='email'>
-            Email
-          </label>
-          <input
-            className='input-form'
-            type='email'
-            name='email'
-            value={email}
-            onChange={handleChange}
+          <img
+            className='mx-auto h-12 w-auto'
+            src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
+            alt='Workflow'
           />
+          <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
+            Sign in to your account
+          </h2>
         </div>
-        <div>
-          <label className='label-form' htmlFor='password'>
-            Password
-          </label>
-          <input
-            className='input-form'
-            type='password'
-            name='password'
-            value={password}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button>Login</button>
-        </div>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label className='label-form' htmlFor='email'>
+              Email
+            </label>
+            <input
+              className='input-form'
+              type='email'
+              name='email'
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className='label-form' htmlFor='password'>
+              Password
+            </label>
+            <input
+              className='input-form'
+              type='password'
+              name='password'
+              value={password}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <button>Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
