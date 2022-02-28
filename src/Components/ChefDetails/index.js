@@ -10,12 +10,13 @@ import Spinner from '../Spinner';
 
 export const ChefDetails = ({ chefId, chefs, recipes }) => {
   const chef = chefs.filter((chef) => chef.uid === chefId)[0];
-  const chefRecipe = recipes.filter(
-    (recipe) => recipe.authorEmail === chef.email
-  );
+  const chefRecipe =
+    chef.email && recipes.filter((recipe) => recipe.authorEmail === chef.email);
+  console.log(chef);
+  console.log('herer');
   return (
     <div>
-      {!!chef ? (
+      {chef.email ? (
         <>
           <div className='flex flex-col items-center pt-12 pb-20'>
             <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
@@ -48,8 +49,8 @@ export const ChefDetailsStore = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(getUsers());
+    const fetchData = () => {
+      dispatch(getUsers());
     };
 
     fetchData();
@@ -58,6 +59,7 @@ export const ChefDetailsStore = () => {
   const { id } = useParams();
   const chefs = useSelector(usersSelector);
   const recipes = useSelector(recipesSelector);
+  console.log(chefs);
 
   return (
     <>

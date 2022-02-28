@@ -11,6 +11,7 @@ import { EditRecipeFormStore } from '../EditRecipeForm';
 import { authSelector } from '../../store/selectors/authSelector';
 import { Link } from 'react-router-dom';
 import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
+import { getUsers } from '../../store/actions/usersAction';
 import {
   Wrapper,
   Content,
@@ -27,7 +28,7 @@ import {
   Author,
 } from './recipeDetail.tw';
 
-export const RecipeDetail = ({ recipe, authUser }) => {
+export const RecipeDetail = ({ recipe, authUser, handleGetUsers }) => {
   const [open, setOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
@@ -75,6 +76,7 @@ export const RecipeDetail = ({ recipe, authUser }) => {
                 <Link
                   to={`/chef/${recipe.authorId}`}
                   className='font-semibold underline capitalize'
+                  onClick={handleGetUsers()}
                 >
                   {author}
                 </Link>
@@ -141,11 +143,21 @@ export const RecipeDetailStore = () => {
     dispatch(getCurrentRecipe(id));
   }, [dispatch, id]);
 
+  const handleGetUsers = useCallback(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   useEffect(() => {
     fetchCurrentRecipe();
   }, [fetchCurrentRecipe]);
 
   const currentRecipe = useSelector(currentRecipeSelector);
 
-  return <RecipeDetail recipe={currentRecipe} authUser={authUser} />;
+  return (
+    <RecipeDetail
+      recipe={currentRecipe}
+      authUser={authUser}
+      handleGetUsers={handleGetUsers}
+    />
+  );
 };
