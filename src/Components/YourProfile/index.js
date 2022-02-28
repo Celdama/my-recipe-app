@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 import { updateUser, monitorAuthState } from '../../store/actions/authAction';
 import { addUser } from '../../store/actions/usersAction';
+import { storage } from '../../config/fbConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 export const YourProfile = ({
   authUser,
@@ -14,7 +16,8 @@ export const YourProfile = ({
     avatar: '',
   });
 
-  console.log(authUser);
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,18 +32,35 @@ export const YourProfile = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateUserInFirebase(formData.userName, formData.avatar);
-    addUserInFirestore({
-      ...formData,
-      email: authUser.email,
-      uid: authUser.uid,
-    });
+    const imageRef = ref(storage, `${authUser.uid}-avatar`);
+
+    try {
+      await uploadBytes(imageRef, image);
+      const url = await getDownloadURL(imageRef);
+      setUrl(url);
+      updateUserInFirebase(formData.userName, url);
+      addUserInFirestore({
+        userName: formData.userName,
+        email: authUser.email,
+        uid: authUser.uid,
+        avatar: url,
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+    setImage(null);
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
   };
 
   return (
     <div>
       <h4>Your Profile</h4>
-      {!authUser.displayName && (
+      {!authUser.displayName ? (
         <>
           <p>Add an username and an image at your profile !</p>
           <form onSubmit={handleSubmit}>
@@ -54,10 +74,10 @@ export const YourProfile = ({
               />
             </div>
             <div>
-              <label htmlFor='avatar'>Avatar URL</label>
+              <label htmlFor='avatar'>Avatar</label>
               <input
-                onChange={handleChange}
-                type='text'
+                onChange={handleImageChange}
+                type='file'
                 name='avatar'
                 className='input-form'
               />
@@ -66,6 +86,15 @@ export const YourProfile = ({
               <button className='default-btn form-btn'>Update profil</button>
             </div>
           </form>
+        </>
+      ) : (
+        <>
+          <h1>{authUser.displayName}</h1>
+          <img
+            src={authUser.photoURL}
+            className='h-24 w-24'
+            alt='user avatar'
+          />
         </>
       )}
     </div>
