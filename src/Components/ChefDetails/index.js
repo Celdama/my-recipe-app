@@ -46,20 +46,9 @@ export const ChefDetails = ({ chefId, chefs, recipes }) => {
 };
 
 export const ChefDetailsStore = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchData = () => {
-      dispatch(getUsers());
-    };
-
-    fetchData();
-  }, [dispatch]);
-
   const { id } = useParams();
   const chefs = useSelector(usersSelector);
   const recipes = useSelector(recipesSelector);
-  console.log(chefs);
 
   return (
     <>
