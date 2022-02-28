@@ -11,7 +11,7 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
   const [currentChefRecipes, setCurrentChefsRecipes] = useState([]);
 
   useEffect(() => {
-    const setUpData = async () => {
+    const setUpData = () => {
       const chef = chefs.filter((chef) => chef.uid === id)[0];
       if (chef) {
         const chefRecipes = recipes.filter(
@@ -20,20 +20,23 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
 
         setCurrentChefsRecipes(chefRecipes);
       }
-      await setCurrentChef(chef);
+      setCurrentChef(chef);
     };
 
     setUpData();
   }, [chefs, recipes, id]);
 
   return (
-    <div>
+    <div className='flex flex-col items-center '>
       {currentChef ? (
-        <>
-          <div className='flex flex-col items-center pt-12 pb-20'>
-            <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
-              {currentChef.userName}
-            </h1>
+        <div>
+          <div className='flex flex-col items-center  pt-8 pb-20'>
+            <img
+              className='w-48 h-48 rounded-3xl mb-5'
+              src={currentChef.avatar}
+              alt='avatar'
+            />
+            <h1 className='text-4xl font-bold'>{currentChef.userName}</h1>
             <h4 className='tex-lg text-slate-600'>{currentChef.email}</h4>
             <p
               className='inline-flex items-center text-sm font-semibold  text-center
@@ -50,7 +53,7 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
               ))}
             </div>
           }
-        </>
+        </div>
       ) : (
         <Spinner />
       )}
