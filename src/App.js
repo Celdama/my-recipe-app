@@ -19,6 +19,7 @@ import { monitorAuthState } from './store/actions/authAction';
 import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
 import { ChefsListStore } from './Components/ChefsList';
 import { ChefDetailsStore } from './Components/ChefDetails';
+import { getUsers } from './store/actions/usersAction';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const App = () => {
   useEffect(() => {
     dispatch(monitorAuthState());
     dispatch(getRecipes());
+    dispatch(getUsers());
   }, [dispatch]);
 
   return (

@@ -1,38 +1,51 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { usersSelector } from '../../store/selectors/usersSelector';
 import { recipesSelector } from '../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
-import { useDispatch } from 'react-redux';
-import { getUsers } from '../../store/actions/usersAction';
 import Spinner from '../Spinner';
 
-export const ChefDetails = ({ chefId, chefs, recipes }) => {
-  const chef = chefs.filter((chef) => chef.uid === chefId)[0];
-  const chefRecipe =
-    chef.email && recipes.filter((recipe) => recipe.authorEmail === chef.email);
-  console.log(chef);
-  console.log('herer');
+export const ChefDetails = ({ chefs, recipes, id }) => {
+  const [currentChef, setCurrentChef] = useState({});
+  const [currentChefRecipes, setCurrentChefsRecipes] = useState([]);
+
+  useEffect(() => {
+    const setUpData = async () => {
+      const chef = chefs.filter((chef) => chef.uid === id)[0];
+      if (chef) {
+        const chefRecipes = recipes.filter(
+          (recipe) => recipe.authorEmail === chef.email
+        );
+
+        setCurrentChefsRecipes(chefRecipes);
+      }
+      await setCurrentChef(chef);
+    };
+
+    setUpData();
+  }, [chefs, recipes, id]);
+
   return (
     <div>
-      {chef.email ? (
+      {currentChef ? (
         <>
           <div className='flex flex-col items-center pt-12 pb-20'>
             <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
-              {chef.userName}
+              {currentChef.userName}
             </h1>
-            <h4 className='tex-lg text-slate-600'>{chef.email}</h4>
+            <h4 className='tex-lg text-slate-600'>{currentChef.email}</h4>
             <p
               className='inline-flex items-center text-sm font-semibold  text-center
             text-indigo-600 hover:text-indigo-700'
             >
-              {chefRecipe.length} recipe{chefRecipe.length > 1 ? 's' : ''}
+              {currentChefRecipes.length} recipe
+              {currentChefRecipes.length > 1 ? 's' : ''}
             </p>
           </div>
           {
             <div className='flex flex-wrap justify-center'>
-              {chefRecipe.map((recipe) => (
+              {currentChefRecipes.map((recipe) => (
                 <RecipeCard key={recipe.id} recipe={recipe} />
               ))}
             </div>
@@ -52,9 +65,7 @@ export const ChefDetailsStore = () => {
 
   return (
     <>
-      {!!chefs && !!recipes && (
-        <ChefDetails chefId={id} chefs={chefs} recipes={recipes} />
-      )}
+      <ChefDetails chefs={chefs} recipes={recipes} id={id} />
     </>
   );
 };
