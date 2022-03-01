@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
+import { Wrapper, Content, Title, Header, Button } from './signin.tw';
 
 export const SignIn = ({ loginUserInFirebase, alert }) => {
   const [formData, setFormData] = useState({
@@ -52,14 +53,12 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
     await loginUserInFirebase(email, password);
   };
   return (
-    <div className='min-h-full  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
-      <div className='min-h-full flex  md:w-2/3 flex-col justify-center px-4 sm:px-6 lg:px-8'>
-        <div>
-          <ClipboardListIcon className='h-12 text-indigo-600 mx-auto' />
-          <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Sign in to your account
-          </h2>
-        </div>
+    <Wrapper>
+      <Content>
+        <Header>
+          <ClipboardListIcon className='h-12 text-indigo-600' />
+          <Title>Sign in to your account</Title>
+        </Header>
         <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
           <div>
             <label className='label-form' htmlFor='email'>
@@ -98,19 +97,19 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
             </div>
           </div>
           <div>
-            <button className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+            <Button>
               <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
                 <LockClosedIcon
-                  className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400'
+                  className='h-5 w-5 text-indigo-500'
                   aria-hidden='true'
                 />
               </span>
               Sign in
-            </button>
+            </Button>
           </div>
         </form>
-      </div>
-    </div>
+      </Content>
+    </Wrapper>
   );
 };
 
