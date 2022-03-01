@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getRecipes } from './store/actions/recipesAction';
 import { NavbarStore } from './Components/Layout/Navbar';
 import Header from './Components/Layout/Header';
-import Main from './Components/Main';
+import Main from './Components/Layout/Main';
 import { RecipesListStore } from './Components/Recipe/RecipesList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecipeDetailStore } from './Components/Recipe/RecipeDetail';
