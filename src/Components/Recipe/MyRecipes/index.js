@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../store/selectors/authSelector';
-import { recipesSelector } from '../../store/selectors/recipesSelector';
+import { authSelector } from '../../../store/selectors/authSelector';
+import { recipesSelector } from '../../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
-import Spinner from '../Spinner';
+import Spinner from '../../Spinner';
 
 export const MyRecipes = ({ recipes, authUser }) => {
   const myRecipesContent = (recipesList, userId) => {

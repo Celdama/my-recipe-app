@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { currentRecipeSelector } from '../../store/selectors/currentRecipeSelector';
-import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
-import Spinner from '../Spinner';
+import { currentRecipeSelector } from '../../../store/selectors/currentRecipeSelector';
+import { getCurrentRecipe } from '../../../store/actions/currentRecipeAction';
+import Spinner from '../../Spinner';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import { EditRecipeFormStore } from '../EditRecipeForm';
-import { authSelector } from '../../store/selectors/authSelector';
+import { authSelector } from '../../../store/selectors/authSelector';
 import { Link } from 'react-router-dom';
-import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
-import { getUsers } from '../../store/actions/usersAction';
+import { DeleteRecipeModalStore } from '../../DeleteRecipeModal';
+import { getUsers } from '../../../store/actions/usersAction';
 import {
   Wrapper,
   Content,

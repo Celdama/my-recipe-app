@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
-import { addRecipe, getRecipes } from '../../store/actions/recipesAction';
+import { addRecipe, getRecipes } from '../../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../store/selectors/authSelector';
+import { authSelector } from '../../../store/selectors/authSelector';
 
 export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   const navigate = useNavigate();

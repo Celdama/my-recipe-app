@@ -1,8 +1,8 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
-import { editRecipe } from '../../store/actions/recipesAction';
-import { getCurrentRecipe } from '../../store/actions/currentRecipeAction';
+import { editRecipe } from '../../../store/actions/recipesAction';
+import { getCurrentRecipe } from '../../../store/actions/currentRecipeAction';
 import {
   Wrapper,
   Content,
