@@ -1,38 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Wrapper,
+  Content,
+  Title,
+  Body,
+  WrapperButton,
+  Button,
+} from './callToAction.tw';
 
 const CallToAction = () => {
   return (
-    <div>
-      <div className='bg-gray-50'>
-        <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between'>
-          <h2 className='text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl'>
-            <span className='block'>Ready to join the team?</span>
-            <span className='block text-indigo-600'>
-              Create an account and add your first recipe.
-            </span>
-          </h2>
-          <div className='mt-8 flex lg:mt-0 lg:flex-shrink-0'>
-            <div className='inline-flex rounded-md shadow'>
+    <Wrapper>
+      <Content>
+        <Title>
+          <span>Ready to join the team?</span>
+          <span className='text-indigo-600'>
+            Create an account and add your first recipe.
+          </span>
+        </Title>
+        <Body>
+          <WrapperButton>
+            <Button>
               <Link
                 to='/signup'
                 className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'
               >
                 Sign up for free
               </Link>
-            </div>
-            <div className='ml-3 inline-flex rounded-md shadow'>
+            </Button>
+            <Button>
               <Link
                 to='/signin'
                 className='inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50'
               >
                 Sign in
               </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Button>
+          </WrapperButton>
+        </Body>
+      </Content>
+    </Wrapper>
   );
 };
 
