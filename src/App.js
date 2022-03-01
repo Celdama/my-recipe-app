@@ -17,7 +17,7 @@ import { SignInStore } from './Components/Auth/SignIn';
 import { SignUpStore } from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
 import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
-import { ChefsListStore } from './Components/ChefsList';
+import { ChefsListStore } from './Components/Chef/ChefsList';
 import { ChefDetailsStore } from './Components/ChefDetails';
 import { getUsers } from './store/actions/usersAction';
 

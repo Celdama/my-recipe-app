@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getUsers } from '../../store/actions/usersAction';
-import { usersSelector } from '../../store/selectors/usersSelector';
+import { getUsers } from '../../../store/actions/usersAction';
+import { usersSelector } from '../../../store/selectors/usersSelector';
 import ChefCard from '../ChefCard';
-import Spinner from '../Spinner';
-import CallToAction from '../CallToAction';
+import Spinner from '../../Spinner';
+import CallToAction from '../../CallToAction';
 
 export const ChefsList = ({ chefs }) => {
   const chefsContent =
