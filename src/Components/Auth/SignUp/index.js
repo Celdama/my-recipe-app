@@ -14,6 +14,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
+import { Wrapper, Content, Header, Title, Button } from './signup.tw';
 
 export const SignUp = ({
   registerUserInFirebase,
@@ -79,14 +80,12 @@ export const SignUp = ({
   };
 
   return (
-    <div className='min-h-full  flex items-center justify-center  px-4 sm:px-6 lg:px-8'>
-      <div className='min-h-full md:w-2/3 flex flex-col justify-center px-4 sm:px-6 lg:px-8'>
-        <div className='mb-16'>
+    <Wrapper>
+      <Content>
+        <Header>
           <ClipboardListIcon className='h-12 text-indigo-600 mx-auto' />
-          <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Create an account and add your first recipe
-          </h2>
-        </div>
+          <Title>Create an account and add your first recipe</Title>
+        </Header>
 
         <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
           <div>
@@ -163,13 +162,11 @@ export const SignUp = ({
             </div>
           </div>
           <div>
-            <button className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-              Sign up
-            </button>
+            <Button>Sign up</Button>
           </div>
         </form>
-      </div>
-    </div>
+      </Content>
+    </Wrapper>
   );
 };
 
