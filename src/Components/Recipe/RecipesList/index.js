@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { recipesSelector } from '../../store/selectors/recipesSelector';
+import { recipesSelector } from '../../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
 import { useDispatch } from 'react-redux';
-import { resetCurrentRecipe } from '../../store/actions/currentRecipeAction';
+import { resetCurrentRecipe } from '../../../store/actions/currentRecipeAction';
 import { Wrapper } from './recipesList.tw';
-import Spinner from '../Spinner';
+import Spinner from '../../Spinner';
 
 export const RecipesList = ({ recipes }) => {
   const recipesContent =

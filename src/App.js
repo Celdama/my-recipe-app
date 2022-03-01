@@ -4,7 +4,7 @@ import { getRecipes } from './store/actions/recipesAction';
 import { NavbarStore } from './Components/Layout/Navbar';
 import Header from './Components/Layout/Header';
 import Main from './Components/Main';
-import { RecipesListStore } from './Components/RecipesList';
+import { RecipesListStore } from './Components/Recipe/RecipesList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecipeDetailStore } from './Components/RecipeDetail';
 import ForYou from './Components/ForYou';
