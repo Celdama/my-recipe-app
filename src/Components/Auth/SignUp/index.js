@@ -79,9 +79,9 @@ export const SignUp = ({
   };
 
   return (
-    <div className='min-h-full  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
+    <div className='min-h-full  flex items-center justify-center  px-4 sm:px-6 lg:px-8'>
       <div className='min-h-full md:w-2/3 flex flex-col justify-center px-4 sm:px-6 lg:px-8'>
-        <div>
+        <div className='mb-16'>
           <ClipboardListIcon className='h-12 text-indigo-600 mx-auto' />
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
             Create an account and add your first recipe
