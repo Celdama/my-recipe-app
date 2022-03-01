@@ -26,6 +26,7 @@ export const SignUp = ({
     password: '',
     userName: '',
   });
+  const { email, password, userName } = formData;
 
   const divSignupEmailError = useRef(null);
 
@@ -41,8 +42,6 @@ export const SignUp = ({
   }, [alert]);
 
   const [image, setImage] = useState(null);
-
-  const { email, password, userName } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,16 +62,16 @@ export const SignUp = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const imageRef = ref(storage, `${formData.userName}-avatar`);
+    const imageRef = ref(storage, `${userName}-avatar`);
 
     try {
       await registerUserInFirebase(email, password);
       await uploadBytes(imageRef, image);
       const url = await getDownloadURL(imageRef);
-      updateUserInFirebase(formData.userName, url);
+      updateUserInFirebase(userName, url);
       addUserInFirestore({
-        userName: formData.userName,
-        email: formData.email,
+        userName,
+        email,
         avatar: url,
         uid: nanoid(),
       });
