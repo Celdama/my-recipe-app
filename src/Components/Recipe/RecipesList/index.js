@@ -5,7 +5,7 @@ import RecipeCard from '../RecipeCard';
 import { useDispatch } from 'react-redux';
 import { resetCurrentRecipe } from '../../../store/actions/currentRecipeAction';
 import { Wrapper } from './recipesList.tw';
-import Spinner from '../../Spinner';
+import Spinner from '../../Layout/Spinner';
 
 export const RecipesList = ({ recipes }) => {
   const recipesContent =

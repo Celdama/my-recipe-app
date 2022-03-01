@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { currentRecipeSelector } from '../../../store/selectors/currentRecipeSelector';
 import { getCurrentRecipe } from '../../../store/actions/currentRecipeAction';
-import Spinner from '../../Spinner';
+import Spinner from '../../Layout/Spinner';
 import RecipeResume from '../RecipeResume';
 import RecipeIngredients from '../RecipeIngredients';
 import RecipeStepsTimeline from '../RecipeStepsTimeline';

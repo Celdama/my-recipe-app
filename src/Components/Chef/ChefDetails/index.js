@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { usersSelector } from '../../store/selectors/usersSelector';
-import { recipesSelector } from '../../store/selectors/recipesSelector';
-import RecipeCard from '../RecipeCard';
-import Spinner from '../Spinner';
+import { usersSelector } from '../../../store/selectors/usersSelector';
+import { recipesSelector } from '../../../store/selectors/recipesSelector';
+import RecipeCard from '../../Recipe/RecipeCard';
+import Spinner from '../../Layout/Spinner';
 
 export const ChefDetails = ({ chefs, recipes, id }) => {
   const [currentChef, setCurrentChef] = useState({});

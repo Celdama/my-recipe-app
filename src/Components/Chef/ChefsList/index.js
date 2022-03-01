@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getUsers } from '../../../store/actions/usersAction';
 import { usersSelector } from '../../../store/selectors/usersSelector';
 import ChefCard from '../ChefCard';
-import Spinner from '../../Spinner';
+import Spinner from '../../Layout/Spinner';
 import CallToAction from '../../CallToAction';
 
 export const ChefsList = ({ chefs }) => {

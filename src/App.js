@@ -16,7 +16,7 @@ import { SignUpStore } from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
 import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
 import { ChefsListStore } from './Components/Chef/ChefsList';
-import { ChefDetailsStore } from './Components/ChefDetails';
+import { ChefDetailsStore } from './Components/Chef/ChefDetails';
 import { getUsers } from './store/actions/usersAction';
 
 const App = () => {
