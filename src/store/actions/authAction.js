@@ -29,7 +29,10 @@ export const registerUser = (registerEmail, registerPassword) => {
         payload: userCredential.user,
       });
     } catch (err) {
-      return console.log(err);
+      dispatch({
+        type: ERROR_ALERT,
+        payload: err,
+      });
     }
   };
 };
@@ -47,7 +50,6 @@ export const logInUser = (loginEmail, loginPassword) => {
         payload: userCredential.user,
       });
     } catch (err) {
-      // return console.log(err);
       dispatch({
         type: ERROR_ALERT,
         payload: err,

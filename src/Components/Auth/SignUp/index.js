@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   updateUser,
@@ -11,17 +11,34 @@ import { addUser } from '../../../store/actions/usersAction';
 import { nanoid } from 'nanoid';
 import { storage } from '../../../config/fbConfig';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { alertSelector } from '../../../store/selectors/alertSelector';
+import { useSelector } from 'react-redux';
+import { resetAlert } from '../../../store/actions/alertAction';
 
 export const SignUp = ({
   registerUserInFirebase,
   updateUserInFirebase,
   addUserInFirestore,
+  alert,
 }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     userName: '',
   });
+
+  const divSignupEmailError = useRef(null);
+
+  useEffect(() => {
+    divSignupEmailError.current.textContent = '';
+
+    if (alert.code) {
+      if (alert.code === 'auth/email-already-in-use') {
+        divSignupEmailError.current.textContent =
+          'email already use, please choose an other email';
+      }
+    }
+  }, [alert]);
 
   const [image, setImage] = useState(null);
 
@@ -105,6 +122,10 @@ export const SignUp = ({
               onChange={handleChange}
               required
             />
+            <div
+              className='text-red-700 underline font-mono text-sm'
+              ref={divSignupEmailError}
+            ></div>
           </div>
           <div>
             <label
@@ -120,6 +141,7 @@ export const SignUp = ({
               name='password'
               value={password}
               onChange={handleChange}
+              minLength={6}
               required
             />
           </div>
@@ -159,6 +181,7 @@ export const SignUp = ({
 
 export const SignUpStore = () => {
   const dispatch = useDispatch();
+  const alert = useSelector(alertSelector);
 
   const registerUserInFirebase = async (emailRegister, passwordRegister) => {
     await dispatch(registerUser(emailRegister, passwordRegister));
@@ -171,10 +194,12 @@ export const SignUpStore = () => {
 
   const addUserInFirestore = async (data) => {
     await dispatch(addUser({ ...data }));
+    dispatch(resetAlert());
   };
 
   return (
     <SignUp
+      alert={alert}
       registerUserInFirebase={registerUserInFirebase}
       updateUserInFirebase={updateUserInFirebase}
       addUserInFirestore={addUserInFirestore}
