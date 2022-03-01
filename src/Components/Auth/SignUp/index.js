@@ -76,8 +76,12 @@ export const SignUp = ({
 
         <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
           <div>
-            <label className='label-form' htmlFor='userName'>
+            <label
+              className='label-form flex justify-between'
+              htmlFor='userName'
+            >
               Username
+              <span className='text-sm italic'>* required</span>
             </label>
             <input
               className='input-form bg-white'
@@ -85,11 +89,13 @@ export const SignUp = ({
               name='userName'
               value={userName}
               onChange={handleChange}
+              required
             />
           </div>
           <div>
-            <label className='label-form' htmlFor='email'>
+            <label className='label-form flex justify-between' htmlFor='email'>
               Email
+              <span className='text-sm italic'>* required</span>
             </label>
             <input
               className='input-form bg-white'
@@ -97,11 +103,16 @@ export const SignUp = ({
               name='email'
               value={email}
               onChange={handleChange}
+              required
             />
           </div>
           <div>
-            <label className='label-form' htmlFor='password'>
+            <label
+              className='label-form flex justify-between'
+              htmlFor='password'
+            >
               Password
+              <span className='text-sm italic'>* required</span>
             </label>
             <input
               className='input-form bg-white'
@@ -109,17 +120,20 @@ export const SignUp = ({
               name='password'
               value={password}
               onChange={handleChange}
+              required
             />
           </div>
           <div>
-            <label className='label-form' htmlFor='avatar'>
+            <label className='label-form flex justify-between' htmlFor='avatar'>
               Avatar
+              <span className='text-sm italic'>* required</span>
             </label>
             <input
               onChange={handleImageChange}
               type='file'
               name='avatar'
               className='input-form bg-white'
+              required
             />
           </div>
           <div>
