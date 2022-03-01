@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../../store/actions/authAction';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { ClipboardListIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
+import { alertSelector } from '../../../store/selectors/alertSelector';
+import { useSelector } from 'react-redux';
+import { resetAlert } from '../../../store/actions/alertAction';
 
-export const SignIn = ({ loginUserInFirebase }) => {
+export const SignIn = ({ loginUserInFirebase, alert }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     userName: '',
   });
+
+  const divLoginPasswordError = useRef(null);
+  const divLoginEmailError = useRef(null);
+
+  useEffect(() => {
+    divLoginPasswordError.current.textContent = '';
+    divLoginEmailError.current.textContent = '';
+
+    if (alert.code) {
+      if (alert.code === 'auth/wrong-password') {
+        divLoginPasswordError.current.textContent = 'wrong password try again';
+      } else if (alert.code === 'auth/user-not-found') {
+        divLoginEmailError.current.textContent =
+          'email not found, try with another email or create an account';
+      } else {
+        divLoginPasswordError.current.textContent = `Error: ${alert.code}`;
+      }
+    }
+  }, [alert]);
 
   const { email, password } = formData;
 
@@ -50,6 +72,10 @@ export const SignIn = ({ loginUserInFirebase }) => {
               value={email}
               onChange={handleChange}
             />
+            <div
+              className='text-red-700 underline font-mono text-sm'
+              ref={divLoginEmailError}
+            ></div>
           </div>
           <div>
             <label className='label-form' htmlFor='password'>
@@ -62,6 +88,10 @@ export const SignIn = ({ loginUserInFirebase }) => {
               value={password}
               onChange={handleChange}
             />
+            <div
+              className='text-red-700 underline font-mono text-sm'
+              ref={divLoginPasswordError}
+            ></div>
           </div>
           <div>
             <div className='text-sm'>
@@ -92,10 +122,12 @@ export const SignIn = ({ loginUserInFirebase }) => {
 
 export const SignInStore = () => {
   const dispatch = useDispatch();
+  const alert = useSelector(alertSelector);
 
   const loginUserInFirebase = (emailLogin, passwordLogin) => {
     dispatch(logInUser(emailLogin, passwordLogin));
+    dispatch(resetAlert());
   };
 
-  return <SignIn loginUserInFirebase={loginUserInFirebase} />;
+  return <SignIn loginUserInFirebase={loginUserInFirebase} alert={alert} />;
 };

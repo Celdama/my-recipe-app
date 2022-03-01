@@ -5,6 +5,7 @@ import { recipesReducer } from './reducers/recipesReducer';
 import { currentRecipeReducer } from './reducers/currentRecipeReducer';
 import { authReducer } from './reducers/authReducer';
 import { usersReducer } from './reducers/usersReducer';
+import { alertReducer } from './reducers/alertReducer';
 
 const store = createStore(
   combineReducers({
@@ -12,6 +13,7 @@ const store = createStore(
     users: usersReducer,
     currentRecipe: currentRecipeReducer,
     auth: authReducer,
+    alert: alertReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

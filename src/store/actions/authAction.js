@@ -5,6 +5,7 @@ import {
   MONITOR_AUTH_STATE,
   UPDATE_USER,
 } from '../reducers/authReducer';
+import { ERROR_ALERT } from '../reducers/alertReducer';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -46,7 +47,11 @@ export const logInUser = (loginEmail, loginPassword) => {
         payload: userCredential.user,
       });
     } catch (err) {
-      return console.log(err);
+      // return console.log(err);
+      dispatch({
+        type: ERROR_ALERT,
+        payload: err,
+      });
     }
   };
 };
@@ -66,7 +71,6 @@ export const signOutUser = () => {
 };
 
 export const monitorAuthState = () => {
-  // const auth = getAuth();
   return async (dispatch) => {
     try {
       onAuthStateChanged(auth, (user) => {
@@ -93,7 +97,6 @@ export const monitorAuthState = () => {
 
 export const updateUser = (userName, avatar) => {
   const auth = getAuth();
-  console.log(userName, avatar);
   return async (dispatch) => {
     try {
       await updateProfile(auth.currentUser, {
