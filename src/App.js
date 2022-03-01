@@ -7,12 +7,10 @@ import Main from './Components/Layout/Main';
 import { RecipesListStore } from './Components/Recipe/RecipesList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecipeDetailStore } from './Components/Recipe/RecipeDetail';
-import ForYou from './Components/ForYou';
-import Favourite from './Components/Favourite';
 import { MyRecipesStore } from './Components/Recipe/MyRecipes';
 import { AddRecipeFormStore } from './Components/Recipe/AddRecipeForm';
 import NoMatch from './Components/Layout/404';
-import { YourProfileStore } from './Components/YourProfile';
+import { ProfileStore } from './Components/Profile';
 import { SignInStore } from './Components/Auth/SignIn';
 import { SignUpStore } from './Components/Auth/SignUp';
 import { monitorAuthState } from './store/actions/authAction';
@@ -38,15 +36,6 @@ const App = () => {
         <Main>
           <Routes>
             <Route exact path='/' element={<RecipesListStore />} />
-            <Route path='/for-you' element={<ForYou />} />
-            <Route
-              path='/favourite'
-              element={
-                <RequireAuth redirectTo={'/signup'}>
-                  <Favourite />
-                </RequireAuth>
-              }
-            />
             <Route path='/chefs' element={<ChefsListStore />} />
             <Route path='/my-recipes' element={<MyRecipesStore />} />
             <Route path={'/chef/:id'} element={<ChefDetailsStore />} />
@@ -63,7 +52,7 @@ const App = () => {
               path='/profile'
               element={
                 <RequireAuth redirectTo={'/signup'}>
-                  <YourProfileStore />
+                  <ProfileStore />
                 </RequireAuth>
               }
             />

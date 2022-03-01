@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../store/selectors/authSelector';
 
-export const YourProfile = ({ authUser }) => {
+export const Profile = ({ authUser }) => {
   const { displayName, photoURL } = authUser;
   return (
     <div>
@@ -13,8 +13,8 @@ export const YourProfile = ({ authUser }) => {
   );
 };
 
-export const YourProfileStore = () => {
+export const ProfileStore = () => {
   const authUser = useSelector(authSelector);
 
-  return <YourProfile authUser={authUser} />;
+  return <Profile authUser={authUser} />;
 };
