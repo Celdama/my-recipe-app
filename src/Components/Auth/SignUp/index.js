@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../../../store/actions/authAction';
+import {
+  updateUser,
+  registerUser,
+  monitorAuthState,
+} from '../../../store/actions/authAction';
 import { ClipboardListIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
+import { addUser } from '../../../store/actions/usersAction';
+import { nanoid } from 'nanoid';
+import { storage } from '../../../config/fbConfig';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-export const SignUp = ({ registerUserInFirebase }) => {
+export const SignUp = ({
+  registerUserInFirebase,
+  updateUserInFirebase,
+  addUserInFirestore,
+}) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    userName: '',
   });
 
-  const navigate = useNavigate();
+  const [image, setImage] = useState(null);
 
-  const { email, password } = formData;
+  const { email, password, userName } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,10 +38,30 @@ export const SignUp = ({ registerUserInFirebase }) => {
     });
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await registerUserInFirebase(email, password);
-    navigate('/profile');
+    const imageRef = ref(storage, `${formData.userName}-avatar`);
+
+    try {
+      await registerUserInFirebase(email, password);
+      await uploadBytes(imageRef, image);
+      const url = await getDownloadURL(imageRef);
+      updateUserInFirebase(formData.userName, url);
+      addUserInFirestore({
+        userName: formData.userName,
+        email: formData.email,
+        avatar: url,
+        uid: nanoid(),
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -43,6 +75,18 @@ export const SignUp = ({ registerUserInFirebase }) => {
         </div>
 
         <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
+          <div>
+            <label className='label-form' htmlFor='userName'>
+              Username
+            </label>
+            <input
+              className='input-form bg-white'
+              type='text'
+              name='userName'
+              value={userName}
+              onChange={handleChange}
+            />
+          </div>
           <div>
             <label className='label-form' htmlFor='email'>
               Email
@@ -65,6 +109,17 @@ export const SignUp = ({ registerUserInFirebase }) => {
               name='password'
               value={password}
               onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label className='label-form' htmlFor='avatar'>
+              Avatar
+            </label>
+            <input
+              onChange={handleImageChange}
+              type='file'
+              name='avatar'
+              className='input-form bg-white'
             />
           </div>
           <div>
@@ -95,5 +150,20 @@ export const SignUpStore = () => {
     await dispatch(registerUser(emailRegister, passwordRegister));
   };
 
-  return <SignUp registerUserInFirebase={registerUserInFirebase} />;
+  const updateUserInFirebase = async (userName, avatar) => {
+    await dispatch(updateUser(userName, avatar));
+    dispatch(monitorAuthState());
+  };
+
+  const addUserInFirestore = async (data) => {
+    await dispatch(addUser({ ...data }));
+  };
+
+  return (
+    <SignUp
+      registerUserInFirebase={registerUserInFirebase}
+      updateUserInFirebase={updateUserInFirebase}
+      addUserInFirestore={addUserInFirestore}
+    />
+  );
 };
