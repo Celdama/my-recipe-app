@@ -47,14 +47,6 @@ const App = () => {
                 </RequireAuth>
               }
             />
-            {/* <Route
-              path='/my-recipes'
-              element={
-                <RequireAuth redirectTo={'/signup'}>
-                  <MyRecipesStore />
-                </RequireAuth>
-              }
-            /> */}
             <Route path='/chefs' element={<ChefsListStore />} />
             <Route path='/my-recipes' element={<MyRecipesStore />} />
             <Route path={'/chef/:id'} element={<ChefDetailsStore />} />
@@ -67,15 +59,14 @@ const App = () => {
               }
             />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
-            {/* <Route
+            <Route
               path='/profile'
               element={
                 <RequireAuth redirectTo={'/signup'}>
                   <YourProfileStore />
                 </RequireAuth>
               }
-            /> */}
-            <Route path='/profile' element={<YourProfileStore />} />
+            />
             <Route
               path='/signin'
               element={
