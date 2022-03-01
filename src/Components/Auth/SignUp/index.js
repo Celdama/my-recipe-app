@@ -33,11 +33,9 @@ export const SignUp = ({
   useEffect(() => {
     divSignupEmailError.current.textContent = '';
 
-    if (alert.code) {
-      if (alert.code === 'auth/email-already-in-use') {
-        divSignupEmailError.current.textContent =
-          'email already use, please choose an other email';
-      }
+    if (alert.code && alert.code === 'auth/email-already-in-use') {
+      divSignupEmailError.current.textContent =
+        'email already use, please choose an other email';
     }
   }, [alert]);
 
