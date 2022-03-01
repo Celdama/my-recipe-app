@@ -119,10 +119,7 @@ export const SignUp = ({
               onChange={handleChange}
               required
             />
-            <div
-              className='text-red-700 underline font-mono text-sm'
-              ref={divSignupEmailError}
-            ></div>
+            <div className='form-alert-error' ref={divSignupEmailError}></div>
           </div>
           <div>
             <label

@@ -72,10 +72,7 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
               value={email}
               onChange={handleChange}
             />
-            <div
-              className='text-red-700 underline font-mono text-sm'
-              ref={divLoginEmailError}
-            ></div>
+            <div className='form-alert-error' ref={divLoginEmailError}></div>
           </div>
           <div>
             <label className='label-form' htmlFor='password'>
@@ -88,10 +85,7 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
               value={password}
               onChange={handleChange}
             />
-            <div
-              className='text-red-700 underline font-mono text-sm'
-              ref={divLoginPasswordError}
-            ></div>
+            <div className='form-alert-error' ref={divLoginPasswordError}></div>
           </div>
           <div>
             <div className='text-sm'>

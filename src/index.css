@@ -19,6 +19,13 @@
 }
 
 @layer components {
+  .form-alert-error {
+    @apply text-red-700
+    underline
+    font-mono
+    text-sm;
+  }
+
   .signed-out-links {
     @apply text-gray-300 
     hover:bg-gray-700 
