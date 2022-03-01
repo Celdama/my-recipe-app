@@ -9,6 +9,7 @@ export const SignIn = ({ loginUserInFirebase }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    userName: '',
   });
 
   const { email, password } = formData;

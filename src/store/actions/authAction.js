@@ -93,6 +93,7 @@ export const monitorAuthState = () => {
 
 export const updateUser = (userName, avatar) => {
   const auth = getAuth();
+  console.log(userName, avatar);
   return async (dispatch) => {
     try {
       await updateProfile(auth.currentUser, {
