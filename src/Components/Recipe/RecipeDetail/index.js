@@ -10,7 +10,7 @@ import RecipeStepsTimeline from '../RecipeStepsTimeline';
 import { EditRecipeFormStore } from '../EditRecipeForm';
 import { authSelector } from '../../../store/selectors/authSelector';
 import { Link } from 'react-router-dom';
-import { DeleteRecipeModalStore } from '../../DeleteRecipeModal';
+import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
 import { getUsers } from '../../../store/actions/usersAction';
 import {
   Wrapper,

@@ -3,7 +3,7 @@ import { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationIcon } from '@heroicons/react/outline';
 import { useDispatch } from 'react-redux';
-import { deleteRecipe, getRecipes } from '../../store/actions/recipesAction';
+import { deleteRecipe } from '../../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
 import {
   Wrapper,
