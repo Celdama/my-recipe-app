@@ -5,10 +5,15 @@ import { addRecipe, getRecipes } from '../../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../../store/selectors/authSelector';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../../config/fbConfig';
+import { nanoid } from 'nanoid';
 
 export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   const navigate = useNavigate();
+  const [uploadRecipeImg, setUploadRecipeImg] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [image, setImage] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
     desc: '',
@@ -27,46 +32,40 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   });
 
   useEffect(() => {
+    if (uploadRecipeImg) {
+      addRecipeToFirebase(formData);
+      setRedirect((prevState) => !prevState);
+    }
+  }, [uploadRecipeImg]);
+
+  useEffect(() => {
     if (redirect) {
       return navigate('/');
     }
   }, [redirect, navigate]);
 
-  const {
-    title,
-    desc,
-    imgUrl,
-    prep,
-    cooking,
-    total,
-    serving,
-    ingredients,
-    steps,
-  } = formData;
+  const { title, desc, prep, cooking, total, serving, ingredients, steps } =
+    formData;
 
-  const handleAddRecipe = (e) => {
+  const handleAddRecipe = async (e) => {
     e.preventDefault();
+    const imageId = nanoid();
 
-    addRecipeToFirebase(formData);
+    const imageRef = ref(storage, `${imageId}-${title}-recipe-image`);
 
-    setFormData({
-      title: '',
-      desc: '',
-      authorId: currentUser.uid,
-      authorPhotoURL: currentUser.photoURL,
-      author: currentUser.displayName,
-      authorEmail: currentUser.email,
-      prep: 0,
-      cooking: 0,
-      total: 0,
-      serving: 0,
-      imgUrl: '',
-      ingredients: [],
-      steps: [],
-      favorite: false,
-    });
-
-    setRedirect((prevState) => !prevState);
+    try {
+      await uploadBytes(imageRef, image);
+      const url = await getDownloadURL(imageRef);
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          imgUrl: url,
+        };
+      });
+      setUploadRecipeImg(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleChange = (e) => {
@@ -130,6 +129,12 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
     });
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
   return (
     <>
       <Transition
@@ -142,10 +147,11 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <form className='form-default'>
+        <form className='form-default' onSubmit={handleAddRecipe}>
           <div className='input-wrapper'>
-            <label className='label-form' htmlFor='title'>
+            <label className='label-form flex justify-between' htmlFor='title'>
               Recipe Title
+              <span className='text-xs italic'>* required</span>
             </label>
             <input
               className='input-form'
@@ -153,39 +159,43 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
               id='title'
               name='title'
               value={title}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
+              required
             />
           </div>
           <div className='input-wrapper'>
-            <label className='label-form' htmlFor='desc'>
+            <label className='label-form flex justify-between' htmlFor='desc'>
               Recipe Description
+              <span className='text-xs italic'>* required</span>
             </label>
             <textarea
               className='input-form text-area-form'
               id='desc'
               name='desc'
               value={desc}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               rows='4'
+              required
             ></textarea>
           </div>
           <div className='input-wrapper'>
-            <label className='label-form' htmlFor='imgUrl'>
-              Recipe Image URL
+            <label className='label-form flex justify-between' htmlFor='imgUrl'>
+              Recipe Image
+              <span className='text-xs italic'>* required</span>
             </label>
             <input
               className='input-form'
-              type='text'
+              type='file'
               name='imgUrl'
-              id='imgUrl'
-              value={imgUrl}
-              onChange={(e) => handleChange(e)}
+              onChange={handleImageChange}
+              required
             />
           </div>
           <div className='input-wrapper-grid'>
             <div className='input-wrapper'>
-              <label className='label-form' htmlFor='prep'>
+              <label className='label-form flex justify-between' htmlFor='prep'>
                 Preparation mins
+                <span className='text-xs italic'>* required</span>
               </label>
               <input
                 className='input-form'
@@ -194,12 +204,16 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 id='prep'
                 value={prep}
                 min={0}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
               />
             </div>
             <div className='input-wrapper'>
-              <label className='label-form' htmlFor='cooking'>
+              <label
+                className='label-form flex justify-between'
+                htmlFor='cooking'
+              >
                 Cooking mins
+                <span className='text-xs italic'>* required</span>
               </label>
               <input
                 className='input-form'
@@ -208,14 +222,18 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 id='cooking'
                 min={0}
                 value={cooking}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
               />
             </div>
           </div>
           <div className='input-wrapper-grid'>
             <div className='input-wrapper'>
-              <label className='label-form' htmlFor='total'>
+              <label
+                className='label-form flex justify-between'
+                htmlFor='total'
+              >
                 Total mins
+                <span className='text-xs italic'>* required</span>
               </label>
               <input
                 className='input-form'
@@ -224,12 +242,16 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 id='total'
                 min={0}
                 value={total}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
               />
             </div>
             <div className='input-wrapper'>
-              <label className='label-form' htmlFor='serving'>
+              <label
+                className='label-form flex justify-between'
+                htmlFor='serving'
+              >
                 Servings
+                <span className='text-xs italic'>* required</span>
               </label>
               <input
                 className='input-form'
@@ -238,7 +260,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 id='serving'
                 min={0}
                 value={serving}
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
               />
             </div>
             <div className='input-wrapper'>
@@ -297,11 +319,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
               </button>
             </div>
           </div>
-          <button
-            className='default-btn add-recipe-btn'
-            type='submit'
-            onClick={(e) => handleAddRecipe(e)}
-          >
+          <button className='default-btn add-recipe-btn' type='submit'>
             Add Recipe
           </button>
         </form>

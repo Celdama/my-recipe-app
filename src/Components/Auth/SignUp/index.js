@@ -88,13 +88,13 @@ export const SignUp = ({
         </Header>
 
         <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
-          <div>
+          <div className='input-wrapper'>
             <label
               className='label-form flex justify-between'
               htmlFor='userName'
             >
               Username
-              <span className='text-sm italic'>* required</span>
+              <span className='text-xs italic'>* required</span>
             </label>
             <input
               className='input-form bg-white'
@@ -105,10 +105,10 @@ export const SignUp = ({
               required
             />
           </div>
-          <div>
+          <div className='input-wrapper'>
             <label className='label-form flex justify-between' htmlFor='email'>
               Email
-              <span className='text-sm italic'>* required</span>
+              <span className='text-xs italic'>* required</span>
             </label>
             <input
               className='input-form bg-white'
@@ -120,13 +120,13 @@ export const SignUp = ({
             />
             <div className='form-alert-error' ref={divSignupEmailError}></div>
           </div>
-          <div>
+          <div className='input-wrapper'>
             <label
               className='label-form flex justify-between'
               htmlFor='password'
             >
               Password
-              <span className='text-sm italic'>* required</span>
+              <span className='text-xs italic'>* required</span>
             </label>
             <input
               className='input-form bg-white'
@@ -138,10 +138,10 @@ export const SignUp = ({
               required
             />
           </div>
-          <div>
+          <div className='input-wrapper'>
             <label className='label-form flex justify-between' htmlFor='avatar'>
               Avatar
-              <span className='text-sm italic'>* required</span>
+              <span className='text-xs italic'>* required</span>
             </label>
             <input
               onChange={handleImageChange}

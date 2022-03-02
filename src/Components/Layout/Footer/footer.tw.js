@@ -1,6 +1,7 @@
 import tw from 'tailwind-styled-components';
 
 export const Wrapper = tw.footer`
+  mt-12
   p-4 
   md:px-6 
   md:py-8 

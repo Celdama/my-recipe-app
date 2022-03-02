@@ -60,7 +60,7 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
           <Title>Sign in to your account</Title>
         </Header>
         <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
-          <div>
+          <div className='input-wrapper'>
             <label className='label-form' htmlFor='email'>
               Email
             </label>
@@ -73,7 +73,7 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
             />
             <div className='form-alert-error' ref={divLoginEmailError}></div>
           </div>
-          <div>
+          <div className='input-wrapper'>
             <label className='label-form' htmlFor='password'>
               Password
             </label>

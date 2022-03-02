@@ -10,7 +10,7 @@ import Spinner from '../../Layout/Spinner';
 export const RecipesList = ({ recipes }) => {
   const recipesContent =
     recipes &&
-    recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+    recipes.map((recipe, index) => <RecipeCard key={index} recipe={recipe} />);
 
   return <Wrapper>{!recipes.length ? <Spinner /> : recipesContent}</Wrapper>;
 };

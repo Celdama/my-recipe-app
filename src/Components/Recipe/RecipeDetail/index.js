@@ -97,7 +97,9 @@ export const RecipeDetail = ({ recipe, authUser, handleGetUsers }) => {
             ) : null}
           </RecipeHeaderBottom>
         </RecipeHeader>
-        <img className='rounded-lg' src={imgUrl} alt='recipe' />
+        <div className='flex items-center justify-center'>
+          <img className='rounded-lg' src={imgUrl} alt='recipe' />
+        </div>
         <RecipeResume
           title={title}
           prep={prep}
@@ -115,7 +117,7 @@ export const RecipeDetail = ({ recipe, authUser, handleGetUsers }) => {
       {!recipe ? (
         <Spinner />
       ) : (
-        <>
+        <div className='w-full'>
           <Content>{recipeContent}</Content>
           <EditRecipeFormStore
             open={open}
@@ -128,7 +130,7 @@ export const RecipeDetail = ({ recipe, authUser, handleGetUsers }) => {
             toggleOpenDeleteModal={toggleOpenDeleteModal}
             openDeleteModal={openDeleteModal}
           />
-        </>
+        </div>
       )}
     </Wrapper>
   );
