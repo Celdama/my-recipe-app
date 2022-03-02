@@ -18,6 +18,7 @@ import { RequireAuth, RequireNotBeAuth } from './Helpers/requireAuth';
 import { ChefsListStore } from './Components/Chef/ChefsList';
 import { ChefDetailsStore } from './Components/Chef/ChefDetails';
 import { getUsers } from './store/actions/usersAction';
+import Footer from './Components/Layout/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className='App bg-white'>
+    <div className='App bg-white flex flex-col min-h-screen'>
       <BrowserRouter>
         <NavbarStore />
         <Header />
@@ -75,6 +76,7 @@ const App = () => {
             <Route path='*' element={<NoMatch />} />
           </Routes>
         </Main>
+        <Footer />
       </BrowserRouter>
     </div>
   );

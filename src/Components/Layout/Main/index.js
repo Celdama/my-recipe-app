@@ -3,7 +3,7 @@ import { Wrapper, Content, Container } from './main.tw';
 
 const Main = ({ children }) => {
   return (
-    <main>
+    <main className='grow'>
       <Wrapper>
         <Content>
           <Container>{children}</Container>

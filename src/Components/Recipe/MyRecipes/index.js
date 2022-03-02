@@ -31,7 +31,9 @@ export const MyRecipes = ({ recipes, authUser }) => {
   return (
     <div>
       {!recipes.length ? (
-        <Spinner />
+        <div className='flex justify-center'>
+          <Spinner />
+        </div>
       ) : (
         <div>
           {!!authUser.uid && recipesContent.length && (
