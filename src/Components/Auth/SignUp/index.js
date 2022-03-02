@@ -8,19 +8,20 @@ import {
 import { ClipboardListIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 import { addUser } from '../../../store/actions/usersAction';
-import { nanoid } from 'nanoid';
 import { storage } from '../../../config/fbConfig';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
 import { Wrapper, Content, Header, Title, Button } from './signup.tw';
+import { authSelector } from '../../../store/selectors/authSelector';
 
 export const SignUp = ({
   registerUserInFirebase,
   updateUserInFirebase,
   addUserInFirestore,
   alert,
+  authUser,
 }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -70,10 +71,9 @@ export const SignUp = ({
       updateUserInFirebase(userName, url);
       addUserInFirestore({
         userName,
-        email,
         avatar: url,
-        uid: nanoid(),
       });
+      addUserInFirestore();
     } catch (err) {
       console.log(err);
     }
@@ -173,6 +173,7 @@ export const SignUp = ({
 export const SignUpStore = () => {
   const dispatch = useDispatch();
   const alert = useSelector(alertSelector);
+  const authUser = useSelector(authSelector);
 
   const registerUserInFirebase = async (emailRegister, passwordRegister) => {
     await dispatch(registerUser(emailRegister, passwordRegister));
@@ -185,11 +186,11 @@ export const SignUpStore = () => {
 
   const addUserInFirestore = async (data) => {
     await dispatch(addUser({ ...data }));
-    dispatch(resetAlert());
   };
 
   return (
     <SignUp
+      authUser={authUser}
       alert={alert}
       registerUserInFirebase={registerUserInFirebase}
       updateUserInFirebase={updateUserInFirebase}

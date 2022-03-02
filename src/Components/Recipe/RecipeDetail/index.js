@@ -32,7 +32,6 @@ export const RecipeDetail = ({ recipe, authUser, handleGetUsers }) => {
   const [open, setOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
-
   const toggleOpen = () => {
     setOpen(!open);
   };
