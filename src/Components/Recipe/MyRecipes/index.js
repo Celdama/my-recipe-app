@@ -5,6 +5,7 @@ import { recipesSelector } from '../../../store/selectors/recipesSelector';
 import RecipeCard from '../RecipeCard';
 import Spinner from '../../Layout/Spinner';
 import CallToAction from '../../CallToAction';
+import { Link } from 'react-router-dom';
 
 export const MyRecipes = ({ recipes, authUser }) => {
   const topText = 'You need to be connected to see your recipes list';
@@ -16,7 +17,19 @@ export const MyRecipes = ({ recipes, authUser }) => {
     }
 
     if (!recipesList.some((recipe) => recipe.authorId === userId)) {
-      return <p>no recipes, you need to add at least one recipe</p>;
+      return (
+        <div className='flex flex-col items-center py-20'>
+          <p className='text-center text-lg text-slate-600'>
+            No recipes, you need to add at least one recipe
+          </p>
+          <Link
+            to='/add-recipe'
+            className='inline-flex mt-6 items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700'
+          >
+            Add your first recipe
+          </Link>
+        </div>
+      );
     } else {
       return recipesList.map((recipe) =>
         recipe.authorId === userId ? (

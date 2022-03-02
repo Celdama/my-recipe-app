@@ -24,7 +24,7 @@ export const ChefsList = ({ chefs }) => {
             <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
               From the kitchens
             </h1>
-            <p className='tex-lg text-slate-600'>
+            <p className='text-lg text-slate-600'>
               Find the list of chefs who share delicious recipes.
             </p>
           </div>
