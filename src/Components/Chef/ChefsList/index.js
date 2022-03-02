@@ -15,7 +15,7 @@ export const ChefsList = ({ chefs }) => {
   const bottomText = 'Create an account and add your first recipe.';
 
   return (
-    <div>
+    <div className='flex flex-col items-center min-h-screen'>
       {!chefs.length ? (
         <Spinner />
       ) : (
