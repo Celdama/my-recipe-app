@@ -50,7 +50,9 @@ export const MyRecipes = ({ recipes, authUser }) => {
       ) : (
         <div>
           {!!authUser.uid && recipesContent.length && (
-            <h1>This is your delicious recipes list</h1>
+            <h1 className='text-center text-lg text-slate-600'>
+              This is your delicious recipes list
+            </h1>
           )}
           {recipesContent}
         </div>
