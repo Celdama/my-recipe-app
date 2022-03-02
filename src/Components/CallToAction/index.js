@@ -9,15 +9,13 @@ import {
   Button,
 } from './callToAction.tw';
 
-const CallToAction = () => {
+const CallToAction = ({ topText, bottomText }) => {
   return (
     <Wrapper>
       <Content>
         <Title>
-          <span>Ready to join the team?</span>
-          <span className='text-indigo-600'>
-            Create an account and add your first recipe.
-          </span>
+          <span>{topText}</span>
+          <span className='text-indigo-600'>{bottomText}</span>
         </Title>
         <Body>
           <WrapperButton>

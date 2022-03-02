@@ -11,6 +11,9 @@ export const ChefsList = ({ chefs }) => {
   const chefsContent =
     chefs && chefs.map((chef) => <ChefCard key={chef.uid} chef={chef} />);
 
+  const topText = 'Ready to join the team?';
+  const bottomText = 'Create an account and add your first recipe.';
+
   return (
     <div>
       {!chefs.length ? (
@@ -28,7 +31,7 @@ export const ChefsList = ({ chefs }) => {
           <div className='flex justify-center md:justify-around flex-wrap gap-10 py-28'>
             {chefsContent}
           </div>
-          <CallToAction />
+          <CallToAction topText={topText} bottomText={bottomText} />
         </>
       )}
     </div>
