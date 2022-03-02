@@ -1,9 +1,11 @@
 import tw from 'tailwind-styled-components';
 
 export const Wrapper = tw.div`
-  m-4
+  my-6
   max-w-xl
   w-full
+  xl:mx-0
+  mx-auto
 `;
 
 export const RecipeImg = tw.img`
