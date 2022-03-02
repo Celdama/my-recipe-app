@@ -5,6 +5,15 @@ import { usersSelector } from '../../../store/selectors/usersSelector';
 import { recipesSelector } from '../../../store/selectors/recipesSelector';
 import RecipeCard from '../../Recipe/RecipeCard';
 import Spinner from '../../Layout/Spinner';
+import {
+  Wrapper,
+  ChefInfoContent,
+  ChefInfoRecipes,
+  Username,
+  Avatar,
+  UserEmail,
+  RecipeResume,
+} from './chefDetails.tw';
 
 export const ChefDetails = ({ chefs, recipes, id }) => {
   const [currentChef, setCurrentChef] = useState({});
@@ -26,38 +35,29 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
     setUpData();
   }, [chefs, recipes, id]);
 
+  const currentChefRecipesList = currentChefRecipes.map((recipe) => (
+    <RecipeCard key={recipe.id} recipe={recipe} />
+  ));
+
   return (
-    <div className='flex flex-col items-center '>
-      {currentChef ? (
+    <Wrapper>
+      {!currentChef ? (
+        <Spinner />
+      ) : (
         <div>
-          <div className='flex flex-col items-center  pt-8 pb-20'>
-            <img
-              className='w-48 h-48 rounded-3xl mb-5'
-              src={currentChef.avatar}
-              alt='avatar'
-            />
-            <h1 className='text-4xl font-bold'>{currentChef.userName}</h1>
-            <h4 className='tex-lg text-slate-600'>{currentChef.email}</h4>
-            <p
-              className='inline-flex items-center text-sm font-semibold  text-center
-            text-indigo-600 hover:text-indigo-700'
-            >
+          <ChefInfoContent>
+            <Avatar src={currentChef.avatar} alt='avatar' />
+            <Username>{currentChef.userName}</Username>
+            <UserEmail>{currentChef.email}</UserEmail>
+            <RecipeResume>
               {currentChefRecipes.length} recipe
               {currentChefRecipes.length > 1 ? 's' : ''}
-            </p>
-          </div>
-          {
-            <div className='flex flex-wrap justify-center'>
-              {currentChefRecipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
-            </div>
-          }
+            </RecipeResume>
+          </ChefInfoContent>
+          <ChefInfoRecipes>{currentChefRecipesList}</ChefInfoRecipes>
         </div>
-      ) : (
-        <Spinner />
       )}
-    </div>
+    </Wrapper>
   );
 };
 
@@ -66,9 +66,5 @@ export const ChefDetailsStore = () => {
   const chefs = useSelector(usersSelector);
   const recipes = useSelector(recipesSelector);
 
-  return (
-    <>
-      <ChefDetails chefs={chefs} recipes={recipes} id={id} />
-    </>
-  );
+  return <ChefDetails chefs={chefs} recipes={recipes} id={id} />;
 };
