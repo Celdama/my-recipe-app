@@ -37,6 +37,7 @@ export const Body = tw.div`
 export const WrapperButton = tw.div`
   flex
   gap-3
+  md:ml-4
 `;
 
 export const Button = tw.button`
