@@ -20,7 +20,9 @@ const RecipeCard = ({ recipe }) => {
         hover:bg-slate-50'
         to={`/recipe/${id}`}
       >
-        <RecipeImg src={imgUrl} alt='recipe' />
+        <div className='md:w-10/12'>
+          <RecipeImg src={imgUrl} alt='recipe' />
+        </div>
         <RecipeContent>
           <div>
             <RecipeTitle>{title}</RecipeTitle>

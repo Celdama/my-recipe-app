@@ -10,7 +10,6 @@ export const RecipeImg = tw.img`
   object-cover
   bg-center
   w-full
-  md:w-72
   h-56
   sm:h-96
   rounded-t-lg
