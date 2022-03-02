@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <Wrapper>
       <Content>
-        <Link to={'/'} class='flex items-center mb-4 sm:mb-0'>
+        <Link to={'/'} className='flex items-center mb-4 sm:mb-0'>
           <ClipboardListIcon className='h-8 w-8 mr-3 text-indigo-600' />
           <TitleApp>MyRecipeApp</TitleApp>
         </Link>

@@ -49,14 +49,14 @@ const App = () => {
               }
             />
             <Route path='/recipe/:id' element={<RecipeDetailStore />} />
-            <Route
+            {/* <Route
               path='/profile'
               element={
                 <RequireAuth redirectTo={'/signup'}>
                   <ProfileStore />
                 </RequireAuth>
               }
-            />
+            /> */}
             <Route
               path='/signin'
               element={
