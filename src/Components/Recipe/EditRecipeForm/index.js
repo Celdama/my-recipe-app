@@ -182,7 +182,7 @@ export const EditRecipeForm = ({
                         defaultValue={author}
                       />
                     </div>
-                    <div className='input-wrapper'>
+                    {/* <div className='input-wrapper'>
                       <label className='label-form' htmlFor='imgUrl'>
                         Recipe Image URL
                       </label>
@@ -193,7 +193,7 @@ export const EditRecipeForm = ({
                         onChange={(e) => handleEditRecipe(e)}
                         defaultValue={imgUrl}
                       />
-                    </div>
+                    </div> */}
                     <div className='input-wrapper-grid'>
                       <div className='input-wrapper'>
                         <label className='label-form' htmlFor='prep'>
