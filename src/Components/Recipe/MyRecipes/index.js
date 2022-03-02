@@ -50,11 +50,11 @@ export const MyRecipes = ({ recipes, authUser }) => {
       ) : (
         <div>
           {!!authUser.uid && recipesContent.length && (
-            <h1 className='text-center text-lg text-slate-600'>
+            <h1 className='text-center text-lg text-slate-600 mb-16'>
               This is your delicious recipes list
             </h1>
           )}
-          {recipesContent}
+          <div className='flex justify-between flex-wrap'>{recipesContent}</div>
         </div>
       )}
     </div>
