@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   updateUser,
@@ -172,18 +172,27 @@ export const SignUpStore = () => {
   const alert = useSelector(alertSelector);
   const authUser = useSelector(authSelector);
 
-  const registerUserInFirebase = async (emailRegister, passwordRegister) => {
-    await dispatch(registerUser(emailRegister, passwordRegister));
-  };
+  const registerUserInFirebase = useCallback(
+    async (emailRegister, passwordRegister) => {
+      await dispatch(registerUser(emailRegister, passwordRegister));
+    },
+    [dispatch]
+  );
 
-  const updateUserInFirebase = async (userName, avatar) => {
-    await dispatch(updateUser(userName, avatar));
-    dispatch(monitorAuthState());
-  };
+  const updateUserInFirebase = useCallback(
+    async (userName, avatar) => {
+      await dispatch(updateUser(userName, avatar));
+      dispatch(monitorAuthState());
+    },
+    [dispatch]
+  );
 
-  const addUserInFirestore = async (data) => {
-    await dispatch(addUser({ ...data }));
-  };
+  const addUserInFirestore = useCallback(
+    async (data) => {
+      await dispatch(addUser({ ...data }));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     const handleResetAlert = () => {
