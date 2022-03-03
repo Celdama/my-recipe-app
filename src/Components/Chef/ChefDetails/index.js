@@ -44,7 +44,7 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
       {!currentChef ? (
         <Spinner />
       ) : (
-        <div>
+        <>
           <ChefInfoContent>
             <Avatar src={currentChef.avatar} alt='avatar' />
             <Username>{currentChef.userName}</Username>
@@ -55,7 +55,7 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
             </RecipeResume>
           </ChefInfoContent>
           <ChefInfoRecipes>{currentChefRecipesList}</ChefInfoRecipes>
-        </div>
+        </>
       )}
     </Wrapper>
   );
