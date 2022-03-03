@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { addRecipe, getRecipes } from '../../../store/actions/recipesAction';
@@ -8,6 +8,7 @@ import { authSelector } from '../../../store/selectors/authSelector';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../../config/fbConfig';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   const navigate = useNavigate();
@@ -330,14 +331,22 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
   );
 };
 
+AddRecipeForm.propTypes = {
+  currentUser: PropTypes.object,
+  addRecipeToFirebase: PropTypes.func,
+};
+
 export const AddRecipeFormStore = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(authSelector);
 
-  const addRecipeToFirebase = async (data) => {
-    await dispatch(addRecipe({ ...data }));
-    dispatch(getRecipes());
-  };
+  const addRecipeToFirebase = useCallback(
+    async (data) => {
+      await dispatch(addRecipe({ ...data }));
+      dispatch(getRecipes());
+    },
+    [dispatch]
+  );
 
   return (
     <AddRecipeForm
