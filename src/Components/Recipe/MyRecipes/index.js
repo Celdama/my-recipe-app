@@ -6,6 +6,7 @@ import RecipeCard from '../RecipeCard';
 import Spinner from '../../Layout/Spinner';
 import CallToAction from '../../CallToAction';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const MyRecipes = ({ recipes, authUser }) => {
   const topText = 'You need to be connected to see your recipes list';
@@ -59,6 +60,11 @@ export const MyRecipes = ({ recipes, authUser }) => {
       )}
     </div>
   );
+};
+
+MyRecipes.propTypes = {
+  recipes: PropTypes.array,
+  authUser: PropTypes.object,
 };
 
 export const MyRecipesStore = () => {
