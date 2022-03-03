@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../../store/actions/authAction';
 import { LockClosedIcon } from '@heroicons/react/solid';
@@ -115,10 +115,13 @@ export const SignInStore = () => {
   const dispatch = useDispatch();
   const alert = useSelector(alertSelector);
 
-  const loginUserInFirebase = (emailLogin, passwordLogin) => {
-    dispatch(logInUser(emailLogin, passwordLogin));
-    dispatch(resetAlert());
-  };
+  const loginUserInFirebase = useCallback(
+    (emailLogin, passwordLogin) => {
+      dispatch(logInUser(emailLogin, passwordLogin));
+      dispatch(resetAlert());
+    },
+    [dispatch]
+  );
 
   return <SignIn loginUserInFirebase={loginUserInFirebase} alert={alert} />;
 };
