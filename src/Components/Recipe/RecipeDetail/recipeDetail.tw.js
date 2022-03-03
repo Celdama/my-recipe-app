@@ -40,6 +40,7 @@ export const RecipeHeaderBottomRight = tw.div`
 
 export const RecipeTitle = tw.h1`
   text-3xl 
+  break-words
   font-extrabold 
   tracking-tight 
   text-gray-900 
