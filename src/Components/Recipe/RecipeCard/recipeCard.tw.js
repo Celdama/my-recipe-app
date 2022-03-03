@@ -34,6 +34,7 @@ export const RecipeTitle = tw.h5`
   text-2xl 
   font-bold 
   tracking-tight 
+  break-words
   text-gray-900
 `;
 
