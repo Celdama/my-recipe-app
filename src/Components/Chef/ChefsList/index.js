@@ -7,6 +7,7 @@ import ChefCard from '../ChefCard';
 import Spinner from '../../Layout/Spinner';
 import CallToAction from '../../CallToAction';
 import { Header, Wrapper, Title, SubTitle, Content } from './chefsList.tw';
+import PropTypes from 'prop-types';
 
 export const ChefsList = ({ chefs }) => {
   const chefsContent =
@@ -33,6 +34,10 @@ export const ChefsList = ({ chefs }) => {
       )}
     </Wrapper>
   );
+};
+
+ChefsList.propTypes = {
+  chefs: PropTypes.array,
 };
 
 export const ChefsListStore = () => {
