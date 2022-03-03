@@ -5,6 +5,7 @@ import { usersSelector } from '../../../store/selectors/usersSelector';
 import { recipesSelector } from '../../../store/selectors/recipesSelector';
 import RecipeCard from '../../Recipe/RecipeCard';
 import Spinner from '../../Layout/Spinner';
+import PropTypes from 'prop-types';
 import {
   Wrapper,
   ChefInfoContent,
@@ -59,6 +60,12 @@ export const ChefDetails = ({ chefs, recipes, id }) => {
       )}
     </Wrapper>
   );
+};
+
+ChefDetails.propTypes = {
+  chefs: PropTypes.array,
+  recipes: PropTypes.array,
+  id: PropTypes.string,
 };
 
 export const ChefDetailsStore = () => {
