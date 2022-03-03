@@ -14,14 +14,13 @@ import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
 import { Wrapper, Content, Header, Title } from './signup.tw';
-import { authSelector } from '../../../store/selectors/authSelector';
+import PropTypes from 'prop-types';
 
 export const SignUp = ({
   registerUserInFirebase,
   updateUserInFirebase,
   addUserInFirestore,
   alert,
-  authUser,
 }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -167,10 +166,16 @@ export const SignUp = ({
   );
 };
 
+SignUp.propTypes = {
+  registerUserInFirebase: PropTypes.func,
+  updateUserInFirebase: PropTypes.func,
+  addUserInFirestore: PropTypes.func,
+  alert: PropTypes.object,
+};
+
 export const SignUpStore = () => {
   const dispatch = useDispatch();
   const alert = useSelector(alertSelector);
-  const authUser = useSelector(authSelector);
 
   const registerUserInFirebase = useCallback(
     async (emailRegister, passwordRegister) => {
@@ -204,7 +209,6 @@ export const SignUpStore = () => {
 
   return (
     <SignUp
-      authUser={authUser}
       alert={alert}
       registerUserInFirebase={registerUserInFirebase}
       updateUserInFirebase={updateUserInFirebase}
