@@ -6,6 +6,7 @@ import { usersSelector } from '../../../store/selectors/usersSelector';
 import ChefCard from '../ChefCard';
 import Spinner from '../../Layout/Spinner';
 import CallToAction from '../../CallToAction';
+import { Header, Wrapper, Title, SubTitle, Content } from './chefsList.tw';
 
 export const ChefsList = ({ chefs }) => {
   const chefsContent =
@@ -15,26 +16,22 @@ export const ChefsList = ({ chefs }) => {
   const bottomText = 'Create an account and add your first recipe.';
 
   return (
-    <div className='flex flex-col items-center min-h-screen'>
+    <Wrapper>
       {!chefs.length ? (
         <Spinner />
       ) : (
         <>
-          <div className='flex flex-col items-center'>
-            <h1 className='mb-4 text-5xl md:text-6xl font-bold'>
-              From the kitchens
-            </h1>
-            <p className='text-lg text-slate-600'>
+          <Header>
+            <Title>From the kitchens</Title>
+            <SubTitle>
               Find the list of chefs who share delicious recipes.
-            </p>
-          </div>
-          <div className='flex justify-center md:justify-around flex-wrap gap-10 py-28'>
-            {chefsContent}
-          </div>
+            </SubTitle>
+          </Header>
+          <Content>{chefsContent}</Content>
           <CallToAction topText={topText} bottomText={bottomText} />
         </>
       )}
-    </div>
+    </Wrapper>
   );
 };
 
