@@ -1,10 +1,11 @@
 import React from 'react';
-import { Fragment, useRef, useState, useEffect } from 'react';
+import { Fragment, useRef, useState, useEffect, useCallback } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationIcon } from '@heroicons/react/outline';
 import { useDispatch } from 'react-redux';
 import { deleteRecipe } from '../../../store/actions/recipesAction';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Wrapper,
   SpanAligner,
@@ -120,6 +121,13 @@ export const DeleteRecipeModal = ({
   );
 };
 
+DeleteRecipeModal.propTypes = {
+  recipe: PropTypes.object,
+  toggleOpenDeleteModal: PropTypes.func,
+  openDeleteModal: PropTypes.bool,
+  deleteRecipeInFirebase: PropTypes.func,
+};
+
 export const DeleteRecipeModalStore = ({
   recipe,
   toggleOpenDeleteModal,
@@ -127,9 +135,12 @@ export const DeleteRecipeModalStore = ({
 }) => {
   const dispatch = useDispatch();
 
-  const deleteRecipeInFirebase = (id) => {
-    dispatch(deleteRecipe(id));
-  };
+  const deleteRecipeInFirebase = useCallback(
+    (id) => {
+      dispatch(deleteRecipe(id));
+    },
+    [dispatch]
+  );
 
   return (
     <DeleteRecipeModal
@@ -139,4 +150,10 @@ export const DeleteRecipeModalStore = ({
       deleteRecipeInFirebase={deleteRecipeInFirebase}
     />
   );
+};
+
+DeleteRecipeModalStore.propTypes = {
+  recipe: PropTypes.object,
+  toggleOpenDeleteModal: PropTypes.func,
+  openDeleteModal: PropTypes.bool,
 };
