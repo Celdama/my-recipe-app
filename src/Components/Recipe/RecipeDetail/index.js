@@ -11,7 +11,6 @@ import { EditRecipeFormStore } from '../EditRecipeForm';
 import { authSelector } from '../../../store/selectors/authSelector';
 import { Link } from 'react-router-dom';
 import { DeleteRecipeModalStore } from '../DeleteRecipeModal';
-import { getUsers } from '../../../store/actions/usersAction';
 import PropTypes from 'prop-types';
 import {
   Wrapper,
