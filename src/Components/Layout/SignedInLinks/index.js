@@ -4,6 +4,7 @@ import { Menu, Disclosure } from '@headlessui/react';
 import Avatar from '../../../Images/avatar.png';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../../store/selectors/authSelector';
+import PropTypes from 'prop-types';
 
 const SignedInLinks = ({ mobile }) => {
   const authUser = useSelector(authSelector);
@@ -30,6 +31,10 @@ const SignedInLinks = ({ mobile }) => {
       )}
     </>
   );
+};
+
+SignedInLinks.propTypes = {
+  mobile: PropTypes.bool,
 };
 
 export default SignedInLinks;
