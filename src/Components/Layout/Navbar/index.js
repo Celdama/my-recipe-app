@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import {
   Wrapper,
   ContentDesktop,
@@ -25,6 +25,7 @@ import { useDispatch } from 'react-redux';
 import { classNames } from '../../../Helpers/joinClassNames';
 import { navigation, loginNavigation } from '../../../Helpers/navigation';
 import { userNavigation } from '../../../Helpers/userNavigation';
+import PropTypes from 'prop-types';
 
 export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
   const { displayName, email } = authUser;
@@ -228,14 +229,20 @@ export const Navbar = ({ handleSignOut, isLogin, authUser }) => {
   );
 };
 
+Navbar.propTypes = {
+  handleSignOut: PropTypes.func,
+  isLogin: PropTypes.bool,
+  authUser: PropTypes.object,
+};
+
 export const NavbarStore = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector(isAuthSelector);
   const authUser = useSelector(authSelector);
 
-  const handleSignOut = () => {
+  const handleSignOut = useCallback(() => {
     dispatch(signOutUser());
-  };
+  }, [dispatch]);
   return (
     <Navbar
       handleSignOut={handleSignOut}
