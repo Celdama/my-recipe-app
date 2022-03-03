@@ -73,7 +73,6 @@ export const SignUp = ({
         userName,
         avatar: url,
       });
-      addUserInFirestore();
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +96,7 @@ export const SignUp = ({
               <span className='text-xs italic'>* required</span>
             </label>
             <input
-              className='input-form bg-white'
+              className='input-form'
               type='text'
               name='userName'
               value={userName}
@@ -111,7 +110,7 @@ export const SignUp = ({
               <span className='text-xs italic'>* required</span>
             </label>
             <input
-              className='input-form bg-white'
+              className='input-form'
               type='email'
               name='email'
               value={email}
@@ -129,7 +128,7 @@ export const SignUp = ({
               <span className='text-xs italic'>* required</span>
             </label>
             <input
-              className='input-form bg-white'
+              className='input-form'
               type='password'
               name='password'
               value={password}
@@ -147,7 +146,7 @@ export const SignUp = ({
               onChange={handleImageChange}
               type='file'
               name='avatar'
-              className='input-form bg-white'
+              className='input-form'
               required
             />
           </div>
@@ -161,9 +160,7 @@ export const SignUp = ({
               </Link>
             </div>
           </div>
-          <div>
-            <Button>Sign up</Button>
-          </div>
+          <button className='default-btn blue-btn'>Sign up</button>
         </form>
       </Content>
     </Wrapper>
@@ -187,6 +184,14 @@ export const SignUpStore = () => {
   const addUserInFirestore = async (data) => {
     await dispatch(addUser({ ...data }));
   };
+
+  const handleResetAlert = () => {
+    dispatch(resetAlert());
+  };
+
+  useEffect(() => {
+    handleResetAlert();
+  }, []);
 
   return (
     <SignUp

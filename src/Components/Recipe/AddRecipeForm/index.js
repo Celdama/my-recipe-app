@@ -205,6 +205,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 value={prep}
                 min={0}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className='input-wrapper'>
@@ -223,6 +224,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 min={0}
                 value={cooking}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -243,6 +245,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 min={0}
                 value={total}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className='input-wrapper'>
@@ -261,6 +264,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 min={0}
                 value={serving}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className='input-wrapper'>
@@ -319,9 +323,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
               </button>
             </div>
           </div>
-          <button className='default-btn add-recipe-btn' type='submit'>
-            Add Recipe
-          </button>
+          <button className='default-btn blue-btn'>Add Recipe</button>
         </form>
       </Transition>
     </>

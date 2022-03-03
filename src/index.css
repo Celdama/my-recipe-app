@@ -112,14 +112,14 @@
   }
 
   .input-form {
-    @apply bg-gray-50
-      border
+    @apply border
       border-gray-300
       text-gray-900
       rounded-lg
       block
       w-full
-      p-2.5;
+      p-2.5
+      bg-white;
   }
 
   .text-area-form {
@@ -130,6 +130,7 @@
     @apply w-full
       font-medium
       border
+      border-transparent
       rounded-lg
       text-sm
       px-5
@@ -140,11 +141,11 @@
     @apply text-gray-900
       hover:text-indigo-500
       border-gray-200
-      hover:bg-gray-100
-      bg-gray-200;
+      hover:bg-gray-200
+      bg-gray-100;
   }
 
-  .add-recipe-btn {
+  .blue-btn {
     @apply text-white
     bg-indigo-600
     hover:bg-indigo-700;
