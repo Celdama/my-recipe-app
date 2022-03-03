@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Wrapper, Content, Avatar, Username } from './chefCard.tw';
+import PropTypes from 'prop-types';
 
 const ChefCard = ({ chef }) => {
   const { avatar, userName, uid } = chef;
@@ -19,6 +20,10 @@ const ChefCard = ({ chef }) => {
       </Content>
     </Wrapper>
   );
+};
+
+ChefCard.propTypes = {
+  chef: PropTypes.object,
 };
 
 export default ChefCard;
