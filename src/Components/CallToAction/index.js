@@ -8,6 +8,7 @@ import {
   WrapperButton,
   Button,
 } from './callToAction.tw';
+import PropTypes from 'prop-types';
 
 const CallToAction = ({ topText, bottomText }) => {
   return (
@@ -40,6 +41,11 @@ const CallToAction = ({ topText, bottomText }) => {
       </Content>
     </Wrapper>
   );
+};
+
+CallToAction.propTypes = {
+  topText: PropTypes.string,
+  bottomText: PropTypes.string,
 };
 
 export default CallToAction;
