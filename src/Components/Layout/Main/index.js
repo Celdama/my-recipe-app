@@ -1,5 +1,6 @@
 import React from 'react';
 import { Wrapper, Content, Container } from './main.tw';
+import PropTypes from 'prop-types';
 
 const Main = ({ children }) => {
   return (
@@ -11,6 +12,10 @@ const Main = ({ children }) => {
       </Wrapper>
     </main>
   );
+};
+
+Main.propTypes = {
+  children: PropTypes.object,
 };
 
 export default Main;
