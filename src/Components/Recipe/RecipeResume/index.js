@@ -10,6 +10,7 @@ import {
   Dt,
   Dd,
 } from './recipeResume.tw';
+import PropTypes from 'prop-types';
 
 const RecipeResume = ({ title, prep, cooking, total, serving }) => {
   return (
@@ -40,6 +41,14 @@ const RecipeResume = ({ title, prep, cooking, total, serving }) => {
       </Content>
     </Wrapper>
   );
+};
+
+RecipeResume.propTypes = {
+  title: PropTypes.string,
+  prep: PropTypes.string,
+  cooking: PropTypes.number,
+  total: PropTypes.string,
+  serving: PropTypes.number,
 };
 
 export default RecipeResume;
