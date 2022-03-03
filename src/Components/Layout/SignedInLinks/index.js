@@ -12,7 +12,11 @@ const SignedInLinks = ({ mobile }) => {
   return (
     <>
       {mobile ? (
-        <Disclosure.Button as={NavLink} to={'profile'} className='rounded-full'>
+        <Disclosure.Button
+          as={NavLink}
+          to={'/my-recipes'}
+          className='rounded-full'
+        >
           <img
             className='h-12 w-12 rounded-full ml-2'
             src={authUser.photoURL ? authUser.photoURL : Avatar}
