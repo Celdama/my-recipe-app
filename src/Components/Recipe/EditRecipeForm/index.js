@@ -1,8 +1,15 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react';
+import React, {
+  Fragment,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { editRecipe } from '../../../store/actions/recipesAction';
 import { getCurrentRecipe } from '../../../store/actions/currentRecipeAction';
+import PropTypes from 'prop-types';
 import {
   Wrapper,
   Content,
@@ -336,6 +343,14 @@ export const EditRecipeForm = ({
   );
 };
 
+EditRecipeForm.propTypes = {
+  open: PropTypes.bool,
+  toggleOpen: PropTypes.func,
+  recipe: PropTypes.object,
+  toggleEdit: PropTypes.func,
+  editRecipeInFirebase: PropTypes.func,
+};
+
 export const EditRecipeFormStore = ({
   open,
   toggleOpen,
@@ -344,10 +359,13 @@ export const EditRecipeFormStore = ({
 }) => {
   const dispatch = useDispatch();
 
-  const editRecipeInFirebase = async (data) => {
-    await dispatch(editRecipe(data));
-    dispatch(getCurrentRecipe(data.id));
-  };
+  const editRecipeInFirebase = useCallback(
+    async (data) => {
+      await dispatch(editRecipe(data));
+      dispatch(getCurrentRecipe(data.id));
+    },
+    [dispatch]
+  );
 
   return (
     <EditRecipeForm
@@ -358,4 +376,11 @@ export const EditRecipeFormStore = ({
       editRecipeInFirebase={editRecipeInFirebase}
     />
   );
+};
+
+EditRecipeFormStore.propTypes = {
+  open: PropTypes.bool,
+  toggleOpen: PropTypes.func,
+  recipe: PropTypes.object,
+  toggleEdit: PropTypes.func,
 };
