@@ -6,23 +6,28 @@ import {
   Span,
   Step,
 } from './recipeStepsTimeline.tw';
+import PropTypes from 'prop-types';
 
 const RecipeStepsTimeline = ({ steps }) => {
+  const stepsContent = steps.map((step, i) => {
+    return (
+      <ListItem key={i}>
+        <Span>{i + 1}</Span>
+        <Step>{step}</Step>
+      </ListItem>
+    );
+  });
+
   return (
     <Wrapper>
       <h3 className='title-section-recipe-detail'>Methods</h3>
-      <StepsList>
-        {steps.map((step, i) => {
-          return (
-            <ListItem key={i}>
-              <Span>{i + 1}</Span>
-              <Step>{step}</Step>
-            </ListItem>
-          );
-        })}
-      </StepsList>
+      <StepsList>{stepsContent}</StepsList>
     </Wrapper>
   );
+};
+
+RecipeStepsTimeline.propTypes = {
+  steps: PropTypes.array,
 };
 
 export default RecipeStepsTimeline;
