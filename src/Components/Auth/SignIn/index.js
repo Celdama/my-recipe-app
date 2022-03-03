@@ -8,6 +8,7 @@ import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
 import { Wrapper, Content, Title, Header } from './signin.tw';
+import PropTypes from 'prop-types';
 
 export const SignIn = ({ loginUserInFirebase, alert }) => {
   const [formData, setFormData] = useState({
@@ -109,6 +110,11 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
       </Content>
     </Wrapper>
   );
+};
+
+SignIn.propTypes = {
+  loginUserInFirebase: PropTypes.func,
+  alert: PropTypes.object,
 };
 
 export const SignInStore = () => {
