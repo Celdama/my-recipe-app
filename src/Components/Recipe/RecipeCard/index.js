@@ -8,6 +8,7 @@ import {
   RecipeDesc,
   RecipeInfo,
 } from './recipeCard.tw';
+import PropTypes from 'prop-types';
 
 const RecipeCard = ({ recipe }) => {
   const { id, imgUrl, title, desc, prep, cooking } = recipe;
@@ -36,6 +37,10 @@ const RecipeCard = ({ recipe }) => {
       </Link>
     </Wrapper>
   );
+};
+
+RecipeCard.propTypes = {
+  recipe: PropTypes.object,
 };
 
 export default RecipeCard;
