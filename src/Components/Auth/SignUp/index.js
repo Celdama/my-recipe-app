@@ -185,13 +185,13 @@ export const SignUpStore = () => {
     await dispatch(addUser({ ...data }));
   };
 
-  const handleResetAlert = () => {
-    dispatch(resetAlert());
-  };
-
   useEffect(() => {
+    const handleResetAlert = () => {
+      dispatch(resetAlert());
+    };
+
     handleResetAlert();
-  }, []);
+  }, [dispatch]);
 
   return (
     <SignUp
