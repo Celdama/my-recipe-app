@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
-import { Wrapper, Content, Title, Header, Button } from './signin.tw';
+import { Wrapper, Content, Title, Header } from './signin.tw';
 
 export const SignIn = ({ loginUserInFirebase, alert }) => {
   const [formData, setFormData] = useState({
@@ -96,17 +96,15 @@ export const SignIn = ({ loginUserInFirebase, alert }) => {
               </Link>
             </div>
           </div>
-          <div>
-            <Button>
-              <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                <LockClosedIcon
-                  className='h-5 w-5 text-indigo-500'
-                  aria-hidden='true'
-                />
-              </span>
-              Sign in
-            </Button>
-          </div>
+          <button className='default-btn blue-btn relative'>
+            <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
+              <LockClosedIcon
+                className='h-5 w-5 text-indigo-500'
+                aria-hidden='true'
+              />
+            </span>
+            Sign in
+          </button>
         </form>
       </Content>
     </Wrapper>

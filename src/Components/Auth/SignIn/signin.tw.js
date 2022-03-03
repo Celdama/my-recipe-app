@@ -34,20 +34,3 @@ export const Title = tw.h2`
   font-extrabold 
   text-gray-900
 `;
-
-export const Button = tw.button`
-  relative 
-  w-full 
-  flex 
-  justify-center 
-  py-2 
-  px-4 
-  border 
-  border-transparent 
-  text-sm 
-  font-medium 
-  rounded-md 
-  text-white 
-  bg-indigo-600 
-  hover:bg-indigo-700
-`;

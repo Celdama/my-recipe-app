@@ -13,7 +13,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { alertSelector } from '../../../store/selectors/alertSelector';
 import { useSelector } from 'react-redux';
 import { resetAlert } from '../../../store/actions/alertAction';
-import { Wrapper, Content, Header, Title, Button } from './signup.tw';
+import { Wrapper, Content, Header, Title } from './signup.tw';
 import { authSelector } from '../../../store/selectors/authSelector';
 
 export const SignUp = ({
