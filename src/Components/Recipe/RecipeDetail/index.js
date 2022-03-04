@@ -44,8 +44,6 @@ export const RecipeDetail = ({ recipe, authUser }) => {
     setOpenDeleteModal(!openDeleteModal);
   };
 
-  console.log(recipe);
-
   let recipeContent;
   if (recipe) {
     const {

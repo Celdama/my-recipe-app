@@ -9,6 +9,15 @@ import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import { editRecipe } from '../../../store/actions/recipesAction';
 import { getCurrentRecipe } from '../../../store/actions/currentRecipeAction';
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from 'firebase/storage';
+import { storage } from '../../../config/fbConfig';
+import { nanoid } from 'nanoid';
+
 import PropTypes from 'prop-types';
 import {
   Wrapper,
@@ -26,12 +35,50 @@ export const EditRecipeForm = ({
 }) => {
   const cancelButtonRef = useRef(null);
   const [editRecipeData, setEditRecipeData] = useState();
+  const [uploadNewRecipeImg, setUploadNewRecipeImg] = useState(false);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     if (recipe) {
       setEditRecipeData({ ...recipe });
     }
   }, [recipe]);
+
+  const deleteOldImage = async () => {
+    const recipeRef = ref(storage, `${recipe.imgName}`);
+
+    try {
+      await deleteObject(recipeRef);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const editRecipeInStorage = async () => {
+      const imageId = nanoid();
+      const imageName = `${imageId}-${title}-recipe-image`;
+      const imageRef = ref(storage, `${imageName}`);
+
+      try {
+        await uploadBytes(imageRef, image);
+        const url = await getDownloadURL(imageRef);
+        setEditRecipeData((prevState) => {
+          return {
+            ...prevState,
+            imgUrl: url,
+            imgName: imageName,
+          };
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (uploadNewRecipeImg) {
+      editRecipeInStorage();
+    }
+  }, [uploadNewRecipeImg]);
 
   const handleEditRecipe = (e) => {
     const { name, value } = e.target;
@@ -105,14 +152,26 @@ export const EditRecipeForm = ({
     });
   };
 
-  const handleSubmitEditRecipe = (e) => {
+  const handleSubmitEditRecipe = async (e) => {
     e.preventDefault();
-    editRecipeInFirebase(editRecipeData);
-    toggleOpen();
-    toggleEdit();
+    if (uploadNewRecipeImg) {
+      await deleteOldImage();
+    }
+    await editRecipeInFirebase(editRecipeData);
+    await toggleOpen();
+    await toggleEdit();
+    setImage(null);
+    setUploadNewRecipeImg(false);
   };
 
-  const { title, desc, author, imgUrl, prep, cooking, total, serving } = recipe;
+  const handleImageEdit = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+      setUploadNewRecipeImg(true);
+    }
+  };
+
+  const { title, desc, imgUrl, prep, cooking, total, serving } = recipe;
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -187,30 +246,26 @@ export const EditRecipeForm = ({
                         maxLength='400'
                       ></textarea>
                     </div>
-                    {/* <div className='input-wrapper'>
-                      <label className='label-form' htmlFor='author'>
-                        Recipe Author
+                    <div className='input-wrapper'>
+                      <label
+                        className='label-form flex justify-between'
+                        htmlFor='imgUrl'
+                      >
+                        Recipe Image{' '}
                       </label>
+                      <img src={imgUrl} className='mb-3' alt='' />
+                      <span className='text-sm italic'>
+                        Browse new image if you want to replace current recipe
+                        img
+                      </span>
                       <input
-                        type='text'
                         className='input-form'
-                        name='author'
-                        onChange={(e) => handleEditRecipe(e)}
-                        defaultValue={author}
-                      />
-                    </div> */}
-                    {/* <div className='input-wrapper'>
-                      <label className='label-form' htmlFor='imgUrl'>
-                        Recipe Image URL
-                      </label>
-                      <input
-                        type='text'
-                        className='input-form'
+                        type='file'
                         name='imgUrl'
-                        onChange={(e) => handleEditRecipe(e)}
-                        defaultValue={imgUrl}
+                        onChange={handleImageEdit}
+                        required
                       />
-                    </div> */}
+                    </div>
                     <div className='input-wrapper-grid'>
                       <div className='input-wrapper'>
                         <label className='label-form' htmlFor='prep'>

@@ -45,14 +45,23 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
     }
   }, [redirect, navigate]);
 
-  const { title, desc, prep, cooking, total, serving, ingredients, steps } =
-    formData;
+  const {
+    title,
+    desc,
+    prep,
+    authorId,
+    cooking,
+    total,
+    serving,
+    ingredients,
+    steps,
+  } = formData;
 
   const handleAddRecipe = async (e) => {
     e.preventDefault();
     const imageId = nanoid();
-
-    const imageRef = ref(storage, `${imageId}-${title}-recipe-image`);
+    const imageName = `${imageId}-${title}-recipe-image`;
+    const imageRef = ref(storage, `${imageName}`);
 
     try {
       await uploadBytes(imageRef, image);
@@ -61,6 +70,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
         return {
           ...prevState,
           imgUrl: url,
+          imgName: imageName,
         };
       });
       setUploadRecipeImg(true);
@@ -347,7 +357,6 @@ export const AddRecipeFormStore = () => {
 
   const addRecipeToFirebase = useCallback(
     async (data) => {
-      console.log({ ...data });
       await dispatch(addRecipe({ ...data }));
       dispatch(getRecipes());
     },
