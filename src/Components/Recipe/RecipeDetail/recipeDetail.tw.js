@@ -18,6 +18,7 @@ export const RecipeHeader = tw.div`
 export const RecipeHeaderTop = tw.div`
   md:w-2/3
   mx-auto
+  break-words
 `;
 
 export const RecipeHeaderBottom = tw.div`
@@ -40,7 +41,6 @@ export const RecipeHeaderBottomRight = tw.div`
 
 export const RecipeTitle = tw.h1`
   text-3xl 
-  break-words
   font-extrabold 
   tracking-tight 
   text-gray-900 
@@ -50,7 +50,6 @@ export const RecipeTitle = tw.h1`
 export const RecipeDesc = tw.p`
   my-8
   text-gray-500
-  break-words
 `;
 
 export const DefaultBtn = tw.button`

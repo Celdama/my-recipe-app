@@ -22,7 +22,9 @@ export const RecipeImg = tw.img`
 export const RecipeContent = tw.div`
   flex 
   flex-col 
+  break-words
   w-full
+  md:max-w-xs
   min-w-36
   justify-between
   p-4 
