@@ -38,8 +38,6 @@ export const EditRecipeForm = ({
   const [uploadNewRecipeImg, setUploadNewRecipeImg] = useState(false);
   const [image, setImage] = useState(null);
 
-  console.log(recipe.imgName);
-
   useEffect(() => {
     if (recipe) {
       setEditRecipeData({ ...recipe });

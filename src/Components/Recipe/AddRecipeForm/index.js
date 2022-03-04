@@ -45,17 +45,8 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
     }
   }, [redirect, navigate]);
 
-  const {
-    title,
-    desc,
-    prep,
-    authorId,
-    cooking,
-    total,
-    serving,
-    ingredients,
-    steps,
-  } = formData;
+  const { title, desc, prep, cooking, total, serving, ingredients, steps } =
+    formData;
 
   const handleAddRecipe = async (e) => {
     e.preventDefault();
