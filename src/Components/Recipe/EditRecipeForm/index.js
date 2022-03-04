@@ -38,6 +38,8 @@ export const EditRecipeForm = ({
   const [uploadNewRecipeImg, setUploadNewRecipeImg] = useState(false);
   const [image, setImage] = useState(null);
 
+  console.log(recipe.imgName);
+
   useEffect(() => {
     if (recipe) {
       setEditRecipeData({ ...recipe });
@@ -277,6 +279,7 @@ export const EditRecipeForm = ({
                           name='prep'
                           onChange={handleEditRecipe}
                           defaultValue={prep}
+                          min={1}
                         />
                       </div>
                       <div className='input-wrapper'>
@@ -289,6 +292,7 @@ export const EditRecipeForm = ({
                           name='cooking'
                           onChange={handleEditRecipe}
                           defaultValue={cooking}
+                          min={1}
                         />
                       </div>
                     </div>
@@ -303,6 +307,7 @@ export const EditRecipeForm = ({
                           name='total'
                           onChange={handleEditRecipe}
                           defaultValue={total}
+                          min={1}
                         />
                       </div>
                       <div className='input-wrapper'>
@@ -315,6 +320,7 @@ export const EditRecipeForm = ({
                           name='serving'
                           onChange={handleEditRecipe}
                           defaultValue={serving}
+                          min={1}
                         />
                       </div>
                     </div>

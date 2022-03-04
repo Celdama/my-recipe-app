@@ -22,10 +22,10 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
     authorPhotoURL: currentUser.photoURL,
     author: currentUser.displayName,
     authorEmail: currentUser.email,
-    prep: 0,
-    cooking: 0,
-    total: 0,
-    serving: 0,
+    prep: 1,
+    cooking: 1,
+    total: 1,
+    serving: 1,
     imgUrl: '',
     ingredients: [],
     steps: [],
@@ -223,7 +223,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 name='prep'
                 id='prep'
                 value={prep}
-                min={0}
+                min={1}
                 onChange={handleChange}
               />
             </div>
@@ -240,7 +240,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 type='number'
                 name='cooking'
                 id='cooking'
-                min={0}
+                min={1}
                 value={cooking}
                 onChange={handleChange}
               />
@@ -260,7 +260,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 type='number'
                 name='total'
                 id='total'
-                min={0}
+                min={1}
                 value={total}
                 onChange={handleChange}
               />
@@ -278,7 +278,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 type='number'
                 name='serving'
                 id='serving'
-                min={0}
+                min={1}
                 value={serving}
                 onChange={handleChange}
               />
