@@ -46,9 +46,9 @@ const RecipeResume = ({ title, prep, cooking, total, serving }) => {
 RecipeResume.propTypes = {
   title: PropTypes.string,
   prep: PropTypes.string,
-  cooking: PropTypes.number,
+  cooking: PropTypes.string,
   total: PropTypes.string,
-  serving: PropTypes.number,
+  serving: PropTypes.string,
 };
 
 export default RecipeResume;

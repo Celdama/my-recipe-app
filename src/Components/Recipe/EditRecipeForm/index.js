@@ -161,7 +161,7 @@ export const EditRecipeForm = ({
                         type='text'
                         className='input-form'
                         name='title'
-                        onChange={(e) => handleEditRecipe(e)}
+                        onChange={handleEditRecipe}
                         defaultValue={title}
                       />
                     </div>
@@ -173,7 +173,7 @@ export const EditRecipeForm = ({
                         type='text'
                         className='input-form text-area-form'
                         name='desc'
-                        onChange={(e) => handleEditRecipe(e)}
+                        onChange={handleEditRecipe}
                         defaultValue={desc}
                       ></textarea>
                     </div>
@@ -210,7 +210,7 @@ export const EditRecipeForm = ({
                           type='number'
                           className='input-form'
                           name='prep'
-                          onChange={(e) => handleEditRecipe(e)}
+                          onChange={handleEditRecipe}
                           defaultValue={prep}
                         />
                       </div>
@@ -222,7 +222,7 @@ export const EditRecipeForm = ({
                           type='number'
                           className='input-form'
                           name='cooking'
-                          onChange={(e) => handleEditRecipe(e)}
+                          onChange={handleEditRecipe}
                           defaultValue={cooking}
                         />
                       </div>
@@ -236,7 +236,7 @@ export const EditRecipeForm = ({
                           type='number'
                           className='input-form'
                           name='total'
-                          onChange={(e) => handleEditRecipe(e)}
+                          onChange={handleEditRecipe}
                           defaultValue={total}
                         />
                       </div>
@@ -248,7 +248,7 @@ export const EditRecipeForm = ({
                           type='number'
                           className='input-form'
                           name='serving'
-                          onChange={(e) => handleEditRecipe(e)}
+                          onChange={handleEditRecipe}
                           defaultValue={serving}
                         />
                       </div>

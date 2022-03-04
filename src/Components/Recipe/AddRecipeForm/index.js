@@ -71,6 +71,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(typeof value);
 
     setFormData((prevState) => {
       return {
@@ -206,7 +207,6 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 value={prep}
                 min={0}
                 onChange={handleChange}
-                required
               />
             </div>
             <div className='input-wrapper'>
@@ -225,7 +225,6 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 min={0}
                 value={cooking}
                 onChange={handleChange}
-                required
               />
             </div>
           </div>
@@ -246,7 +245,6 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 min={0}
                 value={total}
                 onChange={handleChange}
-                required
               />
             </div>
             <div className='input-wrapper'>
@@ -265,7 +263,6 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
                 min={0}
                 value={serving}
                 onChange={handleChange}
-                required
               />
             </div>
             <div className='input-wrapper'>
@@ -342,6 +339,7 @@ export const AddRecipeFormStore = () => {
 
   const addRecipeToFirebase = useCallback(
     async (data) => {
+      console.log({ ...data });
       await dispatch(addRecipe({ ...data }));
       dispatch(getRecipes());
     },
