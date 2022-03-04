@@ -152,7 +152,10 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
         <form className='form-default' onSubmit={handleAddRecipe}>
           <div className='input-wrapper'>
             <label className='label-form flex justify-between' htmlFor='title'>
-              Recipe Title
+              <span>
+                Recipe Title{' '}
+                <span className='text-xs italic'>(max 50 characters)</span>
+              </span>
               <span className='text-xs italic'>* required</span>
             </label>
             <input
@@ -162,12 +165,16 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
               name='title'
               value={title}
               onChange={handleChange}
+              maxLength='50'
               required
             />
           </div>
           <div className='input-wrapper'>
             <label className='label-form flex justify-between' htmlFor='desc'>
-              Recipe Description
+              <span>
+                Recipe Description{' '}
+                <span className='text-xs italic'>(max 400 characters)</span>
+              </span>
               <span className='text-xs italic'>* required</span>
             </label>
             <textarea
@@ -178,6 +185,7 @@ export const AddRecipeForm = ({ currentUser, addRecipeToFirebase }) => {
               onChange={handleChange}
               rows='4'
               required
+              maxLength='400'
             ></textarea>
           </div>
           <div className='input-wrapper'>

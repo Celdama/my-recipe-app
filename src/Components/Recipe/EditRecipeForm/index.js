@@ -155,7 +155,10 @@ export const EditRecipeForm = ({
                   <form className='form-default'>
                     <div className='input-wrapper'>
                       <label className='label-form' htmlFor='title'>
-                        Recipe Title
+                        Recipe Title{' '}
+                        <span className='text-xs italic'>
+                          (max 50 characters)
+                        </span>
                       </label>
                       <input
                         type='text'
@@ -163,11 +166,17 @@ export const EditRecipeForm = ({
                         name='title'
                         onChange={handleEditRecipe}
                         defaultValue={title}
+                        maxLength='50'
                       />
                     </div>
                     <div className='input-wrapper'>
                       <label className='label-form' htmlFor='desc'>
-                        Recipe Description
+                        <span>
+                          Recipe Description{' '}
+                          <span className='text-xs italic'>
+                            (max 400 characters)
+                          </span>
+                        </span>
                       </label>
                       <textarea
                         type='text'
@@ -175,6 +184,7 @@ export const EditRecipeForm = ({
                         name='desc'
                         onChange={handleEditRecipe}
                         defaultValue={desc}
+                        maxLength='400'
                       ></textarea>
                     </div>
                     {/* <div className='input-wrapper'>
