@@ -50,6 +50,7 @@ export const RecipeTitle = tw.h1`
 export const RecipeDesc = tw.p`
   my-8
   text-gray-500
+  break-words
 `;
 
 export const DefaultBtn = tw.button`
