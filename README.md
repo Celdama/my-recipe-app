@@ -1,71 +1,15 @@
 # My Recipe App
 
-React application with state Redux management allowing you to add your own recipes in the form of cards.
-To simulate a back end in this application I will use json server. I think I can host the json server file on a github repo and make requests on this repo, I will see later.
-The main objective is to implement a CRUD functionality using Redux
+React application with state Redux management, allowing you to add your own recipes. You also can edit, and delete recipe, but only your recipe. 
 
-## Design
+Indeed the application benefits from a login system, so that each user can add his own recipes, and can only modify his recipes.
 
-see notebook for design
-I'll use tailwind and styled components for styling
+At the beginning of the application I used json-server to simulate a backend, with all the CRUD features implemented using Redux. Only then, I implemented Firebase, which allows me to have a real backend, the user can then create an account, upload his avatar and photo of his recipes and access the recipes of other users.
 
-## Features
+As far as styling is concerned, I wanted to discover and use TailwindCSS, but still with the styled-component logic. The ComponentFolder / Component.js - Component.styles.js structure suits me a lot. So I used the tailwind-styled-component package, which allows me to easily use these two tools together.
 
-### main features
+As for routing, I used react router dom, which allowed me to secure the routes of my application depending on whether the user is authenticated or not.
 
-- user can add recipe
-- user can get recipe with some filter
-- user can update recipe
-- user can delete recipe
+You can create an account and add your first recipe, or simply look for inspiration among the recipes of the app's users.
 
-### secondary features
-
-- user can add favorite recipe
-- user can search recipe by name
-- add filter recipe by main ingredients (chicken, beef, etc...)
-- display random recipe on daily best recipes components
-
-## Dependencies
-
-- axios
-- json-server
-- redux
-- redux-devtools-extension
-- redux-thunk
-- reselect
-- prop-types
-- react-router-dom
-- nanoid ? i think id is handle by json-server
-- styled-components
-
-- tailwind-styled-components
-- tailwindcss
-- postcss
-- autoprefixer
-
-# Composant
-
-- Sidebar
-  --- Discover
-  --- Library
-
-- SearchBar
-- User
-
-- BestRecipe
-  --- RecipeCard
-
-- DailyRecipe
-  --- RecipeCard
-
-- AddRecipeForm
-
-## Add user in firestore
-
-- register user
-- add user in users db firestore
-
-user in firestore
-[] user id
-[] email
-[] photo url
+[Hosted version](https://my-recipe-app-49544.web.app/)
